@@ -1,0 +1,1 @@
+This directory contains dependencies that are needed to build PwE but are not managed by Maven (because they are not published via Maven) 
