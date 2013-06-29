@@ -39,7 +39,9 @@ public class PwEMain {
 
     public static void main(String args[]) {
 
+
         CommandLineParser parser = new PosixParser();
+        int EXIT = 0;
 
         try {
             CommandLine line = parser.parse(argList, args);
@@ -48,23 +50,42 @@ public class PwEMain {
         } catch (ParseException e) {
             // we aren't really interested in moving forward if this fails
             System.err.println("Parsing failed.  Reason: " + e.getMessage());
-            System.exit(1);
-        } catch (IOException e){
+            EXIT = 1;
+        } catch (IOException e) {
             System.err.println("Failed to initialize PwE Container. Reason: " + e.getMessage());
+            EXIT = 1;
+        } catch (NumberFormatException e) {
+            System.err.println("Invalid port number specification.");
+            EXIT = 1;
+
         }
 
-
+        // only make an explicit call to exit if we have an abnormal exit condition
+        if (EXIT != 0) {
+            System.exit(EXIT);
+        }
     }
 
-    public void bootstrap(CommandLine cl) throws IOException {
+    public void bootstrap(CommandLine cl) throws IOException, NumberFormatException {
+
+        int port = PwE.DEFAULT_PORT;
+
+        if (cl.getOptionValue(PwE.ARG_PORT) != null) {
+            port = Integer.parseInt(cl.getOptionValue(PwE.ARG_PORT));
+        }
+
+        logger.info("Bootstrapping PwE on port {}...", port);
 
 
-        Container container = new PwEContainer();
+        // handoff control of the process to the PwE container
+        Container container = PwEContainer.getContainer();
         Server server = new ContainerServer(container);
         Connection connection = new SocketConnection(server);
-        SocketAddress address = new InetSocketAddress(8080);
+        SocketAddress address = new InetSocketAddress(port);
 
         connection.connect(address);
+
+        logger.info("Bootstrapping complete.");
     }
 
 

@@ -8,16 +8,16 @@
 public class PwELog {
 
 
-    public static void ERROR(String msg){
+    public static void ERROR(String msg) {
 
     }
 
-    public static void INFO(String msg){
+    public static void INFO(String msg) {
 
     }
 
 
-    public static void DEBUG(String msg){
+    public static void DEBUG(String msg) {
 
     }
 
