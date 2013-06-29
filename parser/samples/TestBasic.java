@@ -1,4 +1,4 @@
-
+import java.lang.String;
 
 public class TestBasic {
     public static final void someFunction(String args){
