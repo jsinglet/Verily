@@ -60,7 +60,12 @@ public final class PwETable {
         return size;
     }
 
-    public boolean equals(PwETable that) {
+    public boolean equals(Object o) {
+
+        if (o instanceof PwETable == false)
+            return false;
+
+        PwETable that = (PwETable) o;
 
         boolean sameContents = true;
         boolean sameAddress = (this == that);

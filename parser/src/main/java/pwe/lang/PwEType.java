@@ -31,8 +31,12 @@ public class PwEType {
         this.name = name;
     }
 
-    public boolean equals(PwEType that) {
-        return this == that || (this.getType().equals(that.getType()) && this.getName().equals(that.getName()));
+    public boolean equals(Object o) {
+        if (o instanceof PwEType) {
+            PwEType that = (PwEType) o;
+            return this == that || (this.getType().equals(that.getType()) && this.getName().equals(that.getName()));
+        }
+        return false;
     }
 
     public int hashCode() {
