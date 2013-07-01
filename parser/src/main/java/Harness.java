@@ -3,25 +3,79 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pwe.lang.ExtractClassInfoListener;
 import pwe.lang.JavaLexer;
 import pwe.lang.JavaParser;
+import pwe.lang.PwETable;
+
+import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Harness {
 
+    final Logger logger = LoggerFactory.getLogger(Harness.class);
 
-    public static void main(String args[]) {
+    private Path base;
+    private static String controllersPath;
+    private static String methodsPath;
+
+    static {
+        controllersPath = "controllers";
+        methodsPath = "methods";
+    }
+
+    public static void main(String args[]) throws IOException {
         // Parse our test file...
-        parseFile("samples/TestBasic.java");
+        //parseFile("samples/TestBasic.java");
+
+        Harness h = new Harness(Paths.get(""));
+
+        h.extractTranslationTable();
 
     }
 
-    public static void parseFile(String f) {
+    public Harness(Path base) {
+        this.base = base;
+    }
+
+    public void extractTranslationTable() throws IOException {
+
+        // Parse out translation table from controllers
+        PwETable controllerTable = new PwETable();
+
+        DirectoryStream<Path> controllerFiles = Files.newDirectoryStream(base.resolve(controllersPath), "*.java");
+        for (Path p : controllerFiles) {
+            parseFile(p.toString(), controllerTable);
+        }
+
+        // Parse out translation table from methods
+        PwETable methodTable = new PwETable();
+
+        DirectoryStream<Path> methodFiles = Files.newDirectoryStream(base.resolve(methodsPath), "*.java");
+        for (Path p : methodFiles) {
+            parseFile(p.toString(), methodTable);
+        }
+
+        // Start checking things
+
+        //
+        // Check translation table homomorphism
+        //
+
+
+    }
+
+    public void parseFile(String f, PwETable table) {
         boolean gui = true;
         boolean printTree = true;
 
         try {
-            System.out.print("Parsing file: " + f);
+            logger.info("Parsing file: {}", f);
 
             // Create Lexer
             Lexer lexer = new JavaLexer(new ANTLRFileStream(f));
@@ -30,7 +84,7 @@ public class Harness {
             long start = System.currentTimeMillis();
             tokens.fill(); // load all and check time
             long stop = System.currentTimeMillis();
-            System.out.println(String.format(" (lexed in %d ms)", stop - start));
+            logger.info(String.format(" (lexed in %d ms)", stop - start));
 
             // Create a parser that reads from the scanner
             JavaParser parser = new JavaParser(tokens);
@@ -45,11 +99,11 @@ public class Harness {
 //
 //            ParserRuleContext t = parser.compilationUnit();
 ////            if (notree) parser.setBuildParseTree(false);
-            if (gui) t.inspect(parser);
+            //if (gui) t.inspect(parser);
 //            if (printTree) System.out.println(t.toStringTree(parser));
 
             ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
-            ExtractClassInfoListener extractor = new ExtractClassInfoListener(parser);
+            ExtractClassInfoListener extractor = new ExtractClassInfoListener(parser, table, f);
             walker.walk(extractor, t); // initiate walk of tree with listener
 
 
