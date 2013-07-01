@@ -1,3 +1,6 @@
+import pwe.lang.PwETable;
+import pwe.lang.exceptions.MethodNotMappedException;
+
 import java.nio.file.Path;
 
 public class PwEEnv {
@@ -5,6 +8,7 @@ public class PwEEnv {
     private Path home;
     private String appName;
     private String appVersion;
+    private PwETable translationTable;
 
 
     public Path getHome() {
@@ -29,5 +33,17 @@ public class PwEEnv {
 
     public void setAppVersion(String appVersion) {
         this.appVersion = appVersion;
+    }
+
+    public PwETable getTranslationTable() {
+        return translationTable;
+    }
+
+    public void setTranslationTable(PwETable translationTable) {
+        this.translationTable = translationTable;
+    }
+
+    public void findMappedMethod(String context, String method) throws MethodNotMappedException {
+        translationTable.methodAt(context, method);
     }
 }

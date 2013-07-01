@@ -10,7 +10,10 @@ import org.simpleframework.http.Response;
 import org.simpleframework.http.core.Container;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pwe.lang.PwETable;
+import pwe.lang.exceptions.TableHomomorphismException;
 
+import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Paths;
 import java.util.Date;
@@ -28,7 +31,7 @@ public class PwEContainer implements Container {
 
     private static PwEContainer pWe;
 
-    public static PwEContainer getContainer() {
+    public static PwEContainer getContainer() throws IOException, TableHomomorphismException {
         if (pWe == null) {
 
             /**
@@ -36,11 +39,18 @@ public class PwEContainer implements Container {
              */
             PwEEnv env = new PwEEnv();
 
-            //where are we?
+            // where are we?
             env.setHome(Paths.get(""));
 
             //verify that this is a PwE application
             //env.getHome().
+
+            // set up the translation table
+            Harness applicationHarness = new Harness(env.getHome());
+
+            PwETable translationTable = applicationHarness.extractTranslationTable();
+
+            env.setTranslationTable(translationTable);
 
             pWe = new PwEContainer(env);
         }

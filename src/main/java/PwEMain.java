@@ -13,6 +13,7 @@ import org.simpleframework.transport.connect.Connection;
 import org.simpleframework.transport.connect.SocketConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pwe.lang.exceptions.TableHomomorphismException;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -45,19 +46,23 @@ public class PwEMain {
 
         try {
             CommandLine line = parser.parse(argList, args);
+            //TODO - prior to starting the container we should make sure that
+            // we start a mvn build on the project in question.
             new PwEMain().bootstrap(line);
 
         } catch (ParseException e) {
             // we aren't really interested in moving forward if this fails
-            System.err.println("Parsing failed.  Reason: " + e.getMessage());
+            System.err.println(PwEUtil.getMessage("MsgParsingFailed") + e.getMessage());
             EXIT = 1;
         } catch (IOException e) {
-            System.err.println("Failed to initialize PwE Container. Reason: " + e.getMessage());
+            System.err.println(PwEUtil.getMessage("MsgContainerInitFailed") + e.getMessage());
             EXIT = 1;
         } catch (NumberFormatException e) {
-            System.err.println("Invalid port number specification.");
+            System.err.println(PwEUtil.getMessage("MsgInvalidPort"));
             EXIT = 1;
 
+        } catch (TableHomomorphismException e) {
+            System.err.println(PwEUtil.getMessage("MsgTableHomomorphism"));
         }
 
         // only make an explicit call to exit if we have an abnormal exit condition
@@ -66,7 +71,7 @@ public class PwEMain {
         }
     }
 
-    public void bootstrap(CommandLine cl) throws IOException, NumberFormatException {
+    public void bootstrap(CommandLine cl) throws IOException, NumberFormatException, TableHomomorphismException {
 
         int port = PwE.DEFAULT_PORT;
 
@@ -77,7 +82,6 @@ public class PwEMain {
         logger.info("Bootstrapping PwE on port {}...", port);
 
 
-        // handoff control of the process to the PwE container
         Container container = PwEContainer.getContainer();
         Server server = new ContainerServer(container);
         Connection connection = new SocketConnection(server);
@@ -86,6 +90,7 @@ public class PwEMain {
         connection.connect(address);
 
         logger.info("Bootstrapping complete.");
+
     }
 
 
