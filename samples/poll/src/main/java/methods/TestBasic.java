@@ -7,6 +7,15 @@ public class TestBasic {
     }
 
 
+    public static final String someFunction3(List<String> args) {
+
+        someFunction("test");
+
+        return "test";
+
+    }
+
+
     public static final void someFunction2(List<String> args) {
 
         someFunction("test");

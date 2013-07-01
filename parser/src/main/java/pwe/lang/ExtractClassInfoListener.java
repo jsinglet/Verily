@@ -104,11 +104,12 @@ public class ExtractClassInfoListener extends JavaBaseListener {
 
         // if this method is valid, the signature will be public static void, which will be
         // two levels up in the parser as follows
-        if (ctx.getParent() != null && ctx.getParent().getParent() != null) {
+        // Note that ctx.type() == null when the return type is void
+        if (ctx.type() == null && ctx.getParent() != null && ctx.getParent().getParent() != null) {
 
             if (ctx.getParent().getParent().children != null && ctx.getParent().getParent().children.size() == 4) {
 
-                for (int i = 0; i < ctx.getParent().getParent().children.size(); i++) {
+                for (int i = 0; i < ctx.getParent().getParent().children.size() - 1; i++) {
                     if (ctx.getParent().getParent().children.get(i).getText().equals(psfvReference.get(i)) == false) {
                         isPSV = false;
                         break;
@@ -117,6 +118,8 @@ public class ExtractClassInfoListener extends JavaBaseListener {
             } else {
                 isPSV = false;
             }
+        } else {
+            isPSV = false;
         }
 
         logger.info("{}Checking to see if method is PSV: [{}]", getDepth(), isPSV);

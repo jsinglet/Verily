@@ -9,6 +9,7 @@ public class PwEEnv {
     private String appName;
     private String appVersion;
     private PwETable translationTable;
+    private int port;
 
 
     public Path getHome() {
@@ -45,5 +46,13 @@ public class PwEEnv {
 
     public void findMappedMethod(String context, String method) throws MethodNotMappedException {
         translationTable.methodAt(context, method);
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 }

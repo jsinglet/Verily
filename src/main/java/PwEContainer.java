@@ -25,7 +25,7 @@ public class PwEContainer implements Container {
     private PwEEnv env;
 
     private PwEContainer(PwEEnv env) {
-        this.env = env;
+        this.setEnv(env);
         logger.info("Constructed new PwE container @ {}", new Date());
     }
 
@@ -74,5 +74,13 @@ public class PwEContainer implements Container {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public PwEEnv getEnv() {
+        return env;
+    }
+
+    public void setEnv(PwEEnv env) {
+        this.env = env;
     }
 }

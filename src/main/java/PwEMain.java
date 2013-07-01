@@ -5,6 +5,7 @@
  *
  */
 
+import exceptions.PwECompileFailedException;
 import org.apache.commons.cli.*;
 import org.simpleframework.http.core.Container;
 import org.simpleframework.http.core.ContainerServer;
@@ -13,6 +14,7 @@ import org.simpleframework.transport.connect.Connection;
 import org.simpleframework.transport.connect.SocketConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.impl.SimpleLogger;
 import pwe.lang.exceptions.TableHomomorphismException;
 
 import java.io.IOException;
@@ -35,6 +37,12 @@ public class PwEMain {
         argList.addOption(port);
         argList.addOption(help);
 
+        System.setProperty(SimpleLogger.LEVEL_IN_BRACKETS_KEY, "true");
+        System.setProperty(SimpleLogger.SHOW_LOG_NAME_KEY, "false");
+        System.setProperty(SimpleLogger.LOG_FILE_KEY, "System.out");
+        System.setProperty(SimpleLogger.SHOW_THREAD_NAME_KEY, "false");
+
+
     }
 
     final Logger logger = LoggerFactory.getLogger(PwEMain.class);
@@ -47,9 +55,15 @@ public class PwEMain {
 
         try {
             CommandLine line = parser.parse(argList, args);
-            //TODO - prior to starting the container we should make sure that
-            // we start a mvn build on the project in question.
-            new PwEMain().bootstrap(line);
+
+            PwEMain m = new PwEMain();
+
+            m.bootstrap(line);
+
+            // compile the project
+            PwEUtil.compileProject();
+
+            m.ready();
 
         } catch (ParseException e) {
             // we aren't really interested in moving forward if this fails
@@ -68,6 +82,13 @@ public class PwEMain {
 
         } catch (TableHomomorphismException e) {
             System.err.println(PwEUtil.getMessage("MsgTableHomomorphism"));
+        } catch (InterruptedException e) {
+            // this is a little bit of an unexpected exception so we are going to bail ungracefully
+            e.printStackTrace();
+            EXIT = 1;
+        } catch (PwECompileFailedException e) {
+            System.err.println(PwEUtil.getMessage("MsgCompileFailed"));
+            EXIT = 1;
         }
 
         // only make an explicit call to exit if we have an abnormal exit condition
@@ -94,8 +115,14 @@ public class PwEMain {
 
         connection.connect(address);
 
+        PwEContainer.getContainer().getEnv().setPort(port);
+
         logger.info("Bootstrapping complete.");
 
+    }
+
+    public void ready() throws IOException, TableHomomorphismException {
+        logger.info("Bootstrapping complete and PwE ready to serve requests at http://localhost:{}/", PwEContainer.getContainer().getEnv().getPort());
     }
 
 
