@@ -11,7 +11,6 @@ public class TestBasic {
 
     }
 
-
     class TestInner1 {
         class TestInner2 {
             class TestInner3 {

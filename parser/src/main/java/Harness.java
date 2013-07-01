@@ -9,6 +9,7 @@ import pwe.lang.ExtractClassInfoListener;
 import pwe.lang.JavaLexer;
 import pwe.lang.JavaParser;
 import pwe.lang.PwETable;
+import pwe.lang.exceptions.TableHomomorphismException;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -29,21 +30,18 @@ public class Harness {
         methodsPath = "methods";
     }
 
-    public static void main(String args[]) throws IOException {
-        // Parse our test file...
-        //parseFile("samples/TestBasic.java");
+    public static void main(String args[]) throws IOException, TableHomomorphismException {
 
         Harness h = new Harness(Paths.get(""));
 
-        h.extractTranslationTable();
-
+        PwETable t = h.extractTranslationTable();
     }
 
     public Harness(Path base) {
         this.base = base;
     }
 
-    public void extractTranslationTable() throws IOException {
+    public PwETable extractTranslationTable() throws IOException, TableHomomorphismException {
 
         // Parse out translation table from controllers
         PwETable controllerTable = new PwETable();
@@ -66,8 +64,12 @@ public class Harness {
         //
         // Check translation table homomorphism
         //
+        if (methodTable.equals(controllerTable) == false) {
+            throw new TableHomomorphismException("Method and Controller tables do not match. For any given function in a method, there should be one matching in name, arity and type in your controllers.");
+        }
 
 
+        return methodTable;
     }
 
     public void parseFile(String f, PwETable table) {
@@ -99,7 +101,7 @@ public class Harness {
 //
 //            ParserRuleContext t = parser.compilationUnit();
 ////            if (notree) parser.setBuildParseTree(false);
-            //if (gui) t.inspect(parser);
+//            if (gui) t.inspect(parser);
 //            if (printTree) System.out.println(t.toStringTree(parser));
 
             ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker

@@ -1,17 +1,20 @@
 package pwe.lang;
 
-import org.antlr.v4.runtime.TokenStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
+import static pwe.lang.JavaParser.*;
+
 public class ExtractClassInfoListener extends JavaBaseListener {
 
     final Logger logger = LoggerFactory.getLogger(ExtractClassInfoListener.class);
+    private static final List<String> psfvReference = Arrays.asList("public", "static", "final", "void");
 
     private JavaParser parser;
     private String filename;
@@ -26,25 +29,25 @@ public class ExtractClassInfoListener extends JavaBaseListener {
     }
 
     @Override
-    public void enterClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
+    public void enterClassDeclaration(ClassDeclarationContext ctx) {
 
         logger.info("{}Descending into class {}...", getDepth(), ctx.Identifier());
         classCtx.push(ctx.Identifier().toString());
     }
 
     @Override
-    public void exitClassDeclaration(JavaParser.ClassDeclarationContext ctx) {
+    public void exitClassDeclaration(ClassDeclarationContext ctx) {
         String formerCtx = classCtx.pop();
         logger.info("{}Leaving class class {}...", getDepth(), formerCtx);
     }
 
     @Override
-    public void enterFormalParameters(JavaParser.FormalParametersContext ctx) {
+    public void enterFormalParameters(FormalParametersContext ctx) {
         logger.info("{}Entering formal parameters context...", getDepth());
     }
 
     @Override
-    public void enterFormalParameter(JavaParser.FormalParameterContext ctx) {
+    public void enterFormalParameter(FormalParameterContext ctx) {
 
         logger.info("{}Entering formal parameter context...{}", getDepth());
         logger.info("{}Found formal parameter \"{}\" with type \"{}\"", getDepth(), ctx.variableDeclaratorId().getText(), ctx.type().getText());
@@ -54,16 +57,16 @@ public class ExtractClassInfoListener extends JavaBaseListener {
     }
 
     @Override
-    public void enterMethodDeclaration(JavaParser.MethodDeclarationContext ctx) {
+    public void enterMethodDeclaration(MethodDeclarationContext ctx) {
         logger.info("{}Parsing class method: {}", getDepth(), ctx.Identifier());
     }
 
     @Override
-    public void exitMethodDeclaration(JavaParser.MethodDeclarationContext ctx) {
+    public void exitMethodDeclaration(MethodDeclarationContext ctx) {
 
         logger.info("{}Evaluating class method: {}", getDepth(), ctx.Identifier());
 
-        if (methodIsPSV(ctx) && currentClassIsFilename(ctx) && methodIsTopLevel(ctx)) {
+        if (methodIsPSFV(ctx) && currentClassIsFilename(ctx) && methodIsTopLevel(ctx)) {
             logger.info("{}Discovered method \"{}\" will be mapped => /{}/{}", getDepth(), ctx.Identifier(), classCtx.peek(), ctx.Identifier());
 
             et.mapMethod(classCtx.peek(), new PwEMethod(ctx.Identifier().getText(), methodSpec));
@@ -72,11 +75,11 @@ public class ExtractClassInfoListener extends JavaBaseListener {
             logger.info("{}Discovered method \"{}\" not a candidate for PwE model.", getDepth(), ctx.Identifier());
         }
 
-        methodSpec.clear();
+        methodSpec = new LinkedList<PwEType>();
     }
 
     // check to see that this method is a DIRECT member of the class being parsed.
-    private boolean methodIsTopLevel(JavaParser.MethodDeclarationContext ctx) {
+    private boolean methodIsTopLevel(MethodDeclarationContext ctx) {
 
         boolean isTL = classCtx.size() == 1;
 
@@ -85,7 +88,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
         return isTL;
     }
 
-    private boolean currentClassIsFilename(JavaParser.MethodDeclarationContext ctx) {
+    private boolean currentClassIsFilename(MethodDeclarationContext ctx) {
         String className = new File(filename).getName().split("\\.")[0];
         boolean ccif = className.equals(classCtx.peek());
 
@@ -94,21 +97,27 @@ public class ExtractClassInfoListener extends JavaBaseListener {
         return ccif;
     }
 
-    // checks to see that a method is public static void
-    private boolean methodIsPSV(JavaParser.MethodDeclarationContext ctx) {
+    // checks to see that a method is public static final void
+    private boolean methodIsPSFV(MethodDeclarationContext ctx) {
 
         boolean isPSV = true; //false;
 
+        // if this method is valid, the signature will be public static void, which will be
+        // two levels up in the parser as follows
+        if (ctx.getParent() != null && ctx.getParent().getParent() != null) {
 
-        TokenStream tokens = parser.getTokenStream();
-        String type = "void";
-        if (ctx.type() != null) {
-            type = tokens.getText(ctx.type());
+            if (ctx.getParent().getParent().children != null && ctx.getParent().getParent().children.size() == 4) {
+
+                for (int i = 0; i < ctx.getParent().getParent().children.size(); i++) {
+                    if (ctx.getParent().getParent().children.get(i).getText().equals(psfvReference.get(i)) == false) {
+                        isPSV = false;
+                        break;
+                    }
+                }
+            } else {
+                isPSV = false;
+            }
         }
-
-        String args = tokens.getText(ctx.formalParameters());
-        System.out.println("\t" + type + " " + ctx.Identifier() + args + ";");
-
 
         logger.info("{}Checking to see if method is PSV: [{}]", getDepth(), isPSV);
         return isPSV;
