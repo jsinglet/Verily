@@ -46,7 +46,7 @@ public class Harness {
         // Parse out translation table from controllers
         PwETable controllerTable = new PwETable();
 
-        DirectoryStream<Path> controllerFiles = Files.newDirectoryStream(base.resolve(controllersPath), "*.java");
+        DirectoryStream<Path> controllerFiles = Files.newDirectoryStream(base.resolve("src").resolve("main").resolve("java").resolve(controllersPath), "*.java");
         for (Path p : controllerFiles) {
             parseFile(p.toString(), controllerTable);
         }
@@ -54,7 +54,7 @@ public class Harness {
         // Parse out translation table from methods
         PwETable methodTable = new PwETable();
 
-        DirectoryStream<Path> methodFiles = Files.newDirectoryStream(base.resolve(methodsPath), "*.java");
+        DirectoryStream<Path> methodFiles = Files.newDirectoryStream(base.resolve("src").resolve("main").resolve("java").resolve(methodsPath), "*.java");
         for (Path p : methodFiles) {
             parseFile(p.toString(), methodTable);
         }

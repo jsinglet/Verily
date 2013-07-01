@@ -18,6 +18,7 @@ import pwe.lang.exceptions.TableHomomorphismException;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
+import java.nio.file.NoSuchFileException;
 
 public class PwEMain {
 
@@ -53,6 +54,10 @@ public class PwEMain {
         } catch (ParseException e) {
             // we aren't really interested in moving forward if this fails
             System.err.println(PwEUtil.getMessage("MsgParsingFailed") + e.getMessage());
+            EXIT = 1;
+
+        } catch (NoSuchFileException e) {
+            System.err.println(PwEUtil.getMessage("MsgInvalidDirectoryFormat"));
             EXIT = 1;
         } catch (IOException e) {
             System.err.println(PwEUtil.getMessage("MsgContainerInitFailed") + e.getMessage());
