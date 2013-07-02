@@ -42,7 +42,6 @@ public class PwEMain {
         System.setProperty(SimpleLogger.LOG_FILE_KEY, "System.out");
         System.setProperty(SimpleLogger.SHOW_THREAD_NAME_KEY, "false");
 
-
     }
 
     final Logger logger = LoggerFactory.getLogger(PwEMain.class);
@@ -124,6 +123,4 @@ public class PwEMain {
     public void ready() throws IOException, TableHomomorphismException {
         logger.info("Bootstrapping complete and PwE ready to serve requests at http://localhost:{}/", PwEContainer.getContainer().getEnv().getPort());
     }
-
-
 }
