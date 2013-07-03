@@ -7,6 +7,10 @@ public class TestBasic {
     }
 
 
+    public static void dispatchTest() {
+        System.out.println("This method was dynamically dispatched.");
+    }
+
     public static final String someFunction3(List<String> args) {
 
         someFunction("test");

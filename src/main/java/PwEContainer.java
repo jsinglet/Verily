@@ -60,7 +60,31 @@ public class PwEContainer implements Container {
     @Override
     public void handle(Request request, Response response) {
 
+        // Step 1 - Map the incoming request into it's context and method pairs
+
+        // Step 2 - Decode the incoming request's parameters
+
+        // Step 3 - Find a suitable method for dispatching
+
+        // Step 4 - Identify session-bound parameters
+
+        // Step 5 - Transform the mapped request and parameters into a method call, perform session value substitution
+
+        // Step 6 - Perform the Method side of the invocation
+
+        // Step 7 - Persist the writablly bound paramters to the session storage
+
+        // Step 8 - Using the exact same parameters, invoke the controller method.
+
+        // Step 9 - TBD: In the Maven POM for the PwE project (poll, for example) there should be a dependancy entry for
+        //          a minimal set of templating libraries for dealing with the actual creation of the pages. Freemarker seems to be a likely canidate
+        //          for this.
         try {
+
+            Class c = Class.forName("methods.TestBasic", false, this.getClass().getClassLoader());
+            c.getMethod("dispatchTest", null).invoke(null);
+
+
             PrintStream body = response.getPrintStream();
             long time = System.currentTimeMillis();
 
