@@ -43,4 +43,26 @@ public class PwEUtil {
         }
     }
 
+    public static String trimRequestContext(String ctx) {
+        if (ctx != null) {
+
+            int idx1, idx2;
+
+            // find the first slash
+            for (idx1 = 0; idx1 < ctx.length() && ctx.charAt(idx1) == '/'; idx1++) ;
+
+            // no slashes
+            if (idx1 == ctx.length()) {
+                return ctx;
+            }
+
+            // find the first slash
+            for (idx2 = ctx.length() - 1; idx2 > idx1 && ctx.charAt(idx2) == '/'; idx2--) ;
+
+            return ctx.substring(idx1, idx2 + 1);
+        }
+
+        return ctx;
+    }
+
 }

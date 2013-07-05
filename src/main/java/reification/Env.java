@@ -9,6 +9,6 @@ public class Env extends HashMap<PwEType, Object> {
     public Env() {
     }
 
-    // env specific function
+    // env specific functions
 
 }

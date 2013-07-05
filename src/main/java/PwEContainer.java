@@ -5,18 +5,22 @@
  *
  */
 
+import exceptions.InvalidFormalArgumentsException;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.simpleframework.http.core.Container;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pwe.lang.PwEMethod;
 import pwe.lang.PwETable;
+import pwe.lang.exceptions.MethodNotMappedException;
 import pwe.lang.exceptions.TableHomomorphismException;
 
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.Set;
 
 public class PwEContainer implements Container {
 
@@ -57,26 +61,57 @@ public class PwEContainer implements Container {
         return pWe;
     }
 
+    public PwEMethod getMethodForRequest(Request r) throws MethodNotMappedException {
+
+        String method = r.getPath().getName();
+        String context = PwEUtil.trimRequestContext(r.getPath().getDirectory());
+
+        // we don't need to check for null here, really.
+        return env.getTranslationTable().methodAt(context, method);
+    }
+
+
+    public void marshallRequestToMethod(Request r, PwEMethod m) throws InvalidFormalArgumentsException {
+
+        Set<String> paramKeys = r.getQuery().keySet();
+
+        // Test 1: We should have as many parameters as the number of parameters of the method MINUS the number of
+        if (m.getNonSessionBoundParameters().size() != paramKeys.size()) {
+            throw new InvalidFormalArgumentsException("Invalid number of formal paramters");
+        }
+    }
+
     @Override
     public void handle(Request request, Response response) {
 
-        // Step 1 - Map the incoming request into it's context and method pairs
+        try {
 
-        // Step 2 - Decode the incoming request's parameters
+            // Step 1 - Map the incoming request onto a method call
+            PwEMethod m = getMethodForRequest(request);
 
-        // Step 3 - Find a suitable method for dispatching
+            // Step 2 - Decode the incoming request's parameters
+            //
+            // Note: We look at the request and try to match it with the method, not the other way around.
+            //
+            marshallRequestToMethod(request, m);
 
-        // Step 4 - Identify session-bound parameters
+        } catch (MethodNotMappedException e) {
+            send404(response);
+        } catch (InvalidFormalArgumentsException e) {
+            // show message about this.
+        }
 
-        // Step 5 - Transform the mapped request and parameters into a method call, perform session value substitution
+        // Step 3 - Identify session-bound parameters
 
-        // Step 6 - Perform the Method side of the invocation
+        // Step 4 - Transform the mapped request and parameters into a method call, perform session value substitution
 
-        // Step 7 - Persist the writablly bound paramters to the session storage
+        // Step 5 - Perform the Method side of the invocation
 
-        // Step 8 - Using the exact same parameters, invoke the controller method.
+        // Step 6 - Persist the writablly bound paramters to the session storage
 
-        // Step 9 - TBD: In the Maven POM for the PwE project (poll, for example) there should be a dependancy entry for
+        // Step 7 - Using the exact same parameters, invoke the controller method.
+
+        // Step 8 - TBD: In the Maven POM for the PwE project (poll, for example) there should be a dependancy entry for
         //          a minimal set of templating libraries for dealing with the actual creation of the pages. Freemarker seems to be a likely canidate
         //          for this.
         try {
@@ -98,6 +133,27 @@ public class PwEContainer implements Container {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    //TODO - Implement these internal status responses as pretty templates
+    public void send404(Response response) {
+
+        try {
+            PrintStream body = response.getPrintStream();
+            long time = System.currentTimeMillis();
+
+            response.setValue("Content-Type", "text/html");
+            response.setValue("Server", "PwE/1.0");
+            response.setDate("Date", time);
+            response.setDate("Last-Modified", time);
+            response.setCode(404);
+            body.println("Sorry, but the endpoint you requested does not exist.");
+            body.close();
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 
     public PwEEnv getEnv() {
