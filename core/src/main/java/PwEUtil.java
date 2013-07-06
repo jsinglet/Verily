@@ -3,6 +3,8 @@ import exceptions.PwECompileFailedException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -63,6 +65,10 @@ public class PwEUtil {
         }
 
         return ctx;
+    }
+
+    public static String mimeForType(URL file) {
+        return URLConnection.guessContentTypeFromName(file.getFile());
     }
 
 }

@@ -8,6 +8,7 @@
 import content.TemplateFactory;
 import exceptions.InvalidFormalArgumentsException;
 import freemarker.template.Template;
+import org.apache.commons.io.IOUtils;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.simpleframework.http.core.Container;
@@ -18,10 +19,8 @@ import pwe.lang.PwETable;
 import pwe.lang.exceptions.MethodNotMappedException;
 import pwe.lang.exceptions.TableHomomorphismException;
 
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintStream;
-import java.io.Writer;
+import java.io.*;
+import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.Set;
@@ -89,56 +88,102 @@ public class PwEContainer implements Container {
     @Override
     public void handle(Request request, Response response) {
 
-        try {
 
-            // Step 1 - Map the incoming request onto a method call
-            PwEMethod m = getMethodForRequest(request);
+        // Check if it is a file (overrides)
+        URL u = this.getClass().getResource(request.getPath().getPath());
 
-            // Step 2 - Decode the incoming request's parameters
-            //
-            // Note: We look at the request and try to match it with the method, not the other way around.
-            //
-            marshallRequestToMethod(request, m);
+        if (u != null) { // static content
+            sendFile(u, response);
+        } else {         // dynamic content
 
-        } catch (MethodNotMappedException e) {
-            send404(request, response);
-        } catch (InvalidFormalArgumentsException e) {
-            // show message about this.
+            try {
+
+                // Step 1 - Map the incoming request onto a method call
+
+                PwEMethod m = getMethodForRequest(request);
+
+                // Step 2 - Decode the incoming request's parameters
+                //
+                // Note: We look at the request and try to match it with the method, not the other way around.
+                //
+                marshallRequestToMethod(request, m);
+
+                // Step 3 - Identify session-bound parameters
+
+                // Step 4 - Transform the mapped request and parameters into a method call, perform session value substitution
+
+                // Step 5 - Perform the Method side of the invocation
+
+                // Step 6 - Persist the writablly bound paramters to the session storage
+
+                // Step 7 - Using the exact same parameters, invoke the controller method.
+
+                // Step 8 - TBD: In the Maven POM for the PwE project (poll, for example) there should be a dependancy entry for
+                //          a minimal set of templating libraries for dealing with the actual creation of the pages. Freemarker seems to be a likely canidate
+                //          for this.
+
+
+                try {
+
+                    Class c = Class.forName("methods.TestBasic", false, this.getClass().getClassLoader());
+                    c.getMethod("dispatchTest", null).invoke(null);
+
+
+                    PrintStream body = response.getPrintStream();
+                    long time = System.currentTimeMillis();
+
+                    response.setValue("Content-Type", "");
+                    response.setValue("Server", "");
+                    response.setDate("Date", time);
+                    response.setDate("Last-Modified", time);
+
+                    body.println("Hello World");
+                    body.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            } catch (MethodNotMappedException e) {
+                send404(request, response);
+            } catch (InvalidFormalArgumentsException e) {
+                // show message about this.
+            }
+
         }
+    }
 
-        // Step 3 - Identify session-bound parameters
-
-        // Step 4 - Transform the mapped request and parameters into a method call, perform session value substitution
-
-        // Step 5 - Perform the Method side of the invocation
-
-        // Step 6 - Persist the writablly bound paramters to the session storage
-
-        // Step 7 - Using the exact same parameters, invoke the controller method.
-
-        // Step 8 - TBD: In the Maven POM for the PwE project (poll, for example) there should be a dependancy entry for
-        //          a minimal set of templating libraries for dealing with the actual creation of the pages. Freemarker seems to be a likely canidate
-        //          for this.
+    public void sendFile(URL file, Response response) {
         try {
 
-            Class c = Class.forName("methods.TestBasic", false, this.getClass().getClassLoader());
-            c.getMethod("dispatchTest", null).invoke(null);
-
-
-            PrintStream body = response.getPrintStream();
             long time = System.currentTimeMillis();
 
-            response.setValue("Content-Type", "");
-            response.setValue("Server", "");
+            OutputStream out = response.getOutputStream();
+            InputStream in = file.openStream();
+
+
+            response.setValue("Content-Type", PwEUtil.mimeForType(file));
+            response.setValue("Server", "PwE");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
+            response.setCode(200);
 
-            body.println("Hello World");
-            body.close();
+
+            try {
+                IOUtils.copy(file.openStream(), response.getOutputStream());
+            } catch (IOException e) {
+                logger.error("Error during render of 404 template: {}", e.getMessage());
+            } finally {
+                out.close();
+                in.close();
+            }
+
         } catch (Exception e) {
+            logger.error(e.getMessage());
             e.printStackTrace();
         }
     }
+
 
     //TODO - Implement these internal status responses as pretty templates
     public void send404(Request request, Response response) {
@@ -149,7 +194,7 @@ public class PwEContainer implements Container {
 
             long time = System.currentTimeMillis();
 
-            response.setValue("Content-Type", "");
+            response.setValue("Content-Type", "text/html");
             response.setValue("Server", "");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
