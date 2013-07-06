@@ -52,12 +52,7 @@ public class TemplateFactory {
     }
 
 
-    public Template get404MethodTemplate() throws IOException {
-        Template t = templateConfig.getTemplate("404.ftl");
-        return t;
-    }
-
-    public Template get404FileTemplate() throws IOException {
+    public Template get404Template() throws IOException {
         Template t = templateConfig.getTemplate("404.ftl");
         return t;
     }

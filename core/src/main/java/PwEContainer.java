@@ -23,6 +23,8 @@ import java.io.*;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class PwEContainer implements Container {
@@ -201,8 +203,13 @@ public class PwEContainer implements Container {
             response.setCode(404);
 
             try {
-                Template t = TemplateFactory.getInstance().get404FileTemplate();
-                t.process(null, body);
+
+                Map<String, String> vars = new HashMap<String, String>();
+
+                vars.put("version", PwE.VERSION);
+
+                Template t = TemplateFactory.getInstance().get404Template();
+                t.process(vars, body);
             } catch (IOException e) {
                 logger.error("Error during render of 404 template: {}", e.getMessage());
                 body.write("Sorry, but the endpoint you requested does not exist.");

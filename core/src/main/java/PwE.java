@@ -13,4 +13,6 @@ public class PwE {
     public static final String ARG_PORTNUMBER = "portnumber";
     public static final String ARG_VERBOSE = "verbose";
     public static final String ARG_HELP = "help";
+
+    public static final String VERSION = "0-dev";
 }

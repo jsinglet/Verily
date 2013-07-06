@@ -81,12 +81,14 @@
     <!-- Begin page content -->
     <div class="container">
         <div class="page-header">
-            <h1>Sticky footer</h1>
+            <h1>Page or Method Not Found</h1>
         </div>
-        <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom
-            HTML and CSS.</p>
+        <p class="lead">The url you requested does not seems to exist in this application. This could be because either
+            the static resource you are referencing does not exist or the method you intended to access does not
+            exist.</p>
 
-        <p>Use <a href="./sticky-footer-navbar.html">the sticky footer</a> with a fixed navbar if need be, too.</p>
+        <p><strong>Hint</strong> You can override this message by placing a template called <code>404.ftl</code> in the
+            <code>resources</code> directory of your application. </p>
     </div>
 
     <div id="push"></div>
@@ -94,8 +96,7 @@
 
 <div id="footer">
     <div class="container">
-        <p class="muted credit">Example courtesy <a href="http://martinbean.co.uk">Martin Bean</a> and <a
-                href="http://ryanfait.com/sticky-footer/">Ryan Fait</a>.</p>
+        <p class="muted credit">Page rendered by <a href="">PwE</a> version ${version}.</p>
     </div>
 </div>
 
