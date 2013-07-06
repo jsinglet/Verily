@@ -83,8 +83,10 @@ public class PwEContainer implements Container {
 
         // Test 1: We should have as many parameters as the number of parameters of the method MINUS the number of
         if (m.getNonSessionBoundParameters().size() != paramKeys.size()) {
-            throw new InvalidFormalArgumentsException("Invalid number of formal paramters");
+            throw new InvalidFormalArgumentsException("Invalid number of formal parameters");
         }
+
+
     }
 
     @Override
