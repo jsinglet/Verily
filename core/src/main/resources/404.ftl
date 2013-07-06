@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <!-- CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
 
         /* Sticky footer styles
@@ -62,12 +62,6 @@
         }
 
     </style>
-    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="/js/html5shiv.js"></script>
-    <![endif]-->
 
     <link rel="shortcut icon" href="/ico/favicon.png">
 </head>
@@ -101,19 +95,7 @@
 </div>
 
 
-<script src="/js/jquery.js"></script>
-<script src="/js/bootstrap-transition.js"></script>
-<script src="/js/bootstrap-alert.js"></script>
-<script src="/js/bootstrap-modal.js"></script>
-<script src="/js/bootstrap-dropdown.js"></script>
-<script src="/js/bootstrap-scrollspy.js"></script>
-<script src="/js/bootstrap-tab.js"></script>
-<script src="/js/bootstrap-tooltip.js"></script>
-<script src="/js/bootstrap-popover.js"></script>
-<script src="/js/bootstrap-button.js"></script>
-<script src="/js/bootstrap-collapse.js"></script>
-<script src="/js/bootstrap-carousel.js"></script>
-<script src="/js/bootstrap-typeahead.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 </body>
 </html>

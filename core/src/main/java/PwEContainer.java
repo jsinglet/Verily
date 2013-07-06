@@ -86,11 +86,15 @@ public class PwEContainer implements Container {
             throw new InvalidFormalArgumentsException("Invalid number of formal parameters");
         }
 
+        // TODO: need to figure out how to init session variables.
 
     }
 
     @Override
     public void handle(Request request, Response response) {
+
+        int statusCode = 200;
+        long ts1 = System.currentTimeMillis();
 
 
         // Check if it is a file (overrides)
@@ -98,6 +102,7 @@ public class PwEContainer implements Container {
 
         if (u != null) { // static content
             sendFile(u, response);
+            statusCode = 200;
         } else {         // dynamic content
 
             try {
@@ -149,12 +154,23 @@ public class PwEContainer implements Container {
 
 
             } catch (MethodNotMappedException e) {
-                send404(request, response);
+                statusCode = 404;
             } catch (InvalidFormalArgumentsException e) {
                 // show message about this.
             }
 
         }
+        long ts2 = System.currentTimeMillis();
+
+        // log the request.
+        logger.info("[{}] - \"{} {}\" {} ({} ms)", new Date(), request.getMethod(), request.getPath().getPath(), statusCode, ts2 - ts1);
+
+        // special error pages.
+        if (statusCode == 404) {
+            send404(request, response);
+        }
+
+
     }
 
     public void sendFile(URL file, Response response) {
@@ -189,7 +205,6 @@ public class PwEContainer implements Container {
     }
 
 
-    //TODO - Implement these internal status responses as pretty templates
     public void send404(Request request, Response response) {
 
         try {
