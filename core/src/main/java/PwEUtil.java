@@ -11,7 +11,7 @@ public class PwEUtil {
     private static final ResourceBundle msgResources;
 
     static {
-        msgResources = ResourceBundle.getBundle("resources.ApplicationMessages", Locale.getDefault());
+        msgResources = ResourceBundle.getBundle("content.ApplicationMessages", Locale.getDefault());
     }
 
     public static String getMessage(String key) {

@@ -5,6 +5,7 @@
  *
  */
 
+import content.TemplateFactory;
 import exceptions.InvalidFormalArgumentsException;
 import freemarker.template.Template;
 import org.simpleframework.http.Request;
@@ -16,7 +17,6 @@ import pwe.lang.PwEMethod;
 import pwe.lang.PwETable;
 import pwe.lang.exceptions.MethodNotMappedException;
 import pwe.lang.exceptions.TableHomomorphismException;
-import resources.TemplateFactory;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;

@@ -7,7 +7,7 @@ public class TestMain {
 
         System.out.println("Getting resource:");
 
-        URL u = TestMain.class.getResource("/");
+        URL u = TestMain.class.getResource("/resources/");
 
         if (1 == 1)
             System.out.println("test");
