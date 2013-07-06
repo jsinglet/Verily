@@ -6,6 +6,7 @@
  */
 
 import exceptions.InvalidFormalArgumentsException;
+import freemarker.template.Template;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.simpleframework.http.core.Container;
@@ -15,9 +16,12 @@ import pwe.lang.PwEMethod;
 import pwe.lang.PwETable;
 import pwe.lang.exceptions.MethodNotMappedException;
 import pwe.lang.exceptions.TableHomomorphismException;
+import resources.TemplateFactory;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintStream;
+import java.io.Writer;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.Set;
@@ -61,6 +65,7 @@ public class PwEContainer implements Container {
         return pWe;
     }
 
+
     public PwEMethod getMethodForRequest(Request r) throws MethodNotMappedException {
 
         String method = r.getPath().getName();
@@ -96,7 +101,7 @@ public class PwEContainer implements Container {
             marshallRequestToMethod(request, m);
 
         } catch (MethodNotMappedException e) {
-            send404(response);
+            send404(request, response);
         } catch (InvalidFormalArgumentsException e) {
             // show message about this.
         }
@@ -123,8 +128,8 @@ public class PwEContainer implements Container {
             PrintStream body = response.getPrintStream();
             long time = System.currentTimeMillis();
 
-            response.setValue("Content-Type", "text/plain");
-            response.setValue("Server", "HelloWorld/1.0 (PwE 4.0)");
+            response.setValue("Content-Type", "");
+            response.setValue("Server", "");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
 
@@ -136,20 +141,32 @@ public class PwEContainer implements Container {
     }
 
     //TODO - Implement these internal status responses as pretty templates
-    public void send404(Response response) {
+    public void send404(Request request, Response response) {
 
         try {
-            PrintStream body = response.getPrintStream();
+
+            Writer body = new OutputStreamWriter(response.getOutputStream());
+
             long time = System.currentTimeMillis();
 
-            response.setValue("Content-Type", "text/html");
-            response.setValue("Server", "PwE/1.0");
+            response.setValue("Content-Type", "");
+            response.setValue("Server", "");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
             response.setCode(404);
-            body.println("Sorry, but the endpoint you requested does not exist.");
-            body.close();
-        } catch (Exception e) {
+
+            try {
+                Template t = TemplateFactory.getInstance().get404FileTemplate();
+                t.process(null, body);
+            } catch (IOException e) {
+                logger.error("Error during render of 404 template: {}", e.getMessage());
+                body.write("Sorry, but the endpoint you requested does not exist.");
+            } finally {
+                body.close();
+            }
+
+
+        } catch (Exception e) { // this is horribly fatal.
             logger.error(e.getMessage());
             e.printStackTrace();
         }

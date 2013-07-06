@@ -1,1 +1,5 @@
 This directory contains dependencies that are needed to build PwE but are not managed by Maven (because they are not published via Maven) 
+
+To install the files contained in this directory, execute the following command(s) from the project root:
+
+mvn install:install-file -Dfile=libs/simple-5.1.4.jar -DgroupId=simple -DartifactId=simple -Dversion=5.1.4 -Dpackaging=jar
