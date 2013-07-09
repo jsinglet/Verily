@@ -101,7 +101,7 @@ public class PwEUtil {
             }
 
         } catch (Exception e) {
-            throw new InvalidFormalArgumentsException(String.format("Cannot convert actual parameter value \"%s\" to a Boolean.", s));
+            throw new InvalidFormalArgumentsException(String.format("Cannot convert actual parameter value \"%s\" to a %s.", s, type.getType()));
         }
     }
 

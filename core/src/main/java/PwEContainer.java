@@ -234,7 +234,7 @@ public class PwEContainer implements Container {
 
                 }
 
-                // Step 6 - Persist the writablly bound paramters to the session storage
+                // Step 6 - Persist the writablly bound parameters to the session storage
 
                 // Step 7 - Using the exact same parameters, invoke the controller method.
 
