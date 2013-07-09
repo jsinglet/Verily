@@ -100,7 +100,7 @@ public class PwEContainer implements Container {
         // Check if it is a file (overrides)
         URL u = this.getClass().getResource(request.getPath().getPath());
 
-        if (u != null) { // static content
+        if (u != null && u.getPath().endsWith("/") == false) { // static content
             sendFile(u, response);
             statusCode = 200;
         } else {         // dynamic content
