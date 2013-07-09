@@ -64,5 +64,11 @@ public class TemplateFactory {
         return t;
     }
 
+    public Template get500Template() throws IOException {
+        Template t = templateConfig.getTemplate("500.ftl");
+        return t;
+    }
+
+
 }
 

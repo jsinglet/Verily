@@ -203,15 +203,6 @@ public class PwEContainer implements Container {
 
                 // Step 5 - Perform the Method side of the invocation
 
-                // Step 6 - Persist the writablly bound paramters to the session storage
-
-                // Step 7 - Using the exact same parameters, invoke the controller method.
-
-                // Step 8 - TBD: In the Maven POM for the PwE project (poll, for example) there should be a dependancy entry for
-                //          a minimal set of templating libraries for dealing with the actual creation of the pages. Freemarker seems to be a likely canidate
-                //          for this.
-
-
                 try {
 
                     Class c = Class.forName(String.format("methods.%s", classContext), false, this.getClass().getClassLoader());
@@ -229,7 +220,7 @@ public class PwEContainer implements Container {
                     long time = System.currentTimeMillis();
 
                     response.setValue("Content-Type", "");
-                    response.setValue("Server", "");
+                    response.setValue("Server", "PwE-Powered");
                     response.setDate("Date", time);
                     response.setDate("Last-Modified", time);
 
@@ -238,7 +229,18 @@ public class PwEContainer implements Container {
                     body.close();
                 } catch (Exception e) {
                     e.printStackTrace();
+                    statusCode = 500;
+                    send500(request, response, classContext, m, e.getMessage());
+
                 }
+
+                // Step 6 - Persist the writablly bound paramters to the session storage
+
+                // Step 7 - Using the exact same parameters, invoke the controller method.
+
+                // Step 8 - TBD: In the Maven POM for the PwE project (poll, for example) there should be a dependancy entry for
+                //          a minimal set of templating libraries for dealing with the actual creation of the pages. Freemarker seems to be a likely canidate
+                //          for this.
 
 
             } catch (MethodNotMappedException e) {
@@ -278,7 +280,7 @@ public class PwEContainer implements Container {
             try {
                 IOUtils.copy(file.openStream(), response.getOutputStream());
             } catch (IOException e) {
-                logger.error("Error during render of 404 template: {}", e.getMessage());
+                logger.error("Error during render of static file: {}", e.getMessage());
             } finally {
                 out.close();
                 in.close();
@@ -318,6 +320,47 @@ public class PwEContainer implements Container {
                 t.process(vars, body);
             } catch (IOException e) {
                 logger.error("Error during render of 400 template: {}", e.getMessage());
+                body.write("Sorry, but the endpoint you requested does not exist.");
+            } finally {
+                body.close();
+            }
+
+
+        } catch (Exception e) { // this is horribly fatal.
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public void send500(Request request, Response response, String context, PwEMethod target, String specificError) {
+
+        try {
+
+            Writer body = new OutputStreamWriter(response.getOutputStream());
+
+            long time = System.currentTimeMillis();
+
+            response.setValue("Content-Type", "text/html");
+            response.setValue("Server", "");
+            response.setDate("Date", time);
+            response.setDate("Last-Modified", time);
+            response.setCode(404);
+
+            try {
+
+                Map<String, String> vars = new HashMap<String, String>();
+
+                vars.put("version", PwE.VERSION);
+                vars.put("targetClass", context);
+                vars.put("targetMethod", target.getMethod());
+                vars.put("message", specificError);
+
+                Template t = TemplateFactory.getInstance().get500Template();
+                t.process(vars, body);
+            } catch (IOException e) {
+                logger.error("Error during render of 500 template: {}", e.getMessage());
                 body.write("Sorry, but the endpoint you requested does not exist.");
             } finally {
                 body.close();
