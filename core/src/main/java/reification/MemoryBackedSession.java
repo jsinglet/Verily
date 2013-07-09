@@ -41,7 +41,7 @@ public class MemoryBackedSession extends Session {
     }
 
     @Override
-    protected void updateValue(String name, ReadableValue value) {
+    public void updateValue(String name, ReadableValue value) {
         //noop
     }
 }
