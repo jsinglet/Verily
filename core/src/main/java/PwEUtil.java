@@ -7,15 +7,33 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class PwEUtil {
 
     private static final ResourceBundle msgResources;
+    private static final Map<String, Class> mappedTypes;
+
 
     static {
         msgResources = ResourceBundle.getBundle("content.ApplicationMessages", Locale.getDefault());
+
+        mappedTypes = new HashMap<String, Class>();
+
+
+        mappedTypes.put("int", Integer.TYPE);
+        mappedTypes.put("long", Long.TYPE);
+        mappedTypes.put("short", Short.TYPE);
+        mappedTypes.put("boolean", Boolean.TYPE);
+
+        mappedTypes.put("byte", Byte.TYPE);
+        mappedTypes.put("float", Float.TYPE);
+        mappedTypes.put("double", Double.TYPE);
+        mappedTypes.put("char", Character.TYPE);
+
     }
 
     public static String getMessage(String key) {
@@ -103,6 +121,16 @@ public class PwEUtil {
         } catch (Exception e) {
             throw new InvalidFormalArgumentsException(String.format("Cannot convert actual parameter value \"%s\" to a %s.", s, type.getType()));
         }
+    }
+
+    public static Class translatedType(PwEType t, Class o) {
+
+        if (mappedTypes.get(t.getType()) != null) {
+            return mappedTypes.get(t.getType());
+        }
+
+
+        return o;
     }
 
 }

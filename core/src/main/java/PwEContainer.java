@@ -210,7 +210,8 @@ public class PwEContainer implements Container {
                     Class clazz[] = new Class[args.length];
 
                     for (int i = 0; i < args.length; i++) {
-                        clazz[i] = args[i].getClass();
+                        // in this particular case we might have to translate to primatives
+                        clazz[i] = PwEUtil.translatedType(m.getFormalParameters().get(i), args[i].getClass());
                     }
 
                     c.getMethod(m.getMethod(), clazz).invoke(null, args);
