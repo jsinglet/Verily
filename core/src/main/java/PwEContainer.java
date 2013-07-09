@@ -79,12 +79,16 @@ public class PwEContainer implements Container {
 
     public void marshallRequestToMethod(Request r, PwEMethod m) throws InvalidFormalArgumentsException {
 
+
         Set<String> paramKeys = r.getQuery().keySet();
 
         // Test 1: We should have as many parameters as the number of parameters of the method MINUS the number of
         if (m.getNonSessionBoundParameters().size() != paramKeys.size()) {
             throw new InvalidFormalArgumentsException("Invalid number of formal parameters");
         }
+
+        // Test 2: Create an ordered list of parameters and see if we can fill it in.
+        m.getFormalParameters();
 
         // TODO: need to figure out how to init session variables.
 

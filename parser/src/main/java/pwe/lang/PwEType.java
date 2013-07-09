@@ -42,5 +42,18 @@ public class PwEType {
     public int hashCode() {
         return new HashCodeBuilder().append(type).append(name).hashCode();
     }
+
+    public boolean isSessionBound() {
+        return (getType().startsWith("ReadableValue<") || getType().startsWith("WritableValue<"));
+    }
+
+    public boolean isSessionWritable() {
+        return getType().startsWith("WritableValue<");
+    }
+
+    public boolean isSessionReadable() {
+        return getType().startsWith("ReadableValue<");
+    }
+
 }
 

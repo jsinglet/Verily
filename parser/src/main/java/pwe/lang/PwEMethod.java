@@ -42,7 +42,7 @@ public class PwEMethod {
             nonSessionBoundParameters = new LinkedList<PwEType>();
 
             for (PwEType t : getFormalParameters()) {
-                if (t.getType().startsWith("ReadableValue<") == false && t.getType().startsWith("WritableValue<") == false) {
+                if (t.isSessionBound() == false) {
                     nonSessionBoundParameters.add(t);
                 }
             }
@@ -58,7 +58,7 @@ public class PwEMethod {
             sessionBoundParameters = new LinkedList<PwEType>();
 
             for (PwEType t : getFormalParameters()) {
-                if (t.getType().startsWith("ReadableValue<") || t.getType().startsWith("WritableValue<")) {
+                if (t.isSessionBound()) {
                     sessionBoundParameters.add(t);
                 }
             }
