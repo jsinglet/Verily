@@ -1,5 +1,7 @@
 package reification;
 
+import pwe.lang.ReadableValue;
+
 public abstract class Session {
 
     private Context ctx;
@@ -8,16 +10,16 @@ public abstract class Session {
         this.ctx = ctx;
     }
 
-    public abstract Object getValue(Context ctx, String name);
+    protected abstract ReadableValue getValue(Context ctx, String name);
 
-    public abstract void setValue(Context ctx, String name, Object value);
+    protected abstract void setValue(Context ctx, String name, ReadableValue value);
 
-    public Object getValue(String name) {
+    public ReadableValue getValue(String name) {
         return getValue(ctx, name);
 
     }
 
-    public void setValue(String name, Object value) {
+    public void setValue(String name, ReadableValue value) {
         setValue(ctx, name, value);
     }
 

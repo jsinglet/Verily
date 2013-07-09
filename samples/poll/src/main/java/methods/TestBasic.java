@@ -1,38 +1,12 @@
 package methods;
 
-import java.util.List;
-
 public class TestBasic {
-    public static final void someFunction(String args) {
+    public static final void dispatchTest() {
+        System.out.println("Hey mother fuckers.");
     }
 
-
-    public static void dispatchTest() {
-        System.out.println("This method was dynamically dispatched.");
-    }
-
-    public static final String someFunction3(List<String> args) {
-
-        someFunction("test");
-
-        return "test";
-
-    }
-
-
-    public static final void someFunction2(List<String> args) {
-
-        someFunction("test");
-
-    }
-
-
-    class TestInner1 {
-        class TestInner2 {
-            class TestInner3 {
-
-            }
-        }
+    public static final void simpleFunction(String arg1) {
+        System.out.println("Hey, you passed in the string: " + arg1);
     }
 
 }

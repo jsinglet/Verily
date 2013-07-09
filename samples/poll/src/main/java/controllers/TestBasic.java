@@ -1,26 +1,15 @@
 package controllers;
 
-import java.util.List;
-
 public class TestBasic {
 
-
-    public static final void someFunction(String args) {
+    // tests a simple function
+    public static final void dispatchTest() {
+        System.out.println("This method was dynamically dispatched.");
     }
 
-
-    public static final void someFunction2(List<String> args) {
-
-        someFunction("test");
-
+    public static final void simpleFunction(String arg1) {
+        System.out.println("Hey, you passed in the string: " + arg1);
     }
 
-    class TestInner1 {
-        class TestInner2 {
-            class TestInner3 {
-
-            }
-        }
-    }
 
 }

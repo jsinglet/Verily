@@ -15,12 +15,12 @@ import org.simpleframework.http.Response;
 import org.simpleframework.http.core.Container;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pwe.lang.PwEMethod;
-import pwe.lang.PwETable;
-import pwe.lang.PwEType;
+import pwe.lang.*;
 import pwe.lang.exceptions.MethodNotMappedException;
 import pwe.lang.exceptions.TableHomomorphismException;
 import reification.Context;
+import reification.MemoryBackedSession;
+import reification.Session;
 
 import java.io.*;
 import java.net.URL;
@@ -66,19 +66,24 @@ public class PwEContainer implements Container {
         return pWe;
     }
 
+    public String classContextFromRequest(Request r) {
+        return PwEUtil.trimRequestContext(r.getPath().getDirectory());
+    }
 
     public PwEMethod getMethodForRequest(Request r) throws MethodNotMappedException {
 
         String method = r.getPath().getName();
-        String context = PwEUtil.trimRequestContext(r.getPath().getDirectory());
+        String context = classContextFromRequest(r);
 
         // we don't need to check for null here, really.
         return env.getTranslationTable().methodAt(context, method);
     }
 
 
-    public void marshallRequestToMethod(Request r, PwEMethod m, Context ctx) throws InvalidFormalArgumentsException {
+    public List<Object> marshallRequestToMethod(Request r, PwEMethod m, Context ctx) throws InvalidFormalArgumentsException {
 
+        // get the sesssion
+        Session session = MemoryBackedSession.withContext(ctx);
 
         Set<String> paramKeys = r.getQuery().keySet();
 
@@ -95,7 +100,29 @@ public class PwEContainer implements Container {
             // look it up in the session table
             if (requestedType.isSessionBound()) {
 
+                logger.info("Decoding bound formal parameter {} with type {}", requestedType.getName(), requestedType.getType());
+
+                ReadableValue v = session.getValue(requestedType.getName());
+
+                // if this is null, we have to initialize it
+
+                if (v == null) {
+                    // construct the new type
+                    if (requestedType.isSessionReadable()) {
+                        v = new ReadableValue(null);
+                    } else {
+                        v = new WritableValue(null);
+                    }
+
+                    session.setValue(requestedType.getName(), v);
+                }
+
+
+                actualParameters.add(v);
+
             } else { // deduce from the request
+
+                logger.info("Decoding unbound formal parameter {} with type {}", requestedType.getName(), requestedType.getType());
 
                 if (paramKeys.contains(requestedType.getName())) {
 
@@ -110,6 +137,8 @@ public class PwEContainer implements Container {
                 }
             }
         }
+
+        return actualParameters;
     }
 
     public Context getOrEstablishSession(Request request, Response response) {
@@ -138,6 +167,11 @@ public class PwEContainer implements Container {
     public void handle(Request request, Response response) {
 
         Context ctx = getOrEstablishSession(request, response);
+        String classContext = classContextFromRequest(request);
+
+
+        // these are filled in later
+        PwEMethod m = null;
 
         int statusCode = 200;
         long ts1 = System.currentTimeMillis();
@@ -155,13 +189,13 @@ public class PwEContainer implements Container {
 
                 // Step 1 - Map the incoming request onto a method call
 
-                PwEMethod m = getMethodForRequest(request);
+                m = getMethodForRequest(request);
 
                 // Step 2 - Decode the incoming request's parameters
                 //
                 // Note: We look at the request and try to match it with the method, not the other way around.
                 //
-                marshallRequestToMethod(request, m, ctx);
+                List<Object> actualParameters = marshallRequestToMethod(request, m, ctx);
 
                 // Step 3 - Identify session-bound parameters
 
@@ -180,8 +214,15 @@ public class PwEContainer implements Container {
 
                 try {
 
-                    Class c = Class.forName("methods.TestBasic", false, this.getClass().getClassLoader());
-                    c.getMethod("dispatchTest", null).invoke(null);
+                    Class c = Class.forName(String.format("methods.%s", classContext), false, this.getClass().getClassLoader());
+                    Object args[] = actualParameters.toArray(new Object[actualParameters.size()]);
+                    Class clazz[] = new Class[args.length];
+
+                    for (int i = 0; i < args.length; i++) {
+                        clazz[i] = args[i].getClass();
+                    }
+
+                    c.getMethod(m.getMethod(), clazz).invoke(null, args);
 
 
                     PrintStream body = response.getPrintStream();
@@ -192,7 +233,8 @@ public class PwEContainer implements Container {
                     response.setDate("Date", time);
                     response.setDate("Last-Modified", time);
 
-                    body.println("Hello World");
+                    body.println("Method Invoked!");
+
                     body.close();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -201,8 +243,12 @@ public class PwEContainer implements Container {
 
             } catch (MethodNotMappedException e) {
                 statusCode = 404;
+                send404(request, response);
             } catch (InvalidFormalArgumentsException e) {
                 // show message about this.
+                statusCode = 400;
+                send400(request, response, classContext, m, e.getMessage());
+
             }
 
         }
@@ -210,12 +256,6 @@ public class PwEContainer implements Container {
 
         // log the request.
         logger.info("[{}] - \"{} {}\" {} ({} ms)", new Date(), request.getMethod(), request.getPath().getPath(), statusCode, ts2 - ts1);
-
-        // special error pages.
-        if (statusCode == 404) {
-            send404(request, response);
-        }
-
 
     }
 
@@ -250,6 +290,46 @@ public class PwEContainer implements Container {
         }
     }
 
+
+    public void send400(Request request, Response response, String context, PwEMethod target, String specificError) {
+
+        try {
+
+            Writer body = new OutputStreamWriter(response.getOutputStream());
+
+            long time = System.currentTimeMillis();
+
+            response.setValue("Content-Type", "text/html");
+            response.setValue("Server", "");
+            response.setDate("Date", time);
+            response.setDate("Last-Modified", time);
+            response.setCode(404);
+
+            try {
+
+                Map<String, String> vars = new HashMap<String, String>();
+
+                vars.put("version", PwE.VERSION);
+                vars.put("targetClass", context);
+                vars.put("targetMethod", target.getMethod());
+                vars.put("message", specificError);
+
+                Template t = TemplateFactory.getInstance().get400Template();
+                t.process(vars, body);
+            } catch (IOException e) {
+                logger.error("Error during render of 400 template: {}", e.getMessage());
+                body.write("Sorry, but the endpoint you requested does not exist.");
+            } finally {
+                body.close();
+            }
+
+
+        } catch (Exception e) { // this is horribly fatal.
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
 
     public void send404(Request request, Response response) {
 
