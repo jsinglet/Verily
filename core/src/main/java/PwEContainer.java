@@ -116,7 +116,11 @@ public class PwEContainer implements Container {
 
         // use a current session
         if (request.getCookie(PwE.SESSION_COOKIE) != null) {
-            return new Context(request.getCookie(PwE.SESSION_COOKIE).getValue());
+
+            Context ctx = new Context(request.getCookie(PwE.SESSION_COOKIE).getValue());
+
+            logger.info("Reconnected old session {}", ctx.toString());
+            return ctx;
         }
 
         Context ctx = new Context();
@@ -124,6 +128,8 @@ public class PwEContainer implements Container {
         Cookie c = new Cookie(PwE.SESSION_COOKIE, ctx.toString());
 
         response.setCookie(c);
+
+        logger.info("Established new session {}", ctx.toString());
 
         return ctx;
     }
