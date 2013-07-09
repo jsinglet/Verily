@@ -240,6 +240,12 @@ public class PwEContainer implements Container {
 
                 persistSessionInformation(m, args, ctx);
 
+                // this happens automatically since we are using memory backed sessions
+                // however, we implement this here as an no-op so that adding other session
+                // providers is straightforward (read: clear) in the future
+
+                //TODO
+
                 // Step 7 - Using the exact same parameters, invoke the controller method.
 
                 // Step 8 - TBD: In the Maven POM for the PwE project (poll, for example) there should be a dependancy entry for
