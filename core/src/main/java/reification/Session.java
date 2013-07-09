@@ -14,6 +14,10 @@ public abstract class Session {
 
     protected abstract void setValue(Context ctx, String name, ReadableValue value);
 
+
+    public abstract void updateValue(String name, ReadableValue value);
+
+
     public ReadableValue getValue(String name) {
         return getValue(ctx, name);
 

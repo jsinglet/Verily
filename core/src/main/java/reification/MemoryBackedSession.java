@@ -39,4 +39,9 @@ public class MemoryBackedSession extends Session {
         }
         env.get(ctx).put(name, value);
     }
+
+    @Override
+    protected void updateValue(String name, ReadableValue value) {
+        //noop
+    }
 }

@@ -29,16 +29,14 @@ import java.util.*;
 
 public class PwEContainer implements Container {
 
+    private static PwEContainer pWe;
     final Logger logger = LoggerFactory.getLogger(PwEContainer.class);
-
     private PwEEnv env;
 
     private PwEContainer(PwEEnv env) {
         this.setEnv(env);
         logger.info("Constructed new PwE container @ {}", new Date());
     }
-
-    private static PwEContainer pWe;
 
     public static PwEContainer getContainer() throws IOException, TableHomomorphismException {
         if (pWe == null) {
@@ -78,7 +76,6 @@ public class PwEContainer implements Container {
         // we don't need to check for null here, really.
         return env.getTranslationTable().methodAt(context, method);
     }
-
 
     public List<Object> marshallRequestToMethod(Request r, PwEMethod m, Context ctx) throws InvalidFormalArgumentsException {
 
@@ -141,6 +138,21 @@ public class PwEContainer implements Container {
         return actualParameters;
     }
 
+    public void persistSessionInformation(PwEMethod m, Object[] params, Context ctx) {
+
+        Session session = MemoryBackedSession.withContext(ctx);
+
+        for (int i = 0; i < m.getFormalParameters().size(); i++) {
+
+            if (m.getFormalParameters().get(i).isSessionWritable()) {
+                session.updateValue(m.getFormalParameters().get(i).getName(), (ReadableValue) params[i]);
+            }
+
+        }
+
+
+    }
+
     public Context getOrEstablishSession(Request request, Response response) {
 
         // use a current session
@@ -194,54 +206,58 @@ public class PwEContainer implements Container {
                 // Step 2 - Decode the incoming request's parameters
                 //
                 // Note: We look at the request and try to match it with the method, not the other way around.
-                //
+                // This process:
+                //      - Will identify session-bound parameters
+                //      - Transform the mapped request and parameters into a method call, perform session value substitution
+
                 List<Object> actualParameters = marshallRequestToMethod(request, m, ctx);
 
-                // Step 3 - Identify session-bound parameters
+                // Step 3 - Perform the Method side of the invocation
 
-                // Step 4 - Transform the mapped request and parameters into a method call, perform session value substitution
+                Class c = Class.forName(String.format("methods.%s", classContext), false, this.getClass().getClassLoader());
+                Object args[] = actualParameters.toArray(new Object[actualParameters.size()]);
+                Class clazz[] = new Class[args.length];
 
-                // Step 5 - Perform the Method side of the invocation
-
-                try {
-
-                    Class c = Class.forName(String.format("methods.%s", classContext), false, this.getClass().getClassLoader());
-                    Object args[] = actualParameters.toArray(new Object[actualParameters.size()]);
-                    Class clazz[] = new Class[args.length];
-
-                    for (int i = 0; i < args.length; i++) {
-                        // in this particular case we might have to translate to primatives
-                        clazz[i] = PwEUtil.translatedType(m.getFormalParameters().get(i), args[i].getClass());
-                    }
-
-                    c.getMethod(m.getMethod(), clazz).invoke(null, args);
-
-
-                    PrintStream body = response.getPrintStream();
-                    long time = System.currentTimeMillis();
-
-                    response.setValue("Content-Type", "");
-                    response.setValue("Server", "PwE-Powered");
-                    response.setDate("Date", time);
-                    response.setDate("Last-Modified", time);
-
-                    body.println("Method Invoked!");
-
-                    body.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    statusCode = 500;
-                    send500(request, response, classContext, m, e.getMessage());
-
+                for (int i = 0; i < args.length; i++) {
+                    // in this particular case we might have to translate to primatives
+                    clazz[i] = PwEUtil.translatedType(m.getFormalParameters().get(i), args[i].getClass());
                 }
 
-                // Step 6 - Persist the writablly bound parameters to the session storage
+                c.getMethod(m.getMethod(), clazz).invoke(null, args);
+
+
+                long ts2 = System.currentTimeMillis();
+
+                // log the request.
+                logger.info("[{}] - Finished Executing Method \"{}.{}\" ({} ms)", new Date(), classContext, m.getMethod(), ts2 - ts1);
+
+
+                // Step 4 - Persist the writablly bound parameters to the session storage
+
+                // this happens automatically since we are using memory backed sessions
+                // however, we implement this here as an no-op so that adding other session
+                // providers is straightforward (read: clear) in the future
+
+                persistSessionInformation(m, args, ctx);
 
                 // Step 7 - Using the exact same parameters, invoke the controller method.
 
                 // Step 8 - TBD: In the Maven POM for the PwE project (poll, for example) there should be a dependancy entry for
                 //          a minimal set of templating libraries for dealing with the actual creation of the pages. Freemarker seems to be a likely canidate
                 //          for this.
+
+
+                PrintStream body = response.getPrintStream();
+                long time = System.currentTimeMillis();
+
+                response.setValue("Content-Type", "");
+                response.setValue("Server", "PwE-Powered");
+                response.setDate("Date", time);
+                response.setDate("Last-Modified", time);
+
+                body.println("Method Invoked!");
+
+                body.close();
 
 
             } catch (MethodNotMappedException e) {
@@ -252,6 +268,10 @@ public class PwEContainer implements Container {
                 statusCode = 400;
                 send400(request, response, classContext, m, e.getMessage());
 
+            } catch (Exception e) {
+                e.printStackTrace();
+                statusCode = 500;
+                send500(request, response, classContext, m, e.getMessage());
             }
 
         }
@@ -293,7 +313,6 @@ public class PwEContainer implements Container {
         }
     }
 
-
     public void send400(Request request, Response response, String context, PwEMethod target, String specificError) {
 
         try {
@@ -333,7 +352,6 @@ public class PwEContainer implements Container {
         }
 
     }
-
 
     public void send500(Request request, Response response, String context, PwEMethod target, String specificError) {
 

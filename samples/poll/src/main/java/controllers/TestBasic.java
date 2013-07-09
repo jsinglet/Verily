@@ -1,5 +1,7 @@
 package controllers;
 
+import pwe.lang.WritableValue;
+
 public class TestBasic {
 
     // tests a simple function
@@ -21,6 +23,10 @@ public class TestBasic {
 
     public static final void simpleFunction4(String arg1, Integer arg2, int arg3) {
         System.out.println(String.format("Hey, you passed in the String %s, The Object Integer %d, and the primative integer %d ", arg1, arg2, arg3));
+    }
+
+    public static final void simpleFunction5(WritableValue<String> arg1) {
+        System.out.println("Session Bound String Value: " + arg1);
     }
 
 
