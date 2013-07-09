@@ -9,6 +9,7 @@ import content.TemplateFactory;
 import exceptions.InvalidFormalArgumentsException;
 import freemarker.template.Template;
 import org.apache.commons.io.IOUtils;
+import org.simpleframework.http.Cookie;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.simpleframework.http.core.Container;
@@ -16,16 +17,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pwe.lang.PwEMethod;
 import pwe.lang.PwETable;
+import pwe.lang.PwEType;
 import pwe.lang.exceptions.MethodNotMappedException;
 import pwe.lang.exceptions.TableHomomorphismException;
+import reification.Context;
 
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class PwEContainer implements Container {
 
@@ -77,7 +77,7 @@ public class PwEContainer implements Container {
     }
 
 
-    public void marshallRequestToMethod(Request r, PwEMethod m) throws InvalidFormalArgumentsException {
+    public void marshallRequestToMethod(Request r, PwEMethod m, Context ctx) throws InvalidFormalArgumentsException {
 
 
         Set<String> paramKeys = r.getQuery().keySet();
@@ -88,14 +88,50 @@ public class PwEContainer implements Container {
         }
 
         // Test 2: Create an ordered list of parameters and see if we can fill it in.
-        m.getFormalParameters();
+        List<Object> actualParameters = new ArrayList<Object>(m.getFormalParameters().size());
 
-        // TODO: need to figure out how to init session variables.
+        for (PwEType requestedType : m.getFormalParameters()) {
 
+            // look it up in the session table
+            if (requestedType.isSessionBound()) {
+
+            } else { // deduce from the request
+
+                if (paramKeys.contains(requestedType.getName())) {
+
+                    // coerce it into the requested type
+                    // eg: String, Integer, etc.
+                    // we know about some of these types internally and can convert them (see below)
+                    // however, if it is a custom type that type must have a noargs constructor.
+                    actualParameters.add(PwEUtil.coerceToType(requestedType, r.getQuery().get(requestedType.getName())));
+
+                } else {
+                    throw new InvalidFormalArgumentsException(String.format("Required parameter \"%s\" not found in the incoming request.", requestedType.getName()));
+                }
+            }
+        }
+    }
+
+    public Context getOrEstablishSession(Request request, Response response) {
+
+        // use a current session
+        if (request.getCookie(PwE.SESSION_COOKIE) != null) {
+            return new Context(request.getCookie(PwE.SESSION_COOKIE).getValue());
+        }
+
+        Context ctx = new Context();
+        // establish a new one
+        Cookie c = new Cookie(PwE.SESSION_COOKIE, ctx.toString());
+
+        response.setCookie(c);
+
+        return ctx;
     }
 
     @Override
     public void handle(Request request, Response response) {
+
+        Context ctx = getOrEstablishSession(request, response);
 
         int statusCode = 200;
         long ts1 = System.currentTimeMillis();
@@ -119,7 +155,7 @@ public class PwEContainer implements Container {
                 //
                 // Note: We look at the request and try to match it with the method, not the other way around.
                 //
-                marshallRequestToMethod(request, m);
+                marshallRequestToMethod(request, m, ctx);
 
                 // Step 3 - Identify session-bound parameters
 

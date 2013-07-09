@@ -1,4 +1,6 @@
+import exceptions.InvalidFormalArgumentsException;
 import exceptions.PwECompileFailedException;
+import pwe.lang.PwEType;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -69,6 +71,38 @@ public class PwEUtil {
 
     public static String mimeForType(URL file) {
         return URLConnection.guessContentTypeFromName(file.getFile());
+    }
+
+
+    public static Object coerceToType(PwEType type, String guess) throws InvalidFormalArgumentsException {
+
+        if (guess == null) {
+            return guess;
+        }
+
+        String s = guess.trim();
+
+        try {
+            if (type.getType().equals("Integer") || type.getType().equals("int")) {
+                return Integer.parseInt(s);
+            } else if (type.getType().equals("Boolean") || type.getType().equals("boolean")) {
+
+                if (s.equalsIgnoreCase("true") || s.equals("1"))
+                    return new Boolean(true);
+                else if (s.equalsIgnoreCase("false") || s.equals("0"))
+                    return new Boolean(false);
+                else
+                    throw new InvalidFormalArgumentsException(String.format("Cannot convert actual parameter value \"%s\" to a Boolean.", s));
+            } else if (type.getType().equals("String")) {
+                return s;
+            } else {
+                // TODO: Implement other data types
+                throw new InvalidFormalArgumentsException(String.format("Cannot construct requested type \"%s\" because it is not yet implemented.", type.getType()));
+            }
+
+        } catch (Exception e) {
+            throw new InvalidFormalArgumentsException(String.format("Cannot convert actual parameter value \"%s\" to a Boolean.", s));
+        }
     }
 
 }

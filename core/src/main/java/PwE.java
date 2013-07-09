@@ -15,4 +15,6 @@ public class PwE {
     public static final String ARG_HELP = "help";
 
     public static final String VERSION = "0-dev";
+
+    public static final String SESSION_COOKIE = "PwESession";
 }
