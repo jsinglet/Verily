@@ -224,7 +224,7 @@ public class PwEMain {
         Path test = here.resolve("src").resolve("test").resolve("java").resolve(newPairName + "Test.java");
 
 
-        if (Files.exists(method) || Files.exists(controller)) {
+        if (Files.exists(method) || Files.exists(controller) || Files.exists(test)) {
             throw new InitException(String.format("At least one element of the pair \"%s\" already exists.", newPairName));
         }
 
@@ -264,7 +264,7 @@ public class PwEMain {
         }
 
 
-        logger.info("Method/Controller Pair Created. You can find the files created in the following directories:");
+        logger.info("Method/Controller Pair Created. You can find the files created in the following locations:");
         logger.info("M: {}", method.toString());
         logger.info("C: {}", controller.toString());
         logger.info("T: {}", test.toString());
