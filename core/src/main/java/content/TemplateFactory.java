@@ -114,6 +114,12 @@ public class TemplateFactory {
         return t;
     }
 
+    public Template getTestTemplate() throws IOException {
+        Template t = templateConfig.getTemplate("classes/Test.ftl");
+        return t;
+    }
+
+
     public Template getPOMTemplate() throws IOException {
         Template t = templateConfig.getTemplate("classes/POM.ftl");
         return t;

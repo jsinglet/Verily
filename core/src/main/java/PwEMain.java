@@ -200,6 +200,8 @@ public class PwEMain {
 
             t.process(vars, body);
 
+            body.close();
+
         } catch (FileNotFoundException e) {
             throw new InitException(String.format("FileNotFoundException. Message: %s", e.getMessage()));
         } catch (TemplateException e) {
@@ -208,15 +210,64 @@ public class PwEMain {
             throw new InitException(String.format("Error creating POM file. Message: %s", e.getMessage()));
         }
 
-
         logger.info("Done. Execute \"pwe -run\" from inside your new project directory to run this project.");
     }
 
-    public void newPair(CommandLine cl) {
+    public void newPair(CommandLine cl) throws InitException {
 
-        // Step 1 - Create a Method/Controller pair
+        String newPairName = cl.getOptionValue(PwE.ARG_NEW);
 
-        // Step 2 - Create a new Unit Test for the method.
+        Path here = Paths.get("");
+
+        Path method = here.resolve("src").resolve("main").resolve("java").resolve("methods").resolve(newPairName + ".java");
+        Path controller = here.resolve("src").resolve("main").resolve("java").resolve("controllers").resolve(newPairName + ".java");
+        Path test = here.resolve("src").resolve("test").resolve("java").resolve(newPairName + "Test.java");
+
+
+        if (Files.exists(method) || Files.exists(controller)) {
+            throw new InitException(String.format("At least one element of the pair \"%s\" already exists.", newPairName));
+        }
+
+
+        // Step 1 - Create a Method/Controller pair (and a unit test.)
+        logger.info("Creating a new Method/Controller pair...");
+
+        // Step 2 - Fill in the templates and copy it over.
+        try {
+            Writer methodBody = new OutputStreamWriter(new FileOutputStream(method.toFile()));
+            Writer controllerBody = new OutputStreamWriter(new FileOutputStream(controller.toFile()));
+            Writer testBody = new OutputStreamWriter(new FileOutputStream(test.toFile()));
+
+            Map<String, String> vars = new HashMap<String, String>();
+
+            vars.put("version", PwE.VERSION);
+            vars.put("NAME", newPairName);
+
+            Template t1 = TemplateFactory.getBootstrapInstance().getMethodTemplate();
+            Template t2 = TemplateFactory.getBootstrapInstance().getControllerTemplate();
+            Template t3 = TemplateFactory.getBootstrapInstance().getTestTemplate();
+
+            t1.process(vars, methodBody);
+            t2.process(vars, controllerBody);
+            t3.process(vars, testBody);
+
+            methodBody.close();
+            controllerBody.close();
+            testBody.close();
+
+        } catch (FileNotFoundException e) {
+            throw new InitException(String.format("FileNotFoundException. Message: %s", e.getMessage()));
+        } catch (TemplateException e) {
+            throw new InitException(String.format("Error during template initialization. Message: %s", e.getMessage()));
+        } catch (IOException e) {
+            throw new InitException(String.format("Error creating Pair file. Message: %s", e.getMessage()));
+        }
+
+
+        logger.info("Method/Controller Pair Created. You can find the files created in the following directories:");
+        logger.info("M: {}", method.toString());
+        logger.info("C: {}", controller.toString());
+        logger.info("T: {}", test.toString());
 
     }
 
