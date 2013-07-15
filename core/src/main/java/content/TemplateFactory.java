@@ -54,6 +54,40 @@ public class TemplateFactory {
     }
 
 
+    public static TemplateFactory getBootstrapInstance() throws IOException {
+        if (templateFactory == null) {
+
+            try {
+                Logger.selectLoggerLibrary(Logger.LIBRARY_SLF4J);
+            } catch (ClassNotFoundException e) {
+                // bad, but we can march on
+                e.printStackTrace();
+            }
+
+            templateFactory = new TemplateFactory();
+            templateFactory.templateConfig = new Configuration();
+
+
+            ClassTemplateLoader ctl = new ClassTemplateLoader(templateFactory.getClass(), "/");
+            TemplateLoader[] loaders = new TemplateLoader[]{ctl};
+            MultiTemplateLoader mtl = new MultiTemplateLoader(loaders);
+
+            templateFactory.templateConfig.setTemplateLoader(mtl);
+
+
+            templateFactory.templateConfig.setObjectWrapper(new DefaultObjectWrapper());
+
+            templateFactory.templateConfig.setDefaultEncoding("UTF-8");
+
+            templateFactory.templateConfig.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
+
+            templateFactory.templateConfig.setIncompatibleImprovements(new Version(2, 3, 20));
+        }
+
+        return templateFactory;
+    }
+
+
     public Template get404Template() throws IOException {
         Template t = templateConfig.getTemplate("404.ftl");
         return t;
@@ -66,6 +100,22 @@ public class TemplateFactory {
 
     public Template get500Template() throws IOException {
         Template t = templateConfig.getTemplate("500.ftl");
+        return t;
+    }
+
+    public Template getMethodTemplate() throws IOException {
+        Template t = templateConfig.getTemplate("classes/Method.ftl");
+        return t;
+    }
+
+
+    public Template getControllerTemplate() throws IOException {
+        Template t = templateConfig.getTemplate("classes/Controller.ftl");
+        return t;
+    }
+
+    public Template getPOMTemplate() throws IOException {
+        Template t = templateConfig.getTemplate("classes/POM.ftl");
         return t;
     }
 
