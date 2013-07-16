@@ -60,12 +60,14 @@ public class PwEMain {
                 .create(PwE.ARG_NEW);
 
         Option help = new Option(PwE.ARG_HELP, "display this help");
+        Option nocompile = new Option(PwE.ARG_NOCOMPILE, "do not do internal recompile (used for development only)");
 
         argList.addOption(port);
         argList.addOption(help);
         argList.addOption(init);
         argList.addOption(run);
         argList.addOption(oNew);
+        argList.addOption(nocompile);
 
         System.setProperty(SimpleLogger.LEVEL_IN_BRACKETS_KEY, "true");
         System.setProperty(SimpleLogger.SHOW_LOG_NAME_KEY, "false");
@@ -94,7 +96,9 @@ public class PwEMain {
                 m.bootstrap(line);
 
                 // compile the project
-                PwEUtil.compileProject();
+                if(line.hasOption(PwE.ARG_NOCOMPILE)==false){
+                    PwEUtil.compileProject();
+                }
 
                 m.ready();
             } else if (line.hasOption(PwE.ARG_HELP)) {
