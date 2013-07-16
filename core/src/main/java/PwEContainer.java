@@ -247,14 +247,21 @@ public class PwEContainer implements Container {
                 Content content = (Content)controller.getMethod(m.getMethod(), clazz).invoke(null, args);
 
 
+                long ts3 = System.currentTimeMillis();
+
+                // log the request.
+                logger.info("[{}] - Finished Executing Controller \"{}.{}\" ({} ms)", new Date(), classContext, m.getMethod(), ts3 - ts2);
+
+
                 OutputStream out = response.getOutputStream();
 
                 long time = System.currentTimeMillis();
 
-                response.setValue("Content-Type", "");
+                response.setValue("Content-Type", content.getContentType());
                 response.setValue("Server", "PwE-Powered");
                 response.setDate("Date", time);
                 response.setDate("Last-Modified", time);
+                response.setCode(content.getContentCode());
 
                 out.write(content.getContent().getBytes());
 
