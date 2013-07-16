@@ -241,13 +241,14 @@ public class PwEContainer implements Container {
                 persistSessionInformation(m, args, ctx);
 
                 // Step 7 - Using the exact same parameters, invoke the controller method.
-
-                // Step 8 - TBD: In the Maven POM for the PwE project (poll, for example) there should be a dependancy entry for
-                //          a minimal set of templating libraries for dealing with the actual creation of the pages. Freemarker seems to be a likely canidate
-                //          for this.
+                Class controller = Class.forName(String.format("controllers.%s", classContext), false, this.getClass().getClassLoader());
 
 
-                PrintStream body = response.getPrintStream();
+                Content content = (Content)controller.getMethod(m.getMethod(), clazz).invoke(null, args);
+
+
+                OutputStream out = response.getOutputStream();
+
                 long time = System.currentTimeMillis();
 
                 response.setValue("Content-Type", "");
@@ -255,10 +256,9 @@ public class PwEContainer implements Container {
                 response.setDate("Date", time);
                 response.setDate("Last-Modified", time);
 
-                body.println("Method Invoked!");
+                out.write(content.getContent().getBytes());
 
-                body.close();
-
+                out.close();
 
             } catch (MethodNotMappedException e) {
                 statusCode = 404;
