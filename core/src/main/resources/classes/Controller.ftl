@@ -8,5 +8,4 @@ public static final void myFunction(ReadableValue
 <String> message){
     // TODO - Write your application
     }
-
     }
