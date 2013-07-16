@@ -88,6 +88,10 @@ public class TemplateFactory {
     }
 
 
+    public Template getUserTemplate(String template) throws IOException {
+        Template t = templateConfig.getTemplate(template);
+        return t;
+    }
     public Template get404Template() throws IOException {
         Template t = templateConfig.getTemplate("404.ftl");
         return t;

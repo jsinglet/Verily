@@ -15,6 +15,9 @@ public class ExtractClassInfoListener extends JavaBaseListener {
 
     final Logger logger = LoggerFactory.getLogger(ExtractClassInfoListener.class);
     private static final List<String> psfvReference = Arrays.asList("public", "static", "final", "void");
+    private static final List<String> psfcReference = Arrays.asList("public", "static", "final", "Content");
+    private PwEParserModes.PwEModeType mode;
+
 
     private JavaParser parser;
     private String filename;
@@ -22,10 +25,11 @@ public class ExtractClassInfoListener extends JavaBaseListener {
     private Stack<String> classCtx = new Stack<String>();
     private List<PwEType> methodSpec = new LinkedList<PwEType>();
 
-    public ExtractClassInfoListener(JavaParser parser, PwETable et, String filename) {
+    public ExtractClassInfoListener(JavaParser parser, PwETable et, String filename, PwEParserModes.PwEModeType mode) {
         this.parser = parser;
         this.et = et;
         this.filename = filename;
+        this.mode = mode;
     }
 
     @Override
@@ -66,7 +70,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
 
         logger.info("{}Evaluating class method: {}", getDepth(), ctx.Identifier());
 
-        if (methodIsPSFV(ctx) && currentClassIsFilename(ctx) && methodIsTopLevel(ctx)) {
+        if (baseSignatureIsValid(ctx) && currentClassIsFilename(ctx) && methodIsTopLevel(ctx)) {
             logger.info("{}Discovered method \"{}\" will be mapped => /{}/{}", getDepth(), ctx.Identifier(), classCtx.peek(), ctx.Identifier());
 
             et.mapMethod(classCtx.peek(), new PwEMethod(ctx.Identifier().getText(), methodSpec));
@@ -76,6 +80,14 @@ public class ExtractClassInfoListener extends JavaBaseListener {
         }
 
         methodSpec = new LinkedList<PwEType>();
+    }
+
+    private boolean baseSignatureIsValid(MethodDeclarationContext ctx){
+        if(mode == PwEParserModes.PwEModeType.TYPE_METHOD){
+            return methodIsPSFV(ctx);
+        }
+
+        return methodIsPSFC(ctx);
     }
 
     // check to see that this method is a DIRECT member of the class being parsed.
@@ -96,6 +108,36 @@ public class ExtractClassInfoListener extends JavaBaseListener {
 
         return ccif;
     }
+
+    // checks to see that a method is public static final Content
+    private boolean methodIsPSFC(MethodDeclarationContext ctx) {
+
+        boolean isPSV = true; //false;
+
+        // if this method is valid, the signature will be public static void, which will be
+        // two levels up in the parser as follows
+        // Note that ctx.type() == null when the return type is void
+        if (ctx.type() != null && ctx.type().getText().equals(psfcReference.get(3)) && ctx.getParent() != null && ctx.getParent().getParent() != null) {
+
+            if (ctx.getParent().getParent().children != null && ctx.getParent().getParent().children.size() == 4) {
+
+                for (int i = 0; i < ctx.getParent().getParent().children.size() - 1; i++) {
+                    if (ctx.getParent().getParent().children.get(i).getText().equals(psfcReference.get(i)) == false) {
+                        isPSV = false;
+                        break;
+                    }
+                }
+            } else {
+                isPSV = false;
+            }
+        } else {
+            isPSV = false;
+        }
+
+        logger.info("{}Checking to see if method is PSFC: [{}]", getDepth(), isPSV);
+        return isPSV;
+    }
+
 
     // checks to see that a method is public static final void
     private boolean methodIsPSFV(MethodDeclarationContext ctx) {
@@ -122,7 +164,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
             isPSV = false;
         }
 
-        logger.info("{}Checking to see if method is PSV: [{}]", getDepth(), isPSV);
+        logger.info("{}Checking to see if method is PSFV: [{}]", getDepth(), isPSV);
         return isPSV;
     }
 
@@ -132,5 +174,13 @@ public class ExtractClassInfoListener extends JavaBaseListener {
             sb.append("\t");
         }
         return sb.toString();
+    }
+
+    public PwEParserModes.PwEModeType getMode() {
+        return mode;
+    }
+
+    public void setMode(PwEParserModes.PwEModeType mode) {
+        this.mode = mode;
     }
 }

@@ -414,6 +414,7 @@ public class PwEContainer implements Container {
                 vars.put("version", PwE.VERSION);
 
                 Template t = TemplateFactory.getInstance().get404Template();
+
                 t.process(vars, body);
             } catch (IOException e) {
                 logger.error("Error during render of 404 template: {}", e.getMessage());

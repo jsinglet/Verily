@@ -5,10 +5,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pwe.lang.ExtractClassInfoListener;
-import pwe.lang.JavaLexer;
-import pwe.lang.JavaParser;
-import pwe.lang.PwETable;
+import pwe.lang.*;
 import pwe.lang.exceptions.TableHomomorphismException;
 
 import java.io.IOException;
@@ -18,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Harness {
+
 
     final Logger logger = LoggerFactory.getLogger(Harness.class);
 
@@ -48,7 +46,7 @@ public class Harness {
 
         DirectoryStream<Path> controllerFiles = Files.newDirectoryStream(base.resolve("src").resolve("main").resolve("java").resolve(controllersPath), "*.java");
         for (Path p : controllerFiles) {
-            parseFile(p.toString(), controllerTable);
+            parseFile(p.toString(), controllerTable, PwEParserModes.PwEModeType.TYPE_CONTROLLER);
         }
 
         // Parse out translation table from methods
@@ -56,7 +54,7 @@ public class Harness {
 
         DirectoryStream<Path> methodFiles = Files.newDirectoryStream(base.resolve("src").resolve("main").resolve("java").resolve(methodsPath), "*.java");
         for (Path p : methodFiles) {
-            parseFile(p.toString(), methodTable);
+            parseFile(p.toString(), methodTable, PwEParserModes.PwEModeType.TYPE_METHOD);
         }
 
         // Start checking things
@@ -72,7 +70,7 @@ public class Harness {
         return methodTable;
     }
 
-    public void parseFile(String f, PwETable table) {
+    public void parseFile(String f, PwETable table, PwEParserModes.PwEModeType mode) {
         boolean gui = true;
         boolean printTree = true;
 
@@ -105,7 +103,7 @@ public class Harness {
 //            if (printTree) System.out.println(t.toStringTree(parser));
 
             ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
-            ExtractClassInfoListener extractor = new ExtractClassInfoListener(parser, table, f);
+            ExtractClassInfoListener extractor = new ExtractClassInfoListener(parser, table, f, mode);
             walker.walk(extractor, t); // initiate walk of tree with listener
 
 

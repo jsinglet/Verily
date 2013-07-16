@@ -1,33 +1,15 @@
 package controllers;
 
+import pwe.lang.Content;
+import pwe.lang.TextContent;
 import pwe.lang.WritableValue;
 
 public class TestBasic {
 
-    // tests a simple function
-    public static final void dispatchTest() {
-        System.out.println("This method was dynamically dispatched.");
+    public static final Content simpleFunction(String arg1) {
+        System.out.println("Executing controller with argument " + arg1);
+
+        return new TextContent("I am real content from the controller!");
+
     }
-
-    public static final void simpleFunction(String arg1) {
-        System.out.println("Hey, you passed in the string: " + arg1);
-    }
-
-    public static final void simpleFunction2(Integer arg1) {
-        System.out.println("Hey, you passed in the Integer: " + arg1);
-    }
-
-    public static final void simpleFunction3(int arg1) {
-        System.out.println("Hey, you passed in the raw Integer: " + arg1);
-    }
-
-    public static final void simpleFunction4(String arg1, Integer arg2, int arg3) {
-        System.out.println(String.format("Hey, you passed in the String %s, The Object Integer %d, and the primative integer %d ", arg1, arg2, arg3));
-    }
-
-    public static final void simpleFunction5(WritableValue<String> arg1) {
-        System.out.println("Session Bound String Value: " + arg1);
-    }
-
-
 }
