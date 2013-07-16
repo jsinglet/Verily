@@ -1,9 +1,6 @@
 package controllers;
 
-import pwe.lang.Content;
-import pwe.lang.TemplateHTMLContent;
-import pwe.lang.TextContent;
-import pwe.lang.WritableValue;
+import pwe.lang.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,4 +25,15 @@ public class TestBasic {
 
     }
 
-}
+
+    public static final Content simpleFunction3(WritableValue<Integer> hitCount) {
+        Map<String,String> bindings = new HashMap<String,String>();
+
+        bindings.put("title", "My Page");
+        bindings.put("hits", hitCount.getValue().toString());
+
+        return new TemplateHTMLContent("test3.ftl", bindings);
+
+    }
+
+    }

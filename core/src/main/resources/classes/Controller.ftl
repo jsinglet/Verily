@@ -4,7 +4,7 @@ import pwe.lang.*;
 
 public class ${NAME}{
 
-     public static final void myFunction(ReadableValue<String> message){
+     public static final Controller myFunction(ReadableValue<String> message){
           // TODO - Write your application
      }
 }

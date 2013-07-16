@@ -11,5 +11,13 @@ public class TestBasic {
     public static final void simpleFunction2(String msg) {
     }
 
+    public static final void simpleFunction3(WritableValue<Integer> hitCount) {
+        if(hitCount.getValue()==null){
+            hitCount.setValue(0);
+        }
+
+        hitCount.setValue(hitCount.getValue().intValue()+1);
+    }
+
 
 }
