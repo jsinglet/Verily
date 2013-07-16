@@ -8,4 +8,8 @@ public class TestBasic {
         System.out.println("Hey, you passed in the string: " + arg1);
     }
 
+    public static final void simpleFunction2(String msg) {
+    }
+
+
 }

@@ -1,8 +1,12 @@
 package controllers;
 
 import pwe.lang.Content;
+import pwe.lang.TemplateHTMLContent;
 import pwe.lang.TextContent;
 import pwe.lang.WritableValue;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class TestBasic {
 
@@ -12,4 +16,16 @@ public class TestBasic {
         return new TextContent("I am real content from the controller!");
 
     }
+
+    public static final Content simpleFunction2(String msg) {
+
+        Map<String,String> bindings = new HashMap<String,String>();
+
+        bindings.put("title", "My Page");
+        bindings.put("message", msg);
+
+        return new TemplateHTMLContent("test1.ftl", bindings);
+
+    }
+
 }
