@@ -4,62 +4,69 @@
 #PWE Deps
 PWE_HOME=$(/usr/bin/pwe-env -home)
 PWE_CP=$(/usr/bin/pwe-env -cp)
+CP=""
+RUN="NO"
 
 # Deps from the project
 
+case "$*" in
+(*-run*) RUN="YES";;
+esac
 
-UPDATE_DEPS="YES"
+if [[ $RUN == "YES" ]]; then
 
-# the -fast option will specify that we should not try to recompute deps
+    UPDATE_DEPS="YES"
 
-# the -nocompile disables PwE from compiling before it runs (only used in development)
+    # the -fast option will specify that we should not try to recompute deps
 
-while getopts ":a" opt; do
-  case $opt in
-    a)
-      UPDATE_DEPS="NO"
-      ;;
-  esac
-done
+    # the -nocompile disables PwE from compiling before it runs (only used in development)
 
-if [[ $UPDATE_DEPS == "YES" ]]; then
-    mvn dependency:copy-dependencies
-    if [ $? -ne 0 ]; then
+    while getopts ":a" opt; do
+	case $opt in
+	    a)
+		UPDATE_DEPS="NO"
+		;;
+	esac
+    done
+
+    if [[ $UPDATE_DEPS == "YES" ]]; then
+	mvn dependency:copy-dependencies
+	if [ $? -ne 0 ]; then
             exit $?
-    fi
-else
-      echo "Running PwE application without updating dependencies..."
-fi
-
-
-# update the package
-
-mvn package
-if [ $? -ne 0 ]; then
-        exit $?
-fi
-
-# Add everything this depends on to the classpath...
-
-CP=""
-
-for jar in "target/dependency"/*.jar
-do
-
-    if [[ $jar =~ lib/parser-.*.jar ]]; then
-	     echo "Skipping executable jar dependency..."
+	fi
     else
-	     CP="$jar:${CP}"
+	echo "Running PwE application without updating dependencies..."
     fi
-done
 
 
-for jar in "target"/*.jar
-do
-     CP="$jar:${CP}"
-done
+    # update the package
+
+    mvn package
+    if [ $? -ne 0 ]; then
+        exit $?
+    fi
+
+    # Add everything this depends on to the classpath...
+
+    CP=""
+
+    for jar in "target/dependency"/*.jar
+    do
+
+	if [[ $jar =~ lib/parser-.*.jar ]]; then
+	    echo "Skipping executable jar dependency..."
+	else
+	    CP="$jar:${CP}"
+	fi
+    done
 
 
+    for jar in "target"/*.jar
+    do
+	CP="$jar:${CP}"
+    done
+
+fi
 
 
 eval "java"  -classpath "${PWE_CP}:${CP}" "-jar" "${PWE_HOME}"/lib/core-1.0-SNAPSHOT.jar -nocompile "$@"
