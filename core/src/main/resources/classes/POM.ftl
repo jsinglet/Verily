@@ -23,6 +23,13 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>

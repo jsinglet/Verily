@@ -1,0 +1,48 @@
+#!/bin/sh
+
+
+PWE_HOME=$1
+
+cd $PWE_HOME
+
+CP=""
+
+for jar in "lib"/*.jar
+do
+
+    if [[ $jar =~ lib/core-.*.jar ]]; then
+	     echo "Skipping executable jar dependency..."
+    else
+	     CP="${PWE_HOME}/$jar:${CP}"
+    fi
+done
+
+
+
+cat >/usr/bin/pwe-env <<EOF
+#!/bin/sh
+
+
+PWE_HOME="$1"
+PWE_CP="$CP"
+
+if [[ \$1 == "-cp" ]]; then
+    # display the classpath
+    echo "\${PWE_CP}"
+fi
+
+if [[ \$1 == "-home" ]]; then
+    echo "\${PWE_HOME}"
+fi
+
+
+
+
+
+EOF
+
+chmod +x /usr/bin/pwe-env
+
+rm /usr/bin/pwe
+
+ln -s "$1/pwe" /usr/bin/pwe

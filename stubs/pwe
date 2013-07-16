@@ -1,0 +1,9 @@
+#!/bin/sh
+
+
+PWE_HOME=$(/usr/bin/pwe-env -home)
+PWE_CP=$(/usr/bin/pwe-env -cp)
+
+## need to add the jar from the mvn build of the project to the classpath
+
+eval "java"  -classpath "${PWE_CP}" "-jar" "${PWE_HOME}"/lib/core-1.0-SNAPSHOT.jar "$@"

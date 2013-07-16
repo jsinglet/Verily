@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+
+<!-- 
+    To compile it :
+    - go in the bin directory where you installed IzPack
+    - call "compile ../sample/install.xml -b ../sample"
+-->
+
+<installation version="1.0">
+
+    <!-- 
+        The info section.
+        The meaning of the tags should be natural ...
+    -->
+    <info>
+        <appname>PwE</appname>
+        <appversion>build-JUN082013</appversion>
+        <authors>
+            <author name="John L. Singleton" email="jsinglet@gmail.com"/>
+        </authors>
+        <url>http://www.the-singleton.com/</url>
+        <run-privileged/>
+    </info>
+
+    <!-- 
+        The gui preferences indication.
+        Sets the installer window to 640x480. It will not be able to change the size.
+    -->
+    <guiprefs width="640" height="480" resizable="yes"/>
+
+    <!-- 
+        The locale section.
+        Asks here to include the English and French langpacks.
+    -->
+    <locale>
+        <langpack iso3="eng"/>
+    </locale>
+
+    <!-- 
+        The resources section.
+        The ids must be these ones if you want to use the LicencePanel and/or the InfoPanel.
+    -->
+    <resources>
+        <res id="LicencePanel.licence" src="LICENSE.txt"/>
+        <res id="InfoPanel.info" src="README.txt"/>
+    </resources>
+
+    <!-- 
+        The panels section.
+        We indicate here which panels we want to use. The order will be respected.
+    -->
+    <panels>
+        <panel classname="HelloPanel"/>
+        <panel classname="InfoPanel"/>
+        <panel classname="LicencePanel"/>
+        <panel classname="TargetPanel"/>
+        <!--        <panel classname="PacksPanel"/> -->
+        <panel classname="InstallPanel"/>
+        <panel classname="FinishPanel"/>
+    </panels>
+
+    <!-- 
+        The packs section.
+        We specify here our packs.   core/target/core-1.0-SNAPSHOT.jar and parser/target/parser-1.0-SNAPSHOT.jar  simple-5.1.4.jar
+    -->
+    <packs>
+        <pack name="Base" required="yes">
+            <description>The base files</description>
+            <file src="README.txt" targetdir="$INSTALL_PATH"/>
+            <file src="LICENSE.txt" targetdir="$INSTALL_PATH"/>
+            <file src="../target/lib/" targetdir="$INSTALL_PATH"/>
+
+            <file src="../stubs/pwe" targetdir="$INSTALL_PATH"/>
+            <file src="../stubs/update_links" targetdir="$INSTALL_PATH"/>
+
+
+            <executable os="unix" targetfile="$INSTALL_PATH/update_links" stage="postinstall" keep="false">
+                <args>
+                    <arg value="$INSTALL_PATH"/>
+                </args>
+            </executable>
+
+
+            <executable targetfile="$INSTALL_PATH/pwe" stage="never" keep="true"/>
+
+        </pack>
+    </packs>
+
+
+    <!-- <executable targetfile="$INSTALL_PATH/bin/update-search-path.bat" -->
+    <!-- 	      stage="postinstall" -->
+    <!-- 	      failure="warn" -->
+    <!-- 	      os="windows" -->
+    <!-- 	      keep="true"> -->
+    <!--   <args> -->
+    <!--     <arg value='"$INSTALL_PATH"'/> -->
+    <!--   </args> -->
+    <!-- </executable> -->
+
+
+</installation>
