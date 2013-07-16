@@ -52,12 +52,7 @@ if [[ $RUN == "YES" ]]; then
 
     for jar in "target/dependency"/*.jar
     do
-
-	if [[ $jar =~ lib/parser-.*.jar ]]; then
-	    echo "Skipping executable jar dependency..."
-	else
-	    CP="$jar:${CP}"
-	fi
+	CP="$jar:${CP}"
     done
 
 
@@ -69,4 +64,4 @@ if [[ $RUN == "YES" ]]; then
 fi
 
 
-eval "java"  -classpath "${PWE_CP}:${CP}" "-jar" "${PWE_HOME}"/lib/core-1.0-SNAPSHOT.jar -nocompile "$@"
+eval "java"  -cp "${PWE_CP}:${CP}" PwEMain -nocompile "$@"
