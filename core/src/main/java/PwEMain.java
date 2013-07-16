@@ -62,12 +62,16 @@ public class PwEMain {
         Option help = new Option(PwE.ARG_HELP, "display this help");
         Option nocompile = new Option(PwE.ARG_NOCOMPILE, "do not do internal recompile (used for development only)");
 
+        Option fast = new Option(PwE.ARG_FAST, "do not recalculate dependencies before running");
+
+
         argList.addOption(port);
         argList.addOption(help);
         argList.addOption(init);
         argList.addOption(run);
         argList.addOption(oNew);
         argList.addOption(nocompile);
+        argList.addOption(fast);
 
         System.setProperty(SimpleLogger.LEVEL_IN_BRACKETS_KEY, "true");
         System.setProperty(SimpleLogger.SHOW_LOG_NAME_KEY, "false");
