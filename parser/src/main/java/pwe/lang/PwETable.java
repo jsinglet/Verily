@@ -106,7 +106,7 @@ public final class PwETable {
                                 }
 
                                 // equality by subclassing
-                                if(t2.isSubClassOf(t1)){
+                                if(t2.isSubClassOf(t1) && t1.getName().equals(t2.getName())){
                                     continue;
                                 }
 

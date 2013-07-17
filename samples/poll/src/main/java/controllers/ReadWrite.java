@@ -4,7 +4,7 @@ import pwe.lang.*;
 
 public class ReadWrite{
 
-     public static final Content myFunction(ReadableValue<String> message){
+     public static final Content myFunction(ReadableValue<Integer> hits){
           return null;
      }
 }
