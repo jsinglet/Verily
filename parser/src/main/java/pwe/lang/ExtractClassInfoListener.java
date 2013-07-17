@@ -70,7 +70,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
 
         logger.info("{}Evaluating class method: {}", getDepth(), ctx.Identifier());
 
-        if (baseSignatureIsValid(ctx) && currentClassIsFilename(ctx) && methodIsTopLevel(ctx)) {
+        if (methodHasNoLint() && baseSignatureIsValid(ctx) && currentClassIsFilename(ctx) && methodIsTopLevel(ctx)) {
             logger.info("{}Discovered method \"{}\" will be mapped => /{}/{}", getDepth(), ctx.Identifier(), classCtx.peek(), ctx.Identifier());
 
             et.mapMethod(classCtx.peek(), new PwEMethod(ctx.Identifier().getText(), methodSpec));
@@ -136,6 +136,28 @@ public class ExtractClassInfoListener extends JavaBaseListener {
 
         logger.info("{}Checking to see if method is PSFC: [{}]", getDepth(), isPSV);
         return isPSV;
+    }
+
+    private boolean methodHasNoLint(){
+        if(mode == PwEParserModes.PwEModeType.TYPE_CONTROLLER){ // don't allow writable values in the controller...
+
+
+
+            for(PwEType t : methodSpec){
+                if(t.isSessionWritable()){
+                    logger.info("{}Checking to see if this controller method tries to access WritableValues: [{}]", getDepth(), true);
+
+                    return false;
+                }
+            }
+
+            logger.info("{}Checking to see if this controller method tries to access WritableValues: [{}]", getDepth(), false);
+
+        }
+
+
+
+        return true;
     }
 
 

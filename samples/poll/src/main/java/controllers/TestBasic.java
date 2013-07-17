@@ -26,7 +26,7 @@ public class TestBasic {
     }
 
 
-    public static final Content simpleFunction3(WritableValue<Integer> hitCount) {
+    public static final Content simpleFunction3(ReadableValue<Integer> hitCount) {
         Map<String,String> bindings = new HashMap<String,String>();
 
         bindings.put("title", "My Page");
