@@ -55,5 +55,24 @@ public class PwEType {
         return getType().startsWith("ReadableValue<");
     }
 
+
+    // check if this is a subtype of that.
+    public boolean isSubClassOf(PwEType that){
+        //TODO - extend this to more types.
+
+        String thisType = this.getType();
+        String thatType = that.getType();
+
+
+        if(thisType.equals(thatType)){
+            return true;
+        }
+
+        if(thisType.replaceAll("WritableValue", "ReadableValue").equals(thatType)){
+            return true;
+        }
+
+        return false;
+    }
 }
 

@@ -62,7 +62,7 @@ public class Harness {
         //
         // Check translation table homomorphism
         //
-        if (methodTable.equals(controllerTable) == false) {
+        if (methodTable.fulfillsMeVCContractWith(controllerTable, methodTable) == false) {
             throw new TableHomomorphismException("Method and Controller tables do not match. For any given function in a method, there should be one matching in name, arity and type in your controllers.");
         }
 

@@ -60,27 +60,22 @@ public final class PwETable {
         return size;
     }
 
-    public boolean equals(Object o) {
-
-        if (o instanceof PwETable == false)
-            return false;
-
-        PwETable that = (PwETable) o;
+    public static boolean fulfillsMeVCContractWith(PwETable controllerTable, PwETable methodTable) {
 
         boolean sameContents = true;
-        boolean sameAddress = (this == that);
+        boolean sameAddress = (controllerTable == methodTable);
 
         // simple size check first -- we don't care if they don't have at least the same elements
-        if (this.size() != that.size()) {
+        if (controllerTable.size() != methodTable.size()) {
             return false;
         }
 
-        //next, make sure all elements in THIS table are in THAT table
+        //next, make sure all elements in THIS table are in THAT table   -- comparison should happen this(controller) with that(methods)
         compareTwo:
-        for (String context : this.mTable.keySet()) {
+        for (String context : controllerTable.mTable.keySet()) {
 
-            Map<String, PwEMethod> thisSegment = this.mTable.get(context);
-            Map<String, PwEMethod> thatSegment = that.mTable.get(context);
+            Map<String, PwEMethod> thisSegment = controllerTable.mTable.get(context);
+            Map<String, PwEMethod> thatSegment = methodTable.mTable.get(context);
 
             // we have the context
             if (thatSegment != null) {
@@ -105,7 +100,13 @@ public final class PwETable {
                                 PwEType t1 = thisMethodType.get(i);
                                 PwEType t2 = thatMethodType.get(i);
 
+                                // total equality
                                 if (t1.equals(t2)) {
+                                    continue;
+                                }
+
+                                // equality by subclassing
+                                if(t2.isSubClassOf(t1)){
                                     continue;
                                 }
 
