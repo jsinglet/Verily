@@ -68,7 +68,7 @@ public class PwEType {
             return true;
         }
 
-        if(thisType.replaceAll("WritableValue", "ReadableValue").equals(thatType)){
+        if(thisType.startsWith("WritableValue<") && thatType.startsWith("ReadableValue<")){
             return true;
         }
 
