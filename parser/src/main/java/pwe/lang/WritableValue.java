@@ -1,6 +1,6 @@
 package pwe.lang;
 
-public class WritableValue<T> extends ReadableValue<T> {
+public final class WritableValue<T> extends ReadableValue<T> {
 
     // ensures this.value != null && this.value == value;
     //@ assignable this.value;
