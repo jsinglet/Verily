@@ -62,9 +62,14 @@ public class Harness {
         //
         // Check translation table homomorphism
         //
-        if (methodTable.fulfillsMeVCContractWith(controllerTable, methodTable) == false) {
+        if (PwETable.fulfillsMeVCContractWith(controllerTable, methodTable) == false) {
             throw new TableHomomorphismException("Method and Controller tables do not match. For any given function in a method, there should be one matching in name, arity and type in your controllers.");
         }
+
+        if(methodTable.hasMultipleMutations()==true){
+            throw new TableHomomorphismException("You are attempting to modify your session in more than one place. Please ensure only one WritableValue per key is used.");
+        }
+
 
 
         return methodTable;

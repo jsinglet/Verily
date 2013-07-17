@@ -1,6 +1,7 @@
 package reification;
 
 import pwe.lang.ReadableValue;
+import pwe.lang.WritableValue;
 
 public abstract class Session {
 
@@ -10,20 +11,20 @@ public abstract class Session {
         this.ctx = ctx;
     }
 
-    protected abstract ReadableValue getValue(Context ctx, String name);
+    protected abstract WritableValue getValue(Context ctx, String name);
 
-    protected abstract void setValue(Context ctx, String name, ReadableValue value);
-
-
-    public abstract void updateValue(String name, ReadableValue value);
+    protected abstract void setValue(Context ctx, String name, WritableValue value);
 
 
-    public ReadableValue getValue(String name) {
+    public abstract void updateValue(String name, WritableValue value);
+
+
+    public WritableValue getValue(String name) {
         return getValue(ctx, name);
 
     }
 
-    public void setValue(String name, ReadableValue value) {
+    public void setValue(String name, WritableValue value) {
         setValue(ctx, name, value);
     }
 

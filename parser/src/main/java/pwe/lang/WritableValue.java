@@ -1,6 +1,8 @@
 package pwe.lang;
 
-public final class WritableValue<T> extends ReadableValue<T> {
+import java.io.Serializable;
+
+public final class WritableValue<T extends Serializable> extends ReadableValue<T> {
 
     // ensures this.value != null && this.value == value;
     //@ assignable this.value;

@@ -4,7 +4,15 @@ import pwe.lang.*;
 
 public class ReadWrite{
 
-     public static final void myFunction(WritableValue<Integer> message){
-          // TODO - Write your application
+     public static final void myFunction(WritableValue<Integer> hits){
+          if(hits.getValue()==null){
+              hits.setValue(0);
+          }
+
+         hits.setValue(hits.getValue()+1);
      }
+
+    public static final void currentValue(WritableValue<Integer> hits){
+    }
+
 }

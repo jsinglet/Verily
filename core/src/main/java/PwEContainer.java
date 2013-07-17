@@ -9,6 +9,7 @@ import content.TemplateFactory;
 import exceptions.InvalidFormalArgumentsException;
 import freemarker.template.Template;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.SerializationUtils;
 import org.simpleframework.http.Cookie;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
@@ -77,7 +78,7 @@ public class PwEContainer implements Container {
         return env.getTranslationTable().methodAt(context, method);
     }
 
-    public List<Object> marshallRequestToMethod(Request r, PwEMethod m, Context ctx) throws InvalidFormalArgumentsException {
+    public List<Object> marshallRequestToMethod(Request r, PwEMethod m, Context ctx, boolean readOnly) throws InvalidFormalArgumentsException {
 
         // get the sesssion
         Session session = MemoryBackedSession.withContext(ctx);
@@ -99,23 +100,33 @@ public class PwEContainer implements Container {
 
                 logger.info("Decoding bound formal parameter {} with type {}", requestedType.getName(), requestedType.getType());
 
-                ReadableValue v = session.getValue(requestedType.getName());
+                WritableValue v = session.getValue(requestedType.getName());
 
                 // if this is null, we have to initialize it
 
                 if (v == null) {
-                    // construct the new type
-                    if (requestedType.isSessionReadable()) {
-                        v = new ReadableValue(null);
-                    } else {
-                        v = new WritableValue(null);
-                    }
+
+                    // this type is always a base writable type
+                    v = new WritableValue(null);
 
                     session.setValue(requestedType.getName(), v);
                 }
 
+                // see if we need to make a read only copy of this variable
+                if (readOnly) {
 
-                actualParameters.add(v);
+                    if (v.getValue() != null) {
+                        ReadableValue rov = new ReadableValue(v.getValue());//(Serializable) SerializationUtils.clone(v.getValue()));
+                        actualParameters.add(rov);
+
+                    }else{
+                        actualParameters.add(new ReadableValue(null));
+                    }
+
+
+                } else {
+                    actualParameters.add(v);
+                }
 
             } else { // deduce from the request
 
@@ -145,7 +156,7 @@ public class PwEContainer implements Container {
         for (int i = 0; i < m.getFormalParameters().size(); i++) {
 
             if (m.getFormalParameters().get(i).isSessionWritable()) {
-                session.updateValue(m.getFormalParameters().get(i).getName(), (ReadableValue) params[i]);
+                session.updateValue(m.getFormalParameters().get(i).getName(), (WritableValue) params[i]);
             }
 
         }
@@ -210,7 +221,7 @@ public class PwEContainer implements Container {
                 //      - Will identify session-bound parameters
                 //      - Transform the mapped request and parameters into a method call, perform session value substitution
 
-                List<Object> actualParameters = marshallRequestToMethod(request, m, ctx);
+                List<Object> actualParameters = marshallRequestToMethod(request, m, ctx, false);
 
                 // Step 3 - Perform the Method side of the invocation
 
@@ -220,7 +231,13 @@ public class PwEContainer implements Container {
 
                 for (int i = 0; i < args.length; i++) {
                     // in this particular case we might have to translate to primatives
-                    clazz[i] = PwEUtil.translatedType(m.getFormalParameters().get(i), args[i].getClass());
+                    if(m.getFormalParameters().get(i).isSessionWritable()){
+                        clazz[i] = WritableValue.class;
+                    }else if(m.getFormalParameters().get(i).isSessionReadable()){
+                        clazz[i] = ReadableValue.class;
+                    }else{
+                        clazz[i] = PwEUtil.translatedType(m.getFormalParameters().get(i), args[i].getClass());
+                    }
                 }
 
                 c.getMethod(m.getMethod(), clazz).invoke(null, args);
@@ -240,11 +257,25 @@ public class PwEContainer implements Container {
 
                 persistSessionInformation(m, args, ctx);
 
+                //
+                // To ensure that no tainting happened during the method call, we recalculate the actual parameters -- making sure to copy any session variables.
+                //
+
+                List<Object> controllerActualParameters = marshallRequestToMethod(request, m, ctx, true);
+                Object controllerArgs[] = controllerActualParameters.toArray(new Object[controllerActualParameters.size()]);
+                Class controllerClazz[] = new Class[controllerArgs.length];
+
+                for (int i = 0; i < controllerArgs.length; i++) {
+                    // in this particular case we might have to translate to primatives
+                    controllerClazz[i] = PwEUtil.translatedType(m.getFormalParameters().get(i), controllerArgs[i].getClass());
+                }
+
+
                 // Step 7 - Using the exact same parameters, invoke the controller method.
                 Class controller = Class.forName(String.format("controllers.%s", classContext), false, this.getClass().getClassLoader());
 
 
-                Content content = (Content)controller.getMethod(m.getMethod(), clazz).invoke(null, args);
+                Content content = (Content) controller.getMethod(m.getMethod(), controllerClazz).invoke(null, controllerArgs);
 
 
                 long ts3 = System.currentTimeMillis();
@@ -372,16 +403,22 @@ public class PwEContainer implements Container {
             response.setValue("Server", "");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
-            response.setCode(404);
+            response.setCode(500);
 
             try {
 
                 Map<String, String> vars = new HashMap<String, String>();
 
+                String message = "No details available. Please check the application logs";
+
+                if(specificError!=null){
+                    message = specificError;
+                }
+
                 vars.put("version", PwE.VERSION);
                 vars.put("targetClass", context);
                 vars.put("targetMethod", target.getMethod());
-                vars.put("message", specificError);
+                vars.put("message", message);
 
                 Template t = TemplateFactory.getInstance().get500Template();
                 t.process(vars, body);

@@ -60,6 +60,40 @@ public final class PwETable {
         return size;
     }
 
+    public boolean hasMultipleMutations(){
+
+        // first, build a set of all mutations. key -> mutation count
+        Map<String,Integer> mutations = new HashMap<String,Integer>();
+
+        for(String context : mTable.keySet()){
+
+            for(String method : mTable.get(context).keySet()){
+
+                List<PwEType> params = mTable.get(context).get(method).getFormalParameters();
+
+                for(PwEType t : params){
+                    if(t.isSessionWritable()){
+                        if(mutations.containsKey(t.getName())){
+                            mutations.put(t.getName(), mutations.get(t.getName())+1);
+                        }else{
+                            mutations.put(t.getName(), 1);
+                        }
+                    }
+                }
+
+            }
+        }
+
+        // check the table
+        for(String key : mutations.keySet()){
+            if(mutations.get(key).intValue() > 1){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static boolean fulfillsMeVCContractWith(PwETable controllerTable, PwETable methodTable) {
 
         boolean sameContents = true;

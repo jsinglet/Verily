@@ -1,6 +1,7 @@
 package reification;
 
 import pwe.lang.ReadableValue;
+import pwe.lang.WritableValue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +24,7 @@ public class MemoryBackedSession extends Session {
 
 
     @Override
-    public ReadableValue getValue(Context ctx, String name) {
+    public WritableValue getValue(Context ctx, String name) {
 
         if (env.containsKey(ctx)) {
             return env.get(ctx).get(name);
@@ -33,7 +34,7 @@ public class MemoryBackedSession extends Session {
     }
 
     @Override
-    public void setValue(Context ctx, String name, ReadableValue value) {
+    public void setValue(Context ctx, String name, WritableValue value) {
         if (env.containsKey(ctx) == false) {
             env.put(ctx, new Env());
         }
@@ -41,7 +42,7 @@ public class MemoryBackedSession extends Session {
     }
 
     @Override
-    public void updateValue(String name, ReadableValue value) {
+    public void updateValue(String name, WritableValue value) {
         //noop
     }
 }
