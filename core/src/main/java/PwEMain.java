@@ -136,7 +136,7 @@ public class PwEMain {
             EXIT = 1;
 
         } catch (TableHomomorphismException e) {
-            System.err.println(PwEUtil.getMessage("MsgTableHomomorphism"));
+            System.err.println(e.getMessage());
         } catch (InterruptedException e) {
             // this is a little bit of an unexpected exception so we are going to bail ungracefully
             e.printStackTrace();
