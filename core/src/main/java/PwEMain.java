@@ -102,6 +102,8 @@ public class PwEMain {
 
             // this code assumes the command line has been sanity checked already
             if (line.hasOption(PwE.ARG_RUN)) {
+
+                long ts1 = System.currentTimeMillis();
                 m.bootstrap(line);
 
                 // compile the project
@@ -109,7 +111,13 @@ public class PwEMain {
                     PwEUtil.reloadProject();
                 }
 
-                m.ready();
+                long ts2 = System.currentTimeMillis();
+
+                m.ready(ts2-ts1);
+
+
+
+
             } else if (line.hasOption(PwE.ARG_HELP)) {
                 PwEMain.usage();
             } else if (line.hasOption(PwE.ARG_INIT)) {
@@ -330,7 +338,7 @@ public class PwEMain {
         formatter.printHelp("pwe", argList);
     }
 
-    public void ready() throws IOException, TableHomomorphismException {
-        logger.info("Bootstrapping complete and PwE ready to serve requests at http://localhost:{}/", PwEContainer.getContainer().getEnv().getPort());
+    public void ready(long timeInMs) throws IOException, TableHomomorphismException {
+        logger.info("Bootstrapping complete in {} seconds. PwE ready to serve requests at http://localhost:{}/", (double)timeInMs/1000, PwEContainer.getContainer().getEnv().getPort());
     }
 }
