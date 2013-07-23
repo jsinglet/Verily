@@ -12,13 +12,18 @@ public class TestBasic {
     public static final void simpleFunction2(String msg) {
     }
 
+    public static final void simpleFunction4(String msg) {
+
+    }
+
+
     public static final void simpleFunction3(WritableValue<Integer> hitCount) {
         if(hitCount.getValue()==null){
             hitCount.setValue(0);
         }
 
         if(1==1){
-            System.out.println("test123");
+            System.out.println("test123ss");
         }
 
         hitCount.setValue(hitCount.getValue().intValue()+1);

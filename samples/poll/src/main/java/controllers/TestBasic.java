@@ -15,6 +15,13 @@ public class TestBasic {
 
     }
 
+    public static final Content simpleFunction4(String msg) {
+
+        return new TextContent(SomeUtil.transform("This was a dynamically added method!"));
+
+    }
+
+
     public static final Content simpleFunction2(String msg) {
 
         Map<String,String> bindings = new HashMap<String,String>();

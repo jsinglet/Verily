@@ -1,10 +1,12 @@
 package reification;
 
+import core.PwEContainer;
 import exceptions.PwECompileFailedException;
 import org.apache.commons.vfs2.*;
 import org.apache.commons.vfs2.impl.DefaultFileMonitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pwe.lang.exceptions.TableHomomorphismException;
 import utils.PwEUtil;
 
 import java.io.IOException;
@@ -62,12 +64,19 @@ public class PwEModificationWatcher implements Runnable, FileListener {
         logger.info("Reloading application classes: {}", fileChangeEvent.getFile().toString());
 
 
-        //logger.info("Modified file: {}", ev.context().getFileName().toString());
-
         try {
             PwEUtil.reloadProject();
+
+            if (fileChangeEvent.getFile().getParent().getName().getBaseName().equals("methods") || fileChangeEvent.getFile().getParent().getName().getBaseName().equals("controllers")) {
+                PwEContainer.getContainer().reloadTranslationTable();
+            }
+
         } catch (PwECompileFailedException e) {
             logger.info("Errors exist in your project: {}", e.getMessage());
+        } catch (TableHomomorphismException e) {
+            logger.info("Could not reload the MeVC mappings. Won't touch the old one.");
+            logger.error("Error was: {}", e.getMessage());
+
         }
 
         logger.info("Reloading Complete.");
