@@ -66,6 +66,15 @@ public class PwEContainer implements Container {
         return pWe;
     }
 
+    public void reloadTranslationTable() throws IOException, TableHomomorphismException {
+        Harness applicationHarness = new Harness(env.getHome());
+
+        PwETable translationTable = applicationHarness.extractTranslationTable();
+
+        env.setTranslationTable(translationTable);
+
+    }
+
     public String classContextFromRequest(Request r) {
         return PwEUtil.trimRequestContext(r.getPath().getDirectory());
     }
@@ -120,7 +129,7 @@ public class PwEContainer implements Container {
                         ReadableValue rov = new ReadableValue(v.getValue());//(Serializable) SerializationUtils.clone(v.getValue()));
                         actualParameters.add(rov);
 
-                    }else{
+                    } else {
                         actualParameters.add(new ReadableValue(null));
                     }
 
@@ -232,11 +241,11 @@ public class PwEContainer implements Container {
 
                 for (int i = 0; i < args.length; i++) {
                     // in this particular case we might have to translate to primatives
-                    if(m.getFormalParameters().get(i).isSessionWritable()){
+                    if (m.getFormalParameters().get(i).isSessionWritable()) {
                         clazz[i] = WritableValue.class;
-                    }else if(m.getFormalParameters().get(i).isSessionReadable()){
+                    } else if (m.getFormalParameters().get(i).isSessionReadable()) {
                         clazz[i] = ReadableValue.class;
-                    }else{
+                    } else {
                         clazz[i] = PwEUtil.translatedType(m.getFormalParameters().get(i), args[i].getClass());
                     }
                 }
@@ -412,7 +421,7 @@ public class PwEContainer implements Container {
 
                 String message = "No details available. Please check the application logs";
 
-                if(specificError!=null){
+                if (specificError != null) {
                     message = specificError;
                 }
 
@@ -485,13 +494,14 @@ public class PwEContainer implements Container {
     }
 
 
-    public void stopService(){
-        if(classReloader!=null){
+    public void stopService() {
+        if (classReloader != null) {
             modificationWatcher.scheduleShutdown();
         }
     }
-    public void startServices(){
-        if(getEnv().isReload()){
+
+    public void startServices() {
+        if (getEnv().isReload()) {
             logger.info("Starting class reloading service...");
 
             modificationWatcher = new PwEModificationWatcher(Paths.get("").resolve("src").resolve("main"));
