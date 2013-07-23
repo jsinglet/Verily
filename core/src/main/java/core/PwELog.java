@@ -1,7 +1,7 @@
-/*
- * PwELog.java
+package core;/*
+ * core.PwELog.java
  *
- * Wrapper for logging within PwE.
+ * Wrapper for logging within core.PwE.
  *
  */
 

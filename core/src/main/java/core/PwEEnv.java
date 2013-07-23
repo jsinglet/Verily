@@ -1,3 +1,5 @@
+package core;
+
 import pwe.lang.PwETable;
 import pwe.lang.exceptions.MethodNotMappedException;
 

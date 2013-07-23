@@ -1,5 +1,5 @@
-/*
- * PwEContainer.java
+package core;/*
+ * core.PwEContainer.java
  *
  * The main container for PwE. Handles all the dispatching and decoding for PwE.
  *

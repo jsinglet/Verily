@@ -1,5 +1,5 @@
-/*
- * PwE.java
+package core;/*
+ * core.PwE.java
  *
  * Contains constants for dealing with command line arguments and other sundry settings.
  *
