@@ -50,12 +50,10 @@ public class PwEModificationWatcher implements Runnable, FileListener {
 
     @Override
     public void fileCreated(FileChangeEvent fileChangeEvent) throws Exception {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void fileDeleted(FileChangeEvent fileChangeEvent) throws Exception {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
