@@ -12,6 +12,7 @@ public class PwE {
     public static final String ARG_PORT = "port";
     public static final String ARG_NOCOMPILE = "nocompile";
     public static final String ARG_FAST = "fast";
+    public static final String ARG_WATCH = "watch";
 
     public static final String ARG_PORTNUMBER = "portnumber";
     public static final String ARG_VERBOSE = "verbose";

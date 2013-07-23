@@ -20,14 +20,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.impl.SimpleLogger;
 import pwe.lang.exceptions.TableHomomorphismException;
+import utils.PwEUtil;
 
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
-import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,6 +62,7 @@ public class PwEMain {
 
         Option fast = new Option(PwE.ARG_FAST, "do not recalculate dependencies before running");
 
+        Option watch = new Option(PwE.ARG_WATCH, "try to dynamically reload classes and templates (not for production use)");
 
         argList.addOption(port);
         argList.addOption(help);
@@ -72,6 +71,7 @@ public class PwEMain {
         argList.addOption(oNew);
         argList.addOption(nocompile);
         argList.addOption(fast);
+        argList.addOption(watch);
 
         System.setProperty(SimpleLogger.LEVEL_IN_BRACKETS_KEY, "true");
         System.setProperty(SimpleLogger.SHOW_LOG_NAME_KEY, "false");
@@ -299,7 +299,20 @@ public class PwEMain {
 
         PwEContainer.getContainer().getEnv().setPort(port);
 
+        if(cl.hasOption(PwE.ARG_WATCH)){
+            PwEContainer.getContainer().getEnv().setReload(true);
+        }else{
+            PwEContainer.getContainer().getEnv().setReload(false);
+        }
+
+        logger.info("Starting services...");
+
+        PwEContainer.getContainer().startServices();
+
         logger.info("Bootstrapping complete.");
+
+
+
 
     }
 

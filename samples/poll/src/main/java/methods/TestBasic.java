@@ -1,5 +1,6 @@
 package methods;
 
+import app.MyUtil;
 import pwe.lang.WritableValue;
 
 public class TestBasic {
@@ -16,8 +17,11 @@ public class TestBasic {
             hitCount.setValue(0);
         }
 
+        if(1==1){
+            System.out.println("t");
+        }
+
         hitCount.setValue(hitCount.getValue().intValue()+1);
     }
-
 
 }

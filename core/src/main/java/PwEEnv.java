@@ -10,6 +10,7 @@ public class PwEEnv {
     private String appVersion;
     private PwETable translationTable;
     private int port;
+    private boolean reload;
 
 
     public Path getHome() {
@@ -54,5 +55,13 @@ public class PwEEnv {
 
     public void setPort(int port) {
         this.port = port;
+    }
+
+    public synchronized boolean isReload() {
+        return reload;
+    }
+
+    public synchronized void setReload(boolean reload) {
+        this.reload = reload;
     }
 }

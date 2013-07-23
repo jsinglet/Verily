@@ -56,10 +56,10 @@ if [[ $RUN == "YES" ]]; then
     done
 
 
-    for jar in "target"/*.jar
-    do
-	CP="$jar:${CP}"
-    done
+    #for jar in "target"/*.jar
+    #do
+	#CP="$jar:${CP}"
+    #done
 
 fi
 

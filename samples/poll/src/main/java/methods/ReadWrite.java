@@ -12,7 +12,7 @@ public class ReadWrite{
          hits.setValue(hits.getValue()+1);
      }
 
-    public static final void currentValue(WritableValue<Integer> hits){
+    public static final void currentValue(ReadableValue<Integer> hits){
     }
 
 }

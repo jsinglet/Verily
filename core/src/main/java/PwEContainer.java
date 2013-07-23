@@ -9,7 +9,6 @@ import content.TemplateFactory;
 import exceptions.InvalidFormalArgumentsException;
 import freemarker.template.Template;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.SerializationUtils;
 import org.simpleframework.http.Cookie;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
@@ -19,9 +18,8 @@ import org.slf4j.LoggerFactory;
 import pwe.lang.*;
 import pwe.lang.exceptions.MethodNotMappedException;
 import pwe.lang.exceptions.TableHomomorphismException;
-import reification.Context;
-import reification.MemoryBackedSession;
-import reification.Session;
+import reification.*;
+import utils.PwEUtil;
 
 import java.io.*;
 import java.net.URL;
@@ -31,6 +29,9 @@ import java.util.*;
 public class PwEContainer implements Container {
 
     private static PwEContainer pWe;
+    private Thread classReloader;
+    private PwEModificationWatcher modificationWatcher;
+
     final Logger logger = LoggerFactory.getLogger(PwEContainer.class);
     private PwEEnv env;
 
@@ -225,7 +226,7 @@ public class PwEContainer implements Container {
 
                 // Step 3 - Perform the Method side of the invocation
 
-                Class c = Class.forName(String.format("methods.%s", classContext), false, this.getClass().getClassLoader());
+                Class c = Class.forName(String.format("methods.%s", classContext), false, new PwEClassLoader(this.getClass().getClassLoader()));
                 Object args[] = actualParameters.toArray(new Object[actualParameters.size()]);
                 Class clazz[] = new Class[args.length];
 
@@ -272,7 +273,7 @@ public class PwEContainer implements Container {
 
 
                 // Step 7 - Using the exact same parameters, invoke the controller method.
-                Class controller = Class.forName(String.format("controllers.%s", classContext), false, this.getClass().getClassLoader());
+                Class controller = Class.forName(String.format("controllers.%s", classContext), false, new PwEClassLoader(this.getClass().getClassLoader()));
 
 
                 Content content = (Content) controller.getMethod(m.getMethod(), controllerClazz).invoke(null, controllerArgs);
@@ -482,4 +483,27 @@ public class PwEContainer implements Container {
     public void setEnv(PwEEnv env) {
         this.env = env;
     }
+
+
+    public void stopService(){
+        if(classReloader!=null){
+            modificationWatcher.scheduleShutdown();
+        }
+    }
+    public void startServices(){
+        if(getEnv().isReload()){
+            logger.info("Starting class reloading service...");
+
+            modificationWatcher = new PwEModificationWatcher(Paths.get("").resolve("src").resolve("main"));
+
+            classReloader = new Thread(modificationWatcher);
+
+            classReloader.start();
+
+
+            logger.info("Done");
+        }
+    }
+
+
 }
