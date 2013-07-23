@@ -11,7 +11,6 @@ import utils.PwEUtil;
 
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.concurrent.TimeUnit;
 
 public class PwEModificationWatcher implements Runnable, FileListener {
 
@@ -62,7 +61,6 @@ public class PwEModificationWatcher implements Runnable, FileListener {
     public void fileChanged(FileChangeEvent fileChangeEvent) throws Exception {
 
         logger.info("Reloading application classes: {}", fileChangeEvent.getFile().toString());
-
 
         try {
             PwEUtil.reloadProject();
