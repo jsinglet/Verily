@@ -11,7 +11,7 @@ public class TestBasic {
     public static final Content simpleFunction(String arg1) {
         System.out.println("Executing controller with argument " + arg1);
 
-        return new TextContent(SomeUtil.transform("is it possible how awesome this is? I am a controller"));
+        return new TextContent(SomeUtil.transform("is it possible how awesome this is? I am a controller: " + arg1));
 
     }
 
