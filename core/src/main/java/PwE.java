@@ -10,9 +10,10 @@ public class PwE {
     public static final int DEFAULT_PORT = 8000;
 
     public static final String ARG_PORT = "port";
+    public static final String ARG_TEST = "test";
     public static final String ARG_NOCOMPILE = "nocompile";
     public static final String ARG_FAST = "fast";
-    public static final String ARG_WATCH = "watch";
+    public static final String ARG_WATCH = "w";
 
     public static final String ARG_PORTNUMBER = "portnumber";
     public static final String ARG_VERBOSE = "verbose";

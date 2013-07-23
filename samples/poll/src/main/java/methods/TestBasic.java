@@ -18,7 +18,7 @@ public class TestBasic {
         }
 
         if(1==1){
-            System.out.println("t");
+            System.out.println("test123");
         }
 
         hitCount.setValue(hitCount.getValue().intValue()+1);

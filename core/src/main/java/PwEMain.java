@@ -62,7 +62,11 @@ public class PwEMain {
 
         Option fast = new Option(PwE.ARG_FAST, "do not recalculate dependencies before running");
 
+
         Option watch = new Option(PwE.ARG_WATCH, "try to dynamically reload classes and templates (not for production use)");
+
+        Option test = new Option(PwE.ARG_TEST, "run the unit tests for this application");
+
 
         argList.addOption(port);
         argList.addOption(help);
@@ -72,6 +76,7 @@ public class PwEMain {
         argList.addOption(nocompile);
         argList.addOption(fast);
         argList.addOption(watch);
+        argList.addOption(test);
 
         System.setProperty(SimpleLogger.LEVEL_IN_BRACKETS_KEY, "true");
         System.setProperty(SimpleLogger.SHOW_LOG_NAME_KEY, "false");
@@ -101,7 +106,7 @@ public class PwEMain {
 
                 // compile the project
                 if(line.hasOption(PwE.ARG_NOCOMPILE)==false){
-                    PwEUtil.compileProject();
+                    PwEUtil.reloadProject();
                 }
 
                 m.ready();
@@ -111,6 +116,8 @@ public class PwEMain {
                 m.init(line);
             } else if (line.hasOption(PwE.ARG_NEW)) {
                 m.newPair(line);
+            } else if(line.hasOption(PwE.ARG_TEST)){
+                PwEUtil.test();
             }
 
 
@@ -158,9 +165,11 @@ public class PwEMain {
         boolean orun = l.hasOption(PwE.ARG_RUN);
         boolean oinit = l.hasOption(PwE.ARG_INIT);
         boolean onew = l.hasOption(PwE.ARG_NEW);
+        boolean otest = l.hasOption(PwE.ARG_TEST);
 
-        if (orun ^ oinit ^ onew == false) {
-            throw new ParseException("Exactly one of -init, -run, or -new must be specified");
+
+        if (orun ^ oinit ^ onew ^ otest == false) {
+            throw new ParseException("Exactly one of -init, -run, -test, or -new must be specified");
         }
     }
 

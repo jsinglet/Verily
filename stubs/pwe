@@ -41,7 +41,8 @@ if [[ $RUN == "YES" ]]; then
 
     # update the package
 
-    mvn package
+    #mvn package
+    mvn compile
     if [ $? -ne 0 ]; then
         exit $?
     fi

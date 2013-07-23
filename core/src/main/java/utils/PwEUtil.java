@@ -92,6 +92,31 @@ public class PwEUtil {
         }
     }
 
+    public static void test() throws IOException, InterruptedException, PwECompileFailedException {
+
+        Process p = new ProcessBuilder("mvn", "test").redirectErrorStream(true).start();
+
+        InputStream is = p.getInputStream();
+
+        InputStreamReader isr = new InputStreamReader(is);
+
+        int c = isr.read();
+
+        while (c != -1) {
+            System.out.write(c);
+            c = isr.read();
+        }
+
+        is.close();
+
+        int exitStatus = p.waitFor();
+
+
+        if (exitStatus != 0) {
+            throw new PwECompileFailedException("One or more tests failed. Please see output for details.");
+        }
+    }
+
     public static String trimRequestContext(String ctx) {
         if (ctx != null) {
 

@@ -37,7 +37,7 @@ public class PwEModificationWatcher implements Runnable, FileListener {
             DefaultFileMonitor monitor = new DefaultFileMonitor(this);
             monitor.setRecursive(true);
 
-            monitor.setDelay(1000);
+            monitor.setDelay(500);
 
             monitor.addFile(file);
             monitor.start();
@@ -70,7 +70,7 @@ public class PwEModificationWatcher implements Runnable, FileListener {
             logger.info("Errors exist in your project: {}", e.getMessage());
         }
 
-        logger.info("Done");
+        logger.info("Reloading Complete.");
 
 
     }
