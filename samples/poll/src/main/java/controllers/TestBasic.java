@@ -29,7 +29,7 @@ public class TestBasic {
     }
 
 
-    public static final Content simpleFunction2(String msg) {
+    public static final Content simpleFunction2(String msg, String message2) {
 
         Map<String,String> bindings = new HashMap<String,String>();
 

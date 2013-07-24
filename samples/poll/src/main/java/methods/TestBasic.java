@@ -9,7 +9,7 @@ public class TestBasic {
         System.out.println("Hey, you passed in the sdfsdfstring: " + arg1);
     }
 
-    public static final void simpleFunction2(String mdsg) {
+    public static final void simpleFunction2(String msg, String message2) {
     }
 
     public static final void simpleFunction4(String msg) {

@@ -186,7 +186,7 @@ public final class PwETable {
          *
          */
 
-        String[] header = {"Endpoint","Method Spec", "Verbs"};
+        String[] header = {"ENDPOINT","METHOD SPEC", "VERBS"};
 
         List<String> endpointColumn = new ArrayList<String>();
         List<String> methodSpecColumn = new ArrayList<String>();
@@ -220,6 +220,9 @@ public final class PwETable {
         }
 
         StringBuffer buffer = new StringBuffer();
+
+        // row seperator
+        buffer.append(String.format("+-%s-+-%s-+-%s-+\n", StringUtils.rightPad("", endpointColumnWidth+margin, '-'), StringUtils.rightPad("", methodSpecColumnWidth+margin, '-'), StringUtils.rightPad("", verbColumnWidth+margin, '-')));
 
         // header
         buffer.append(String.format("| %s | %s | %s |\n", StringUtils.rightPad(header[0], endpointColumnWidth+margin), StringUtils.rightPad(header[1], methodSpecColumnWidth+margin), StringUtils.rightPad(header[2], verbColumnWidth+margin)));
