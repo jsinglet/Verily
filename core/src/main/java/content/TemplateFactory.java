@@ -151,7 +151,7 @@ public class TemplateFactory {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.info("Didn't load user templates: {}", e.getMessage());
         }
 
     }
