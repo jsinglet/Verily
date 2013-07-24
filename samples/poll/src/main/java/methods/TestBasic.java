@@ -16,6 +16,10 @@ public class TestBasic {
 
     }
 
+    public static final void simpleFunction5(String msg) {
+
+    }
+
 
     public static final void simpleFunction3(WritableValue<Integer> hitCount) {
         if(hitCount.getValue()==null){

@@ -71,7 +71,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
         logger.info("{}Evaluating class method: {}", getDepth(), ctx.Identifier());
 
         if (methodHasNoLint() && baseSignatureIsValid(ctx) && currentClassIsFilename(ctx) && methodIsTopLevel(ctx)) {
-            logger.info("{}Discovered method \"{}\" will be mapped => /{}/{}", getDepth(), ctx.Identifier(), classCtx.peek(), ctx.Identifier());
+            logger.info("{}Discovered method \"{}\" will be mapped ➜ /{}/{}", getDepth(), ctx.Identifier(), classCtx.peek(), ctx.Identifier());
 
             et.mapMethod(classCtx.peek(), new PwEMethod(ctx.Identifier().getText(), methodSpec));
 

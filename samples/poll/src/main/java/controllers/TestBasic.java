@@ -9,13 +9,20 @@ import java.util.Map;
 public class TestBasic {
 
     public static final Content simpleFunction(String arg1) {
-        System.out.println("Executing controller with argument " + arg1);
+        System.out.println("Executing controller with   argument " + arg1);
 
         return new TextContent(SomeUtil.transform("is it possible how awesome this is? I am a controller: " + arg1));
 
     }
 
     public static final Content simpleFunction4(String msg) {
+
+        return new TextContent(SomeUtil.transform("This was a dynamically added method!"));
+
+    }
+
+
+    public static final Content simpleFunction5(String msg) {
 
         return new TextContent(SomeUtil.transform("This was a dynamically added method!"));
 

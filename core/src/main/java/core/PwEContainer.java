@@ -61,6 +61,7 @@ public class PwEContainer implements Container {
 
             env.setTranslationTable(translationTable);
 
+
             pWe = new PwEContainer(env);
         }
         return pWe;

@@ -72,6 +72,8 @@ public class Harness {
             throw new TableHomomorphismException("You are attempting to modify your session in more than one place. Please ensure only one WritableValue per key is used.");
         }
 
+        logger.info("The Following Methods Are Available to Your Application:");
+        logger.info("\n{}", methodTable.asASCIITable());
 
 
         return methodTable;

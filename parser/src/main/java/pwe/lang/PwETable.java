@@ -1,7 +1,9 @@
 package pwe.lang;
 
+import org.apache.commons.lang.StringUtils;
 import pwe.lang.exceptions.MethodNotMappedException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -167,4 +169,82 @@ public final class PwETable {
 
         return sameAddress || sameContents;
     }
+
+    // this is awful. just don't look at me.
+    public String asASCIITable(){
+
+        /**
+         * Prints a table like so:
+         *
+         * | Endpoint              | Method Spec             | Verbs
+         * +-----------------------+-------------------------+------
+         * | /TestBasic/someMethod | (String arg1)           | [POST, GET]
+         * | /TestBasic/someMethod | (String arg1, Integer a)|
+         * | /TestBasic/someMethod | (String arg1)           |
+         * | /TestBasic/someMethod | (String arg1)           |
+         *
+         *
+         */
+
+        String[] header = {"Endpoint","Method Spec", "Verbs"};
+
+        List<String> endpointColumn = new ArrayList<String>();
+        List<String> methodSpecColumn = new ArrayList<String>();
+
+        int endpointColumnWidth = 0;
+        int methodSpecColumnWidth = 0;
+        int verbColumnWidth = 10;
+        int margin = 5;
+
+
+
+        // fill up all the columns!
+        for(String rootClass : mTable.keySet()){
+
+            for(String methodName : mTable.get(rootClass).keySet()){
+
+                String s1 = String.format("/%s/%s", rootClass, methodName);
+                String s2 = "(" + StringUtils.join(mTable.get(rootClass).get(methodName).getFormalParameters(), ", ") + ")";
+
+                endpointColumn.add(s1);
+                methodSpecColumn.add(s2);
+
+                if(s1.length() > endpointColumnWidth){
+                    endpointColumnWidth = s1.length();
+                }
+
+                if(s2.length() > methodSpecColumnWidth){
+                    methodSpecColumnWidth = s2.length();
+                }
+            }
+        }
+
+        StringBuffer buffer = new StringBuffer();
+
+        // header
+        buffer.append(String.format("| %s | %s | %s |\n", StringUtils.rightPad(header[0], endpointColumnWidth+margin), StringUtils.rightPad(header[1], methodSpecColumnWidth+margin), StringUtils.rightPad(header[2], verbColumnWidth+margin)));
+        // row seperator
+        buffer.append(String.format("+-%s-+-%s-+-%s-+\n", StringUtils.rightPad("", endpointColumnWidth+margin, '-'), StringUtils.rightPad("", methodSpecColumnWidth+margin, '-'), StringUtils.rightPad("", verbColumnWidth+margin, '-')));
+
+        for(int i=0; i<endpointColumn.size(); i++) {
+
+            String s1 = endpointColumn.get(i);
+            String s2 = methodSpecColumn.get(i);
+
+
+            // header
+            buffer.append(String.format("| %s | %s | %s |\n", StringUtils.rightPad(s1, endpointColumnWidth+margin), StringUtils.rightPad(s2, methodSpecColumnWidth+margin), StringUtils.rightPad("[POST, GET]", verbColumnWidth+margin)));
+            // row seperator
+            buffer.append(String.format("+-%s-+-%s-+-%s-+\n", StringUtils.rightPad("", endpointColumnWidth+margin, '-'), StringUtils.rightPad("", methodSpecColumnWidth+margin, '-'), StringUtils.rightPad("", verbColumnWidth+margin, '-')));
+
+
+        }
+
+
+        return buffer.toString();
+
+
+
+    }
+
 }

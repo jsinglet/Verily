@@ -74,5 +74,10 @@ public class PwEType {
 
         return false;
     }
+
+    public String toString()
+    {
+        return String.format("%s %s", type, name);
+    }
 }
 
