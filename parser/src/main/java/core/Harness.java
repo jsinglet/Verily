@@ -84,7 +84,7 @@ public class Harness {
         boolean printTree = true;
 
         try {
-            logger.info("Parsing file: {}", f);
+            logger.trace("Parsing file: {}", f);
 
             // Create Lexer
             Lexer lexer = new JavaLexer(new ANTLRFileStream(f));
@@ -93,7 +93,7 @@ public class Harness {
             long start = System.currentTimeMillis();
             tokens.fill(); // load all and check time
             long stop = System.currentTimeMillis();
-            logger.info(String.format(" (lexed in %d ms)", stop - start));
+            logger.trace(String.format("File [%s] (lexed in %d ms)", f, stop - start));
 
             // Create a parser that reads from the scanner
             JavaParser parser = new JavaParser(tokens);

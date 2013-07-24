@@ -35,26 +35,26 @@ public class ExtractClassInfoListener extends JavaBaseListener {
     @Override
     public void enterClassDeclaration(ClassDeclarationContext ctx) {
 
-        logger.info("{}Descending into class {}...", getDepth(), ctx.Identifier());
+        logger.trace("{}Descending into class {}...", getDepth(), ctx.Identifier());
         classCtx.push(ctx.Identifier().toString());
     }
 
     @Override
     public void exitClassDeclaration(ClassDeclarationContext ctx) {
         String formerCtx = classCtx.pop();
-        logger.info("{}Leaving class class {}...", getDepth(), formerCtx);
+        logger.trace("{}Leaving class class {}...", getDepth(), formerCtx);
     }
 
     @Override
     public void enterFormalParameters(FormalParametersContext ctx) {
-        logger.info("{}Entering formal parameters context...", getDepth());
+        logger.trace("{}Entering formal parameters context...", getDepth());
     }
 
     @Override
     public void enterFormalParameter(FormalParameterContext ctx) {
 
-        logger.info("{}Entering formal parameter context...{}", getDepth());
-        logger.info("{}Found formal parameter \"{}\" with type \"{}\"", getDepth(), ctx.variableDeclaratorId().getText(), ctx.type().getText());
+        logger.trace("{}Entering formal parameter context...{}", getDepth());
+        logger.trace("{}Found formal parameter \"{}\" with type \"{}\"", getDepth(), ctx.variableDeclaratorId().getText(), ctx.type().getText());
 
         methodSpec.add(new PwEType(ctx.type().getText(), ctx.variableDeclaratorId().getText()));
 
@@ -62,21 +62,21 @@ public class ExtractClassInfoListener extends JavaBaseListener {
 
     @Override
     public void enterMethodDeclaration(MethodDeclarationContext ctx) {
-        logger.info("{}Parsing class method: {}", getDepth(), ctx.Identifier());
+        logger.trace("{}Parsing class method: {}", getDepth(), ctx.Identifier());
     }
 
     @Override
     public void exitMethodDeclaration(MethodDeclarationContext ctx) {
 
-        logger.info("{}Evaluating class method: {}", getDepth(), ctx.Identifier());
+        logger.trace("{}Evaluating class method: {}", getDepth(), ctx.Identifier());
 
         if (methodHasNoLint() && baseSignatureIsValid(ctx) && currentClassIsFilename(ctx) && methodIsTopLevel(ctx)) {
-            logger.info("{}Discovered method \"{}\" will be mapped ➜ /{}/{}", getDepth(), ctx.Identifier(), classCtx.peek(), ctx.Identifier());
+            logger.trace("{}Discovered method \"{}\" will be mapped ➜ /{}/{}", getDepth(), ctx.Identifier(), classCtx.peek(), ctx.Identifier());
 
             et.mapMethod(classCtx.peek(), new PwEMethod(ctx.Identifier().getText(), methodSpec));
 
         } else {
-            logger.info("{}Discovered method \"{}\" not a candidate for PwE model.", getDepth(), ctx.Identifier());
+            logger.trace("{}Discovered method \"{}\" not a candidate for PwE model.", getDepth(), ctx.Identifier());
         }
 
         methodSpec = new LinkedList<PwEType>();
@@ -95,7 +95,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
 
         boolean isTL = classCtx.size() == 1;
 
-        logger.info("{}Checking to see if this is a top level function: [{}]", getDepth(), isTL);
+        logger.trace("{}Checking to see if this is a top level function: [{}]", getDepth(), isTL);
 
         return isTL;
     }
@@ -104,7 +104,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
         String className = new File(filename).getName().split("\\.")[0];
         boolean ccif = className.equals(classCtx.peek());
 
-        logger.info("{}Checking to see if method's class matches the main class: [{}]", getDepth(), ccif);
+        logger.trace("{}Checking to see if method's class matches the main class: [{}]", getDepth(), ccif);
 
         return ccif;
     }
@@ -134,7 +134,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
             isPSV = false;
         }
 
-        logger.info("{}Checking to see if method is PSFC: [{}]", getDepth(), isPSV);
+        logger.trace("{}Checking to see if method is PSFC: [{}]", getDepth(), isPSV);
         return isPSV;
     }
 
@@ -145,13 +145,13 @@ public class ExtractClassInfoListener extends JavaBaseListener {
 
             for(PwEType t : methodSpec){
                 if(t.isSessionWritable()){
-                    logger.info("{}Checking to see if this controller method tries to access WritableValues: [{}]", getDepth(), true);
+                    logger.trace("{}Checking to see if this controller method tries to access WritableValues: [{}]", getDepth(), true);
 
                     return false;
                 }
             }
 
-            logger.info("{}Checking to see if this controller method tries to access WritableValues: [{}]", getDepth(), false);
+            logger.trace("{}Checking to see if this controller method tries to access WritableValues: [{}]", getDepth(), false);
 
         }
 
@@ -186,7 +186,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
             isPSV = false;
         }
 
-        logger.info("{}Checking to see if method is PSFV: [{}]", getDepth(), isPSV);
+        logger.trace("{}Checking to see if method is PSFV: [{}]", getDepth(), isPSV);
         return isPSV;
     }
 
