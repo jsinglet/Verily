@@ -329,7 +329,9 @@ public class PwEMain {
 
         PwEContainer.getContainer().startServices();
 
-        logger.info("Bootstrapping complete.");
+        logger.info("------------------------------------------------------------------------");
+        logger.info("PwE STARTUP COMPLETE");
+        logger.info("------------------------------------------------------------------------");
 
 
 

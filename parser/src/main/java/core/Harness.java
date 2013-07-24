@@ -73,7 +73,11 @@ public class Harness {
         }
 
         logger.info("The Following MeVC Endpoints Are Available in Your Application:");
-        logger.info("\n{}", methodTable.asASCIITable());
+
+        String[] parts = methodTable.asASCIITable().split("\n");
+        for(String p : parts){
+            logger.info(p);
+        }
 
 
         return methodTable;
