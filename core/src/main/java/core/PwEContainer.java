@@ -9,6 +9,7 @@ import content.TemplateFactory;
 import exceptions.InvalidFormalArgumentsException;
 import freemarker.template.Template;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.SerializationUtils;
 import org.simpleframework.http.Cookie;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
@@ -127,7 +128,11 @@ public class PwEContainer implements Container {
                 if (readOnly) {
 
                     if (v.getValue() != null) {
-                        ReadableValue rov = new ReadableValue(v.getValue());//(Serializable) SerializationUtils.clone(v.getValue()));
+
+                        Serializable clonedValue = (Serializable) SerializationUtils.clone(v.getValue());
+                        ReadableValue rov = new ReadableValue(clonedValue);
+
+                        //ReadableValue rov = new ReadableValue(v.getValue());//(Serializable) SerializationUtils.clone(v.getValue()));
                         actualParameters.add(rov);
 
                     } else {

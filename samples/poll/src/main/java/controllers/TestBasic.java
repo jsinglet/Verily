@@ -17,8 +17,11 @@ public class TestBasic {
 
     public static final Content simpleFunction4(String msg) {
 
-        return new TextContent(SomeUtil.transform("This was a dynamically added method!"));
+        Map m = new HashMap();
 
+        m.put("title", "my special title");
+
+        return new TemplateHTMLContent("test4.ftl", m);
     }
 
 
