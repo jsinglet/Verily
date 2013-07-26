@@ -42,14 +42,16 @@ if [[ $RUN == "YES" ]]; then
     # update the package
 
     #mvn package
-    mvn compile
-    if [ $? -ne 0 ]; then
-        exit $?
-    fi
+    #mvn compile
+    #if [ $? -ne 0 ]; then
+    #    exit $?
+    #fi
 
     # Add everything this depends on to the classpath...
 
     CP=""
+
+    rm target/dependency/slf4j*.jar > /dev/null 2>&1
 
     for jar in "target/dependency"/*.jar
     do
@@ -65,4 +67,4 @@ if [[ $RUN == "YES" ]]; then
 fi
 
 
-eval "java"  -cp "${PWE_CP}:${CP}" PwEMain -nocompile "$@"
+eval "java"  -cp "${PWE_CP}:${CP}" PwEMain "$@"

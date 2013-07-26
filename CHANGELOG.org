@@ -1,0 +1,16 @@
+
+
+* 07/26/2013
+
+- Readable/Writable values are now serialized properly (all references removed)
+- Static checker now can detect attempts to use Writable values in more than once place
+- Readable/Writable values can now be aliased properly
+- Major logging cleanup in parser
+- Startup improved: Process now displays helpful methods table
+- Created internal layouts system for quick prototyping efforts
+- Created new user layouts system for allowing users to define layouts
+- Added javascript interface export feature
+- Javascript playground!
+- Added dynamic class reloading
+- Added "run tests" option to pwe command line to allow running tests without application
+- Added "-w" (dynamic reload) switch to command line to selectively turn this feature on and off.
