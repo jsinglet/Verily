@@ -1,12 +1,9 @@
-<html>
-<head><title>${title}</title></head>
-<body>
+<@pweLayouts.simple>
 
-<h1>Hit Counter!</h1>
+<div class="page-header">
+    <h1 >Hit Counter!</h1>
+</div>
 
 You have seen this page <b>${hits}</b> times...
 
-</body>
-
-
-</html>
+</@pweLayouts.simple>

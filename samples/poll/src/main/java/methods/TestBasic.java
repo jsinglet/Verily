@@ -16,6 +16,9 @@ public class TestBasic {
 
     }
 
+
+    public static final void testInternalLayout(){}
+
     public static final void simpleFunction5(String msg) {
 
     }

@@ -250,4 +250,8 @@ public final class PwETable {
 
     }
 
+    public Map<String, Map<String, PwEMethod>> getTable(){
+        return mTable;
+    }
+
 }

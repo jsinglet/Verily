@@ -51,6 +51,8 @@ public class TemplateFactory {
             // built in layouts
             logger.info("Loading internal layouts...");
             templateFactory.templateConfig.addAutoImport("pweLayouts", "pwe/layouts/layouts.ftl");
+            templateFactory.templateConfig.addAutoImport("pweUtils", "pwe/layouts/app.ftl");
+
 
             logger.info("Internal layouts loaded @ root pweLayouts");
 
@@ -197,6 +199,11 @@ public class TemplateFactory {
 
     public Template get404Template() throws IOException {
         Template t = templateConfig.getTemplate("404.ftl");
+        return t;
+    }
+
+    public Template getAjaxTemplate() throws IOException {
+        Template t = templateConfig.getTemplate("pwe/app.ftl");
         return t;
     }
 

@@ -27,10 +27,24 @@ public class TestBasic {
 
     public static final Content simpleFunction5(String msg) {
 
-        return new TextContent(SomeUtil.transform("This was a dynamically added method!"));
+
+        Map m = new HashMap();
+
+        m.put("title", "my special title");
+
+        return new TemplateHTMLContent("test2.ftl", m);
 
     }
 
+    public static final Content testInternalLayout(){
+
+        Map m = new HashMap();
+
+        m.put("title", "my special title");
+
+        return new TemplateHTMLContent("useInternalSimpleLayout.ftl", m);
+
+    }
 
     public static final Content simpleFunction2(String msg, String message2) {
 

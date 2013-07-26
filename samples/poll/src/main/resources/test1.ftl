@@ -1,5 +1,7 @@
 <html>
-<head><title>${title}</title></head>
+<head><title>${title}</title>
+<@pweUtils.enableAjaxInterface/>
+</head>
 <body>
 
 <h1>Testing Testing...</h1>

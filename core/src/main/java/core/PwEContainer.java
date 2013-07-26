@@ -10,6 +10,7 @@ import exceptions.InvalidFormalArgumentsException;
 import freemarker.template.Template;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.SerializationUtils;
+import org.apache.commons.lang.StringUtils;
 import org.simpleframework.http.Cookie;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
@@ -222,6 +223,10 @@ public class PwEContainer implements Container {
         if (u != null && u.getPath().endsWith("/") == false) { // static content
             sendFile(u, response);
             statusCode = 200;
+        } else if (request.getPath().toString().equals("/_pweApp.js")) {
+            //TODO - this should probably be cached.
+            statusCode = 200;
+            sendAjaxHarness(request, response);
         } else {         // dynamic content
 
             try {
@@ -346,7 +351,7 @@ public class PwEContainer implements Container {
 
 
             response.setValue("Content-Type", PwEUtil.mimeForType(file));
-            response.setValue("Server", "PwE");
+            response.setValue("Server", "PwE-Powered");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
             response.setCode(200);
@@ -376,7 +381,7 @@ public class PwEContainer implements Container {
             long time = System.currentTimeMillis();
 
             response.setValue("Content-Type", "text/html");
-            response.setValue("Server", "");
+            response.setValue("Server", "PwE-Powered");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
             response.setCode(404);
@@ -416,7 +421,7 @@ public class PwEContainer implements Container {
             long time = System.currentTimeMillis();
 
             response.setValue("Content-Type", "text/html");
-            response.setValue("Server", "");
+            response.setValue("Server", "PwE-Powered");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
             response.setCode(500);
@@ -453,6 +458,88 @@ public class PwEContainer implements Container {
 
     }
 
+    public void sendAjaxHarness(Request request, Response response) {
+        try {
+
+            Writer body = new OutputStreamWriter(response.getOutputStream());
+
+            long time = System.currentTimeMillis();
+
+            response.setValue("Content-Type", "text/javascript");
+            response.setValue("Server", "PwE-Powered");
+            response.setDate("Date", time);
+            response.setDate("Last-Modified", time);
+            response.setCode(200);
+
+            try {
+
+                Map vars = new HashMap();
+
+                List modules = new ArrayList();
+
+                PwETable table = getEnv().getTranslationTable();
+
+                for(String module : table.getTable().keySet()){
+
+                    Map m = new HashMap();
+
+                    m.put("name", module);
+
+
+                    List functions = new ArrayList();
+
+                    // add the functions
+
+                    for(String f : table.getTable().get(module).keySet()){
+
+                        Map fParams = new HashMap();
+
+                        List<PwEType> formalParams = table.getTable().get(module).get(f).getFormalParameters();
+
+                        List<String>  paramNames = new ArrayList<String>();
+
+                        for(PwEType t : formalParams){
+                            paramNames.add(t.getName());
+                        }
+
+                        fParams.put("name", f);
+                        fParams.put("quotedArgList", "\"" + StringUtils.join(paramNames, "\", \"") + "\"");
+                        fParams.put("argList", StringUtils.join(paramNames, ", "));
+
+                        functions.add(fParams);
+
+                    }
+
+
+                    m.put("functions", functions);
+
+
+                    modules.add(m);
+
+                }
+
+
+
+                vars.put("version", PwE.VERSION);
+                vars.put("modules", modules);
+
+                Template t = TemplateFactory.getInstance().getAjaxTemplate();
+
+                t.process(vars, body);
+            } catch (IOException e) {
+                logger.error("Error during render of Ajax template: {}", e.getMessage());
+                body.write("Sorry, but the endpoint you requested does not exist.");
+            } finally {
+                body.close();
+            }
+
+
+        } catch (Exception e) { // this is horribly fatal.
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     public void send404(Request request, Response response) {
 
         try {
@@ -462,7 +549,7 @@ public class PwEContainer implements Container {
             long time = System.currentTimeMillis();
 
             response.setValue("Content-Type", "text/html");
-            response.setValue("Server", "");
+            response.setValue("Server", "PwE-Powered");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
             response.setCode(404);
