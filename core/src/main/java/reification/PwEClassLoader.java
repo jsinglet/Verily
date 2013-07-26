@@ -22,9 +22,6 @@ public class PwEClassLoader extends ClassLoader {
     public Class<?> loadClass(final String theClass) throws ClassNotFoundException {
 
 
-        System.out.println("Finding class: " + theClass);
-
-
         // we want to dynamically load these types of classes
         if (theClass.startsWith("methods.") || theClass.startsWith("controllers.") || theClass.startsWith("app.")) {
 
