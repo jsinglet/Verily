@@ -27,14 +27,16 @@ import java.io.*;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class PwEContainer implements Container {
 
     private static PwEContainer pWe;
+    final Logger logger = LoggerFactory.getLogger(PwEContainer.class);
+    private Executor threadPool;
     private Thread classReloader;
     private PwEModificationWatcher modificationWatcher;
-
-    final Logger logger = LoggerFactory.getLogger(PwEContainer.class);
     private PwEEnv env;
 
     private PwEContainer(PwEEnv env) {
@@ -42,13 +44,18 @@ public class PwEContainer implements Container {
         logger.info("Constructed new PwE container @ {}", new Date());
     }
 
-    public static PwEContainer getContainer() throws IOException, TableHomomorphismException {
+    public static PwEContainer getContainer(int threads) throws IOException, TableHomomorphismException {
+
+        final Logger logger = LoggerFactory.getLogger(PwEContainer.class);
+
         if (pWe == null) {
 
             /**
              * Construct our world
              */
             PwEEnv env = new PwEEnv();
+
+            env.setNumberOfThreads(threads);
 
             // where are we?
             env.setHome(Paths.get(""));
@@ -63,8 +70,19 @@ public class PwEContainer implements Container {
 
             env.setTranslationTable(translationTable);
 
-
             pWe = new PwEContainer(env);
+
+
+            logger.info("Created new thread pool with [{}] threads.", threads);
+            pWe.threadPool = Executors.newFixedThreadPool(threads);
+
+        }
+        return pWe;
+    }
+
+    public static PwEContainer getContainer() {
+        if (pWe == null) {
+          throw new RuntimeException("Container not initialized.");
         }
         return pWe;
     }
@@ -204,7 +222,18 @@ public class PwEContainer implements Container {
     }
 
     @Override
-    public void handle(Request request, Response response) {
+    public void handle(final Request request, final Response response) {
+
+        threadPool.execute(new Runnable(){
+            @Override
+            public void run() {
+                doHandle(request, response);
+            }
+        });
+
+    }
+
+    public void doHandle(Request request, Response response) {
 
         Context ctx = getOrEstablishSession(request, response);
         String classContext = classContextFromRequest(request);
@@ -479,7 +508,7 @@ public class PwEContainer implements Container {
 
                 PwETable table = getEnv().getTranslationTable();
 
-                for(String module : table.getTable().keySet()){
+                for (String module : table.getTable().keySet()) {
 
                     Map m = new HashMap();
 
@@ -490,15 +519,15 @@ public class PwEContainer implements Container {
 
                     // add the functions
 
-                    for(String f : table.getTable().get(module).keySet()){
+                    for (String f : table.getTable().get(module).keySet()) {
 
                         Map fParams = new HashMap();
 
                         List<PwEType> formalParams = table.getTable().get(module).get(f).getFormalParameters();
 
-                        List<String>  paramNames = new ArrayList<String>();
+                        List<String> paramNames = new ArrayList<String>();
 
-                        for(PwEType t : formalParams){
+                        for (PwEType t : formalParams) {
                             paramNames.add(t.getName());
                         }
 
@@ -517,7 +546,6 @@ public class PwEContainer implements Container {
                     modules.add(m);
 
                 }
-
 
 
                 vars.put("version", PwE.VERSION);
@@ -585,7 +613,6 @@ public class PwEContainer implements Container {
     public void setEnv(PwEEnv env) {
         this.env = env;
     }
-
 
     public void stopService() {
         if (classReloader != null) {

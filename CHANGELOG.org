@@ -14,3 +14,27 @@
 - Added dynamic class reloading
 - Added "run tests" option to pwe command line to allow running tests without application
 - Added "-w" (dynamic reload) switch to command line to selectively turn this feature on and off.
+
+
+* 07/27/2013
+
+Options for Daemon
+
+- use: nohup java ... < /dev/null > output.log 2>&1 & to start
+- http://libslack.org/daemon/manpages/daemon.1.html
+- Look at multi threading read sessions
+- Add threadpooling
+
+
+ -fast                do not recalculate dependencies before running
+ -help                display this help
+ -init <dir>          create a new PwE application in the specified
+                      directory
+ -new <newclass>      create a new PwE Method+Controller pair
+ -nocompile           do not do internal recompile (used for development
+                      only)
+ -port <portnumber>   port number to bind to (default 8000)
+ -run                 run the application
+ -test                run the unit tests for this application
+ -w                   try to dynamically reload classes and templates (not
+                      for production use)

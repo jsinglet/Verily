@@ -6,6 +6,8 @@
  */
 
 import content.TemplateFactory;
+import core.PwE;
+import core.PwEContainer;
 import exceptions.InitException;
 import exceptions.PwECompileFailedException;
 import freemarker.template.Template;
@@ -21,14 +23,14 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.impl.SimpleLogger;
 import pwe.lang.exceptions.TableHomomorphismException;
 import utils.PwEUtil;
-import core.PwE;
-import core.PwEContainer;
-
 
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +42,7 @@ public class PwEMain {
     // -run        - run the application (the default)
     // -init <dir> - create a new pwe application in the named directory
     // -new Name   - Create a new Method/Controller pair
-
+    final Logger logger = LoggerFactory.getLogger(PwEMain.class);
 
     static {
 
@@ -70,6 +72,12 @@ public class PwEMain {
 
         Option test = new Option(PwE.ARG_TEST, "run the unit tests for this application");
 
+        Option daemon = new Option(PwE.ARG_DAEMON, "run this application in the background");
+        Option threads = OptionBuilder.withArgName(PwE.ARG_NUM_THREADS)
+                .hasArg()
+                .withDescription("the number of threads to create for handling requests.")
+                .create(PwE.ARG_THREADS);
+
 
         argList.addOption(port);
         argList.addOption(help);
@@ -80,6 +88,8 @@ public class PwEMain {
         argList.addOption(fast);
         argList.addOption(watch);
         argList.addOption(test);
+        argList.addOption(daemon);
+        argList.addOption(threads);
 
         System.setProperty(SimpleLogger.LEVEL_IN_BRACKETS_KEY, "true");
         System.setProperty(SimpleLogger.SHOW_LOG_NAME_KEY, "false");
@@ -87,8 +97,6 @@ public class PwEMain {
         System.setProperty(SimpleLogger.SHOW_THREAD_NAME_KEY, "false");
 
     }
-
-    final Logger logger = LoggerFactory.getLogger(PwEMain.class);
 
     public static void main(String args[]) {
 
@@ -110,15 +118,13 @@ public class PwEMain {
                 m.bootstrap(line);
 
                 // compile the project
-                if(line.hasOption(PwE.ARG_NOCOMPILE)==false){
+                if (line.hasOption(PwE.ARG_NOCOMPILE) == false) {
                     PwEUtil.reloadProject();
                 }
 
                 long ts2 = System.currentTimeMillis();
 
-                m.ready(ts2-ts1);
-
-
+                m.ready(ts2 - ts1);
 
 
             } else if (line.hasOption(PwE.ARG_HELP)) {
@@ -127,7 +133,7 @@ public class PwEMain {
                 m.init(line);
             } else if (line.hasOption(PwE.ARG_NEW)) {
                 m.newPair(line);
-            } else if(line.hasOption(PwE.ARG_TEST)){
+            } else if (line.hasOption(PwE.ARG_TEST)) {
                 PwEUtil.test();
             }
 
@@ -182,6 +188,11 @@ public class PwEMain {
         if (orun ^ oinit ^ onew ^ otest == false) {
             throw new ParseException("Exactly one of -init, -run, -test, or -new must be specified");
         }
+    }
+
+    public static void usage() {
+        HelpFormatter formatter = new HelpFormatter();
+        formatter.printHelp("pwe", argList);
     }
 
     public void init(CommandLine cl) throws InitException {
@@ -302,15 +313,21 @@ public class PwEMain {
     public void bootstrap(CommandLine cl) throws IOException, NumberFormatException, TableHomomorphismException {
 
         int port = PwE.DEFAULT_PORT;
+        int numThreads = PwE.DEFAULT_THREADS;
 
         if (cl.getOptionValue(PwE.ARG_PORT) != null) {
             port = Integer.parseInt(cl.getOptionValue(PwE.ARG_PORT));
         }
 
+        if(cl.getOptionValue(PwE.ARG_THREADS)!=null){
+            numThreads = Integer.parseInt(cl.getOptionValue(PwE.ARG_THREADS));
+        }
+
         logger.info("Bootstrapping PwE on port {}...", port);
 
 
-        Container container = PwEContainer.getContainer();
+        Container container = PwEContainer.getContainer(numThreads);
+
         Server server = new ContainerServer(container);
         Connection connection = new SocketConnection(server);
         SocketAddress address = new InetSocketAddress(port);
@@ -319,11 +336,12 @@ public class PwEMain {
 
         PwEContainer.getContainer().getEnv().setPort(port);
 
-        if(cl.hasOption(PwE.ARG_WATCH)){
+        if (cl.hasOption(PwE.ARG_WATCH)) {
             PwEContainer.getContainer().getEnv().setReload(true);
-        }else{
+        } else {
             PwEContainer.getContainer().getEnv().setReload(false);
         }
+
 
         logger.info("Starting services...");
 
@@ -334,16 +352,9 @@ public class PwEMain {
         logger.info("------------------------------------------------------------------------");
 
 
-
-
-    }
-
-    public static void usage() {
-        HelpFormatter formatter = new HelpFormatter();
-        formatter.printHelp("pwe", argList);
     }
 
     public void ready(long timeInMs) throws IOException, TableHomomorphismException {
-        logger.info("Bootstrapping complete in {} seconds. PwE ready to serve requests at http://localhost:{}/", (double)timeInMs/1000, PwEContainer.getContainer().getEnv().getPort());
+        logger.info("Bootstrapping complete in {} seconds. PwE ready to serve requests at http://localhost:{}/", (double) timeInMs / 1000, PwEContainer.getContainer().getEnv().getPort());
     }
 }

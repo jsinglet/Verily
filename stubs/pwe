@@ -7,6 +7,7 @@ PWE_CP=$(/usr/bin/pwe-env -cp)
 CP=""
 RUN="NO"
 
+
 # Deps from the project
 
 case "$*" in
@@ -16,6 +17,7 @@ esac
 if [[ $RUN == "YES" ]]; then
 
     UPDATE_DEPS="YES"
+    DAEMON="NO"
 
     # the -fast option will specify that we should not try to recompute deps
 
@@ -25,6 +27,9 @@ if [[ $RUN == "YES" ]]; then
 	case $opt in
 	    a)
 		UPDATE_DEPS="NO"
+		;;
+		d)
+		DAEMON="YES"
 		;;
 	esac
     done
@@ -66,5 +71,7 @@ if [[ $RUN == "YES" ]]; then
 
 fi
 
-
+#
+# Background startup is handled in the startup script, since there are platform specific details
+#
 eval "java"  -cp "${PWE_CP}:${CP}" PwEMain "$@"

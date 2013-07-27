@@ -6,6 +6,13 @@ import pwe.lang.WritableValue;
 public class TestBasic {
 
     public static final void simpleFunction(String arg1) {
+
+        try {
+            Thread.sleep(30000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
         System.out.println("Hey, you passed in the sdfsdfstring: " + arg1);
     }
 

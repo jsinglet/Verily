@@ -8,11 +8,13 @@ import java.nio.file.Path;
 public class PwEEnv {
 
     private Path home;
+    private int numberOfThreads;
     private String appName;
     private String appVersion;
     private PwETable translationTable;
     private int port;
     private boolean reload;
+    private boolean daemon;
 
 
     public Path getHome() {
@@ -65,5 +67,21 @@ public class PwEEnv {
 
     public synchronized void setReload(boolean reload) {
         this.reload = reload;
+    }
+
+    public int getNumberOfThreads() {
+        return numberOfThreads;
+    }
+
+    public void setNumberOfThreads(int numberOfThreads) {
+        this.numberOfThreads = numberOfThreads;
+    }
+
+    public boolean isDaemon() {
+        return daemon;
+    }
+
+    public void setDaemon(boolean daemon) {
+        this.daemon = daemon;
     }
 }
