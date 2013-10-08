@@ -1,5 +1,5 @@
 import org.junit.Test;
-import utils.PwEUtil;
+import utils.VerilyUtil;
 
 import static org.junit.Assert.assertTrue;
 
@@ -18,12 +18,12 @@ public class PwEUtilTest {
 
         for (String t : tests) {
             System.out.println("Verifying: " + t);
-            assertTrue(PwEUtil.trimRequestContext(t).equals("SomeContext"));
+            assertTrue(VerilyUtil.trimRequestContext(t).equals("SomeContext"));
         }
 
         String edge = "//Some/Context//";
 
-        assertTrue(PwEUtil.trimRequestContext(edge).equals("Some/Context"));
+        assertTrue(VerilyUtil.trimRequestContext(edge).equals("Some/Context"));
 
     }
 }

@@ -1,4 +1,4 @@
-<@pweLayouts.simple>
+<@verilyLayouts.simple>
 
 <div class="page-header">
     <h1 >Hit Counter!</h1>
@@ -6,4 +6,4 @@
 
 You have seen this page <b>${hits}</b> times...
 
-</@pweLayouts.simple>
+</@verilyLayouts.simple>

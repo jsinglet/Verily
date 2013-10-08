@@ -23,14 +23,14 @@
         </dependency>
 
         <dependency>
-            <groupId>PwE</groupId>
+            <groupId>Verily</groupId>
             <artifactId>parser</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
 
         <dependency>
-            <groupId>PwE</groupId>
+            <groupId>Verily</groupId>
             <artifactId>core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>

@@ -13,7 +13,7 @@
         The meaning of the tags should be natural ...
     -->
     <info>
-        <appname>PwE</appname>
+        <appname>Verily</appname>
         <appversion>build-JUN082013</appversion>
         <authors>
             <author name="John L. Singleton" email="jsinglet@gmail.com"/>
@@ -70,7 +70,7 @@
             <file src="LICENSE.txt" targetdir="$INSTALL_PATH"/>
             <file src="../target/lib/" targetdir="$INSTALL_PATH"/>
 
-            <file src="../stubs/pwe" targetdir="$INSTALL_PATH"/>
+            <file src="../stubs/verily" targetdir="$INSTALL_PATH"/>
             <file src="../stubs/update_links" targetdir="$INSTALL_PATH"/>
 
 
@@ -81,7 +81,7 @@
             </executable>
 
 
-            <executable targetfile="$INSTALL_PATH/pwe" stage="never" keep="true"/>
+            <executable targetfile="$INSTALL_PATH/verily" stage="never" keep="true"/>
 
         </pack>
     </packs>

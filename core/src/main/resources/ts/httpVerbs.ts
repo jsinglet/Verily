@@ -1,4 +1,4 @@
-module PwE {
+module Verily {
     export class HTTPVerbs {
         static POST = "POST";
         static GET = "GET";

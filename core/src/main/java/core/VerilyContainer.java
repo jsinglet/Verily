@@ -1,7 +1,8 @@
-package core;/*
- * core.PwEContainer.java
+package core;
+/*
+ * core.VerilyContainer.java
  *
- * The main container for PwE. Handles all the dispatching and decoding for PwE.
+ * The main container for Verily. Handles all the dispatching and decoding for Verily.
  *
  */
 
@@ -17,11 +18,11 @@ import org.simpleframework.http.Response;
 import org.simpleframework.http.core.Container;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pwe.lang.exceptions.MethodNotMappedException;
-import pwe.lang.exceptions.TableHomomorphismException;
+import verily.lang.*;
+import verily.lang.exceptions.MethodNotMappedException;
+import verily.lang.exceptions.TableHomomorphismException;
 import reification.*;
 import utils.VerilyUtil;
-import verily.lang.Content;
 
 import java.io.*;
 import java.net.URL;
@@ -32,7 +33,7 @@ import java.util.concurrent.Executors;
 
 public class VerilyContainer implements Container {
 
-    private static VerilyContainer pWe;
+    private static VerilyContainer verilyContainer;
     final Logger logger = LoggerFactory.getLogger(VerilyContainer.class);
     private Executor threadPool;
     private Thread classReloader;
@@ -41,14 +42,14 @@ public class VerilyContainer implements Container {
 
     private VerilyContainer(VerilyEnv env) {
         this.setEnv(env);
-        logger.info("Constructed new PwE container @ {}", new Date());
+        logger.info("Constructed new Verily container @ {}", new Date());
     }
 
     public static VerilyContainer getContainer(int threads) throws IOException, TableHomomorphismException {
 
         final Logger logger = LoggerFactory.getLogger(VerilyContainer.class);
 
-        if (pWe == null) {
+        if (verilyContainer == null) {
 
             /**
              * Construct our world
@@ -60,37 +61,37 @@ public class VerilyContainer implements Container {
             // where are we?
             env.setHome(Paths.get(""));
 
-            //verify that this is a PwE application
+            //verify that this is a Verily application
             //env.getHome().
 
             // set up the translation table
             Harness applicationHarness = new Harness(env.getHome());
 
-            PwETable translationTable = applicationHarness.extractTranslationTable();
+            VerilyTable translationTable = applicationHarness.extractTranslationTable();
 
             env.setTranslationTable(translationTable);
 
-            pWe = new VerilyContainer(env);
+            verilyContainer = new VerilyContainer(env);
 
 
             logger.info("Created new thread pool with [{}] threads.", threads);
-            pWe.threadPool = Executors.newFixedThreadPool(threads);
+            verilyContainer.threadPool = Executors.newFixedThreadPool(threads);
 
         }
-        return pWe;
+        return verilyContainer;
     }
 
     public static VerilyContainer getContainer() {
-        if (pWe == null) {
+        if (verilyContainer == null) {
           throw new RuntimeException("Container not initialized.");
         }
-        return pWe;
+        return verilyContainer;
     }
 
     public void reloadTranslationTable() throws IOException, TableHomomorphismException {
         Harness applicationHarness = new Harness(env.getHome());
 
-        PwETable translationTable = applicationHarness.extractTranslationTable();
+        VerilyTable translationTable = applicationHarness.extractTranslationTable();
 
         env.setTranslationTable(translationTable);
 
@@ -100,7 +101,7 @@ public class VerilyContainer implements Container {
         return VerilyUtil.trimRequestContext(r.getPath().getDirectory());
     }
 
-    public PwEMethod getMethodForRequest(Request r) throws MethodNotMappedException {
+    public VerilyMethod getMethodForRequest(Request r) throws MethodNotMappedException {
 
         String method = r.getPath().getName();
         String context = classContextFromRequest(r);
@@ -109,7 +110,7 @@ public class VerilyContainer implements Container {
         return env.getTranslationTable().methodAt(context, method);
     }
 
-    public List<Object> marshallRequestToMethod(Request r, PwEMethod m, Context ctx, boolean readOnly) throws InvalidFormalArgumentsException {
+    public List<Object> marshallRequestToMethod(Request r, VerilyMethod m, Context ctx, boolean readOnly) throws InvalidFormalArgumentsException {
 
         // get the sesssion
         Session session = MemoryBackedSession.withContext(ctx);
@@ -124,7 +125,7 @@ public class VerilyContainer implements Container {
         // Test 2: Create an ordered list of parameters and see if we can fill it in.
         List<Object> actualParameters = new ArrayList<Object>(m.getFormalParameters().size());
 
-        for (PwEType requestedType : m.getFormalParameters()) {
+        for (VerilyType requestedType : m.getFormalParameters()) {
 
             // look it up in the session table
             if (requestedType.isSessionBound()) {
@@ -184,7 +185,7 @@ public class VerilyContainer implements Container {
         return actualParameters;
     }
 
-    public void persistSessionInformation(PwEMethod m, Object[] params, Context ctx) {
+    public void persistSessionInformation(VerilyMethod m, Object[] params, Context ctx) {
 
         Session session = MemoryBackedSession.withContext(ctx);
 
@@ -202,9 +203,9 @@ public class VerilyContainer implements Container {
     public Context getOrEstablishSession(Request request, Response response) {
 
         // use a current session
-        if (request.getCookie(PwE.SESSION_COOKIE) != null) {
+        if (request.getCookie(Verily.SESSION_COOKIE) != null) {
 
-            Context ctx = new Context(request.getCookie(PwE.SESSION_COOKIE).getValue());
+            Context ctx = new Context(request.getCookie(Verily.SESSION_COOKIE).getValue());
 
             logger.info("Reconnected old session {}", ctx.toString());
             return ctx;
@@ -212,7 +213,7 @@ public class VerilyContainer implements Container {
 
         Context ctx = new Context();
         // establish a new one
-        Cookie c = new Cookie(PwE.SESSION_COOKIE, ctx.toString());
+        Cookie c = new Cookie(Verily.SESSION_COOKIE, ctx.toString());
 
         response.setCookie(c);
 
@@ -240,7 +241,7 @@ public class VerilyContainer implements Container {
 
 
         // these are filled in later
-        PwEMethod m = null;
+        VerilyMethod m = null;
 
         int statusCode = 200;
         long ts1 = System.currentTimeMillis();
@@ -252,7 +253,7 @@ public class VerilyContainer implements Container {
         if (u != null && u.getPath().endsWith("/") == false) { // static content
             sendFile(u, response);
             statusCode = 200;
-        } else if (request.getPath().toString().equals("/_pweApp.js")) {
+        } else if (request.getPath().toString().equals("/_verilyApp.js")) {
             //TODO - this should probably be cached.
             statusCode = 200;
             sendAjaxHarness(request, response);
@@ -322,7 +323,7 @@ public class VerilyContainer implements Container {
 
 
                 // Step 7 - Using the exact same parameters, invoke the controller method.
-                Class controller = Class.forName(String.format("controllers.%s", classContext), false, new VerilyClassLoader(this.getClass().getClassLoader()));
+                Class controller = Class.forName(String.format("routers.%s", classContext), false, new VerilyClassLoader(this.getClass().getClassLoader()));
 
 
                 Content content = (Content) controller.getMethod(m.getMethod(), controllerClazz).invoke(null, controllerArgs);
@@ -331,7 +332,7 @@ public class VerilyContainer implements Container {
                 long ts3 = System.currentTimeMillis();
 
                 // log the request.
-                logger.info("[{}] - Finished Executing Controller \"{}.{}\" ({} ms)", new Date(), classContext, m.getMethod(), ts3 - ts2);
+                logger.info("[{}] - Finished Executing Router \"{}.{}\" ({} ms)", new Date(), classContext, m.getMethod(), ts3 - ts2);
 
 
                 OutputStream out = response.getOutputStream();
@@ -339,7 +340,7 @@ public class VerilyContainer implements Container {
                 long time = System.currentTimeMillis();
 
                 response.setValue("Content-Type", content.getContentType());
-                response.setValue("Server", "PwE-Powered");
+                response.setValue("Server", "Verily-Powered");
                 response.setDate("Date", time);
                 response.setDate("Last-Modified", time);
                 response.setCode(content.getContentCode());
@@ -380,7 +381,7 @@ public class VerilyContainer implements Container {
 
 
             response.setValue("Content-Type", VerilyUtil.mimeForType(file));
-            response.setValue("Server", "PwE-Powered");
+            response.setValue("Server", "Verily-Powered");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
             response.setCode(200);
@@ -401,7 +402,7 @@ public class VerilyContainer implements Container {
         }
     }
 
-    public void send400(Request request, Response response, String context, PwEMethod target, String specificError) {
+    public void send400(Request request, Response response, String context, VerilyMethod target, String specificError) {
 
         try {
 
@@ -410,7 +411,7 @@ public class VerilyContainer implements Container {
             long time = System.currentTimeMillis();
 
             response.setValue("Content-Type", "text/html");
-            response.setValue("Server", "PwE-Powered");
+            response.setValue("Server", "Verily-Powered");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
             response.setCode(404);
@@ -419,7 +420,7 @@ public class VerilyContainer implements Container {
 
                 Map<String, String> vars = new HashMap<String, String>();
 
-                vars.put("version", PwE.VERSION);
+                vars.put("version", Verily.VERSION);
                 vars.put("targetClass", context);
                 vars.put("targetMethod", target.getMethod());
                 vars.put("message", specificError);
@@ -441,7 +442,7 @@ public class VerilyContainer implements Container {
 
     }
 
-    public void send500(Request request, Response response, String context, PwEMethod target, String specificError) {
+    public void send500(Request request, Response response, String context, VerilyMethod target, String specificError) {
 
         try {
 
@@ -450,7 +451,7 @@ public class VerilyContainer implements Container {
             long time = System.currentTimeMillis();
 
             response.setValue("Content-Type", "text/html");
-            response.setValue("Server", "PwE-Powered");
+            response.setValue("Server", "Verily-Powered");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
             response.setCode(500);
@@ -465,7 +466,7 @@ public class VerilyContainer implements Container {
                     message = specificError;
                 }
 
-                vars.put("version", PwE.VERSION);
+                vars.put("version", Verily.VERSION);
                 vars.put("targetClass", context);
                 vars.put("targetMethod", target.getMethod());
                 vars.put("message", message);
@@ -495,7 +496,7 @@ public class VerilyContainer implements Container {
             long time = System.currentTimeMillis();
 
             response.setValue("Content-Type", "text/javascript");
-            response.setValue("Server", "PwE-Powered");
+            response.setValue("Server", "Verily-Powered");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
             response.setCode(200);
@@ -506,7 +507,7 @@ public class VerilyContainer implements Container {
 
                 List modules = new ArrayList();
 
-                PwETable table = getEnv().getTranslationTable();
+                VerilyTable table = getEnv().getTranslationTable();
 
                 for (String module : table.getTable().keySet()) {
 
@@ -523,11 +524,11 @@ public class VerilyContainer implements Container {
 
                         Map fParams = new HashMap();
 
-                        List<PwEType> formalParams = table.getTable().get(module).get(f).getFormalParameters();
+                        List<VerilyType> formalParams = table.getTable().get(module).get(f).getFormalParameters();
 
                         List<String> paramNames = new ArrayList<String>();
 
-                        for (PwEType t : formalParams) {
+                        for (VerilyType t : formalParams) {
                             paramNames.add(t.getName());
                         }
 
@@ -548,7 +549,7 @@ public class VerilyContainer implements Container {
                 }
 
 
-                vars.put("version", PwE.VERSION);
+                vars.put("version", Verily.VERSION);
                 vars.put("modules", modules);
 
                 Template t = TemplateFactory.getInstance().getAjaxTemplate();
@@ -577,7 +578,7 @@ public class VerilyContainer implements Container {
             long time = System.currentTimeMillis();
 
             response.setValue("Content-Type", "text/html");
-            response.setValue("Server", "PwE-Powered");
+            response.setValue("Server", "Verily-Powered");
             response.setDate("Date", time);
             response.setDate("Last-Modified", time);
             response.setCode(404);
@@ -586,7 +587,7 @@ public class VerilyContainer implements Container {
 
                 Map<String, String> vars = new HashMap<String, String>();
 
-                vars.put("version", PwE.VERSION);
+                vars.put("version", Verily.VERSION);
 
                 Template t = TemplateFactory.getInstance().get404Template();
 

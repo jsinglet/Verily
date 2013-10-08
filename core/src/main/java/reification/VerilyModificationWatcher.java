@@ -1,12 +1,12 @@
 package reification;
 
-import core.PwEContainer;
-import exceptions.PwECompileFailedException;
+import core.VerilyContainer;
+import exceptions.VerilyCompileFailedException;
 import org.apache.commons.vfs2.*;
 import org.apache.commons.vfs2.impl.DefaultFileMonitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pwe.lang.exceptions.TableHomomorphismException;
+import verily.lang.exceptions.TableHomomorphismException;
 import utils.VerilyUtil;
 
 import java.io.IOException;
@@ -65,14 +65,14 @@ public class VerilyModificationWatcher implements Runnable, FileListener {
         try {
             VerilyUtil.reloadProject();
 
-            if (fileChangeEvent.getFile().getParent().getName().getBaseName().equals("methods") || fileChangeEvent.getFile().getParent().getName().getBaseName().equals("controllers")) {
-                PwEContainer.getContainer().reloadTranslationTable();
+            if (fileChangeEvent.getFile().getParent().getName().getBaseName().equals("methods") || fileChangeEvent.getFile().getParent().getName().getBaseName().equals("routers")) {
+                VerilyContainer.getContainer().reloadTranslationTable();
             }
 
-        } catch (PwECompileFailedException e) {
+        } catch (VerilyCompileFailedException e) {
             logger.info("Errors exist in your project: {}", e.getMessage());
         } catch (TableHomomorphismException e) {
-            logger.info("Could not reload the MeVC mappings. Won't touch the old one.");
+            logger.info("Could not reload the MRR mappings. Won't touch the old one.");
             logger.error("Error was: {}", e.getMessage());
 
         }

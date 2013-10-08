@@ -1,7 +1,7 @@
 package reification;
 
-import pwe.lang.ReadableValue;
-import pwe.lang.WritableValue;
+import verily.lang.ReadableValue;
+import verily.lang.WritableValue;
 
 public abstract class Session {
 

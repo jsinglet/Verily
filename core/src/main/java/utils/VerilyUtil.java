@@ -1,8 +1,8 @@
 package utils;
 
 import exceptions.InvalidFormalArgumentsException;
-import exceptions.PwECompileFailedException;
-import pwe.lang.PwEType;
+import exceptions.VerilyCompileFailedException;
+import verily.lang.VerilyType;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,7 +42,7 @@ public class VerilyUtil {
         return msgResources.getString(key);
     }
 
-    public static void compileProject() throws IOException, InterruptedException, PwECompileFailedException {
+    public static void compileProject() throws IOException, InterruptedException, VerilyCompileFailedException {
 
         Process p = new ProcessBuilder("mvn", "package").redirectErrorStream(true).start();
 
@@ -63,11 +63,11 @@ public class VerilyUtil {
 
 
         if (exitStatus != 0) {
-            throw new PwECompileFailedException("Building project failed. Please see output for details.");
+            throw new VerilyCompileFailedException("Building project failed. Please see output for details.");
         }
     }
 
-    public static void reloadProject() throws IOException, InterruptedException, PwECompileFailedException {
+    public static void reloadProject() throws IOException, InterruptedException, VerilyCompileFailedException {
 
         Process p = new ProcessBuilder("mvn", "compile", "-q").redirectErrorStream(true).start();
 
@@ -88,11 +88,11 @@ public class VerilyUtil {
 
 
         if (exitStatus != 0) {
-            throw new PwECompileFailedException("Building project failed. Please see output for details.");
+            throw new VerilyCompileFailedException("Building project failed. Please see output for details.");
         }
     }
 
-    public static void test() throws IOException, InterruptedException, PwECompileFailedException {
+    public static void test() throws IOException, InterruptedException, VerilyCompileFailedException {
 
         Process p = new ProcessBuilder("mvn", "test").redirectErrorStream(true).start();
 
@@ -113,7 +113,7 @@ public class VerilyUtil {
 
 
         if (exitStatus != 0) {
-            throw new PwECompileFailedException("One or more tests failed. Please see output for details.");
+            throw new VerilyCompileFailedException("One or more tests failed. Please see output for details.");
         }
     }
 
@@ -144,7 +144,7 @@ public class VerilyUtil {
     }
 
 
-    public static Object coerceToType(PwEType type, String guess) throws InvalidFormalArgumentsException {
+    public static Object coerceToType(VerilyType type, String guess) throws InvalidFormalArgumentsException {
 
         if (guess == null) {
             return guess;
@@ -175,7 +175,7 @@ public class VerilyUtil {
         }
     }
 
-    public static Class translatedType(PwEType t, Class o) {
+    public static Class translatedType(VerilyType t, Class o) {
 
         if (mappedTypes.get(t.getType()) != null) {
             return mappedTypes.get(t.getType());

@@ -1,6 +1,6 @@
 <html>
 <head><title>${title}</title>
-<@pweUtils.enableAjaxInterface/>
+<@verilyUtils.enableAjaxInterface/>
 </head>
 <body>
 

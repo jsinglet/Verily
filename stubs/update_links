@@ -1,33 +1,33 @@
 #!/bin/sh
 
 
-PWE_HOME=$1
+VERILY_HOME=$1
 
-cd $PWE_HOME
+cd $VERILY_HOME
 
 CP=""
 
 for jar in "lib"/*.jar
 do
-    CP="${PWE_HOME}/$jar:${CP}"
+    CP="${VERILY_HOME}/$jar:${CP}"
 done
 
 
 
-cat >/usr/bin/pwe-env <<EOF
+cat >/usr/bin/verily-env <<EOF
 #!/bin/sh
 
 
-PWE_HOME="$1"
-PWE_CP="$CP"
+VERILY_HOME="$1"
+VERILY_CP="$CP"
 
 if [[ \$1 == "-cp" ]]; then
     # display the classpath
-    echo "\${PWE_CP}"
+    echo "\${VERILY_CP}"
 fi
 
 if [[ \$1 == "-home" ]]; then
-    echo "\${PWE_HOME}"
+    echo "\${VERILY_HOME}"
 fi
 
 
@@ -36,8 +36,8 @@ fi
 
 EOF
 
-chmod +x /usr/bin/pwe-env
+chmod +x /usr/bin/verily-env
 
-rm /usr/bin/pwe
+rm /usr/bin/verily
 
-ln -s "$1/pwe" /usr/bin/pwe
+ln -s "$1/verily" /usr/bin/verily

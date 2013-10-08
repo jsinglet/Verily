@@ -7,8 +7,8 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pwe.lang.*;
-import pwe.lang.exceptions.TableHomomorphismException;
+import verily.lang.*;
+import verily.lang.exceptions.TableHomomorphismException;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -22,11 +22,11 @@ public class Harness {
     final Logger logger = LoggerFactory.getLogger(Harness.class);
 
     private Path base;
-    private static String controllersPath;
+    private static String routersPath;
     private static String methodsPath;
 
     static {
-        controllersPath = "controllers";
+        routersPath = "routers";
         methodsPath = "methods";
     }
 
@@ -34,29 +34,29 @@ public class Harness {
 
         Harness h = new Harness(Paths.get(""));
 
-        PwETable t = h.extractTranslationTable();
+        VerilyTable t = h.extractTranslationTable();
     }
 
     public Harness(Path base) {
         this.base = base;
     }
 
-    public PwETable extractTranslationTable() throws IOException, TableHomomorphismException {
+    public VerilyTable extractTranslationTable() throws IOException, TableHomomorphismException {
 
         // Parse out translation table from controllers
-        PwETable controllerTable = new PwETable();
+        VerilyTable controllerTable = new VerilyTable();
 
-        DirectoryStream<Path> controllerFiles = Files.newDirectoryStream(base.resolve("src").resolve("main").resolve("java").resolve(controllersPath), "*.java");
+        DirectoryStream<Path> controllerFiles = Files.newDirectoryStream(base.resolve("src").resolve("main").resolve("java").resolve(routersPath), "*.java");
         for (Path p : controllerFiles) {
-            parseFile(p.toString(), controllerTable, PwEParserModes.PwEModeType.TYPE_CONTROLLER);
+            parseFile(p.toString(), controllerTable, VerilyParserModes.VerilyModeType.TYPE_ROUTER);
         }
 
         // Parse out translation table from methods
-        PwETable methodTable = new PwETable();
+        VerilyTable methodTable = new VerilyTable();
 
         DirectoryStream<Path> methodFiles = Files.newDirectoryStream(base.resolve("src").resolve("main").resolve("java").resolve(methodsPath), "*.java");
         for (Path p : methodFiles) {
-            parseFile(p.toString(), methodTable, PwEParserModes.PwEModeType.TYPE_METHOD);
+            parseFile(p.toString(), methodTable, VerilyParserModes.VerilyModeType.TYPE_METHOD);
         }
 
         // Start checking things
@@ -64,7 +64,7 @@ public class Harness {
         //
         // Check translation table homomorphism
         //
-        if (PwETable.fulfillsMeVCContractWith(controllerTable, methodTable) == false) {
+        if (VerilyTable.fulfillsMeVCContractWith(controllerTable, methodTable) == false) {
             throw new TableHomomorphismException("Method and Controller tables do not match. For any given function in a method, there should be one matching in name, arity and type in your controllers.");
         }
 
@@ -83,7 +83,7 @@ public class Harness {
         return methodTable;
     }
 
-    public void parseFile(String f, PwETable table, PwEParserModes.PwEModeType mode) {
+    public void parseFile(String f, VerilyTable table, VerilyParserModes.VerilyModeType mode) {
         boolean gui = true;
         boolean printTree = true;
 

@@ -23,7 +23,7 @@ public class VerilyClassLoader extends ClassLoader {
 
 
         // we want to dynamically load these types of classes
-        if (theClass.startsWith("methods.") || theClass.startsWith("controllers.") || theClass.startsWith("app.")) {
+        if (theClass.startsWith("methods.") || theClass.startsWith("routers.") || theClass.startsWith("app.")) {
 
             URLClassLoader loader = null;
             try {

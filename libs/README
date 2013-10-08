@@ -1,4 +1,4 @@
-This directory contains dependencies that are needed to build PwE but are not managed by Maven (because they are not published via Maven) 
+This directory contains dependencies that are needed to build Verily but are not managed by Maven (because they are not published via Maven)
 
 To install the files contained in this directory, execute the following command(s) from the project root:
 

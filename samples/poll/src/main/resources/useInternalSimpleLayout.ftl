@@ -1,5 +1,7 @@
-<@pweLayouts.simple>
+<@verilyLayouts.simple>
 
+
+<@verilyUtils.enableAjaxInterface/>
 
 <div class="page-header">
     <h1>I am a internal layout!</h1>
@@ -7,4 +9,4 @@
 
 <p class="lead">As such, I feel pretty jazzy.</p>
 
-</@pweLayouts.simple>
+</@verilyLayouts.simple>

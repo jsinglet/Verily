@@ -8,11 +8,11 @@ import java.util.List;
 public class VerilyMethod {
 
     private String method;
-    private List<PwEType> formalParameters;
-    private List<PwEType> sessionBoundParameters;
-    private List<PwEType> nonSessionBoundParameters;
+    private List<VerilyType> formalParameters;
+    private List<VerilyType> sessionBoundParameters;
+    private List<VerilyType> nonSessionBoundParameters;
 
-    public VerilyMethod(String method, List<PwEType> formalParameters) {
+    public VerilyMethod(String method, List<VerilyType> formalParameters) {
         this.setMethod(method);
         this.setFormalParameters(formalParameters);
     }
@@ -25,23 +25,23 @@ public class VerilyMethod {
         this.method = method;
     }
 
-    public List<PwEType> getFormalParameters() {
+    public List<VerilyType> getFormalParameters() {
         return formalParameters;
     }
 
-    public void setFormalParameters(List<PwEType> formalParameters) {
+    public void setFormalParameters(List<VerilyType> formalParameters) {
         this.formalParameters = formalParameters;
         this.sessionBoundParameters = null;
         this.nonSessionBoundParameters = null;
     }
 
 
-    public List<PwEType> getNonSessionBoundParameters() {
+    public List<VerilyType> getNonSessionBoundParameters() {
 
         if (nonSessionBoundParameters == null) {
-            nonSessionBoundParameters = new LinkedList<PwEType>();
+            nonSessionBoundParameters = new LinkedList<VerilyType>();
 
-            for (PwEType t : getFormalParameters()) {
+            for (VerilyType t : getFormalParameters()) {
                 if (t.isSessionBound() == false) {
                     nonSessionBoundParameters.add(t);
                 }
@@ -52,12 +52,12 @@ public class VerilyMethod {
     }
 
 
-    public List<PwEType> getSessionBoundParameters() {
+    public List<VerilyType> getSessionBoundParameters() {
 
         if (sessionBoundParameters == null) {
-            sessionBoundParameters = new LinkedList<PwEType>();
+            sessionBoundParameters = new LinkedList<VerilyType>();
 
-            for (PwEType t : getFormalParameters()) {
+            for (VerilyType t : getFormalParameters()) {
                 if (t.isSessionBound()) {
                     sessionBoundParameters.add(t);
                 }

@@ -16,16 +16,16 @@ public class ExtractClassInfoListener extends JavaBaseListener {
     final Logger logger = LoggerFactory.getLogger(ExtractClassInfoListener.class);
     private static final List<String> psfvReference = Arrays.asList("public", "static", "final", "void");
     private static final List<String> psfcReference = Arrays.asList("public", "static", "final", "Content");
-    private PwEParserModes.PwEModeType mode;
+    private VerilyParserModes.VerilyModeType mode;
 
 
     private JavaParser parser;
     private String filename;
-    private PwETable et;
+    private VerilyTable et;
     private Stack<String> classCtx = new Stack<String>();
-    private List<PwEType> methodSpec = new LinkedList<PwEType>();
+    private List<VerilyType> methodSpec = new LinkedList<VerilyType>();
 
-    public ExtractClassInfoListener(JavaParser parser, PwETable et, String filename, PwEParserModes.PwEModeType mode) {
+    public ExtractClassInfoListener(JavaParser parser, VerilyTable et, String filename, VerilyParserModes.VerilyModeType mode) {
         this.parser = parser;
         this.et = et;
         this.filename = filename;
@@ -56,7 +56,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
         logger.trace("{}Entering formal parameter context...{}", getDepth());
         logger.trace("{}Found formal parameter \"{}\" with type \"{}\"", getDepth(), ctx.variableDeclaratorId().getText(), ctx.type().getText());
 
-        methodSpec.add(new PwEType(ctx.type().getText(), ctx.variableDeclaratorId().getText()));
+        methodSpec.add(new VerilyType(ctx.type().getText(), ctx.variableDeclaratorId().getText()));
 
     }
 
@@ -73,17 +73,17 @@ public class ExtractClassInfoListener extends JavaBaseListener {
         if (methodHasNoLint() && baseSignatureIsValid(ctx) && currentClassIsFilename(ctx) && methodIsTopLevel(ctx)) {
             logger.trace("{}Discovered method \"{}\" will be mapped ➜ /{}/{}", getDepth(), ctx.Identifier(), classCtx.peek(), ctx.Identifier());
 
-            et.mapMethod(classCtx.peek(), new PwEMethod(ctx.Identifier().getText(), methodSpec));
+            et.mapMethod(classCtx.peek(), new VerilyMethod(ctx.Identifier().getText(), methodSpec));
 
         } else {
             logger.trace("{}Discovered method \"{}\" not a candidate for PwE model.", getDepth(), ctx.Identifier());
         }
 
-        methodSpec = new LinkedList<PwEType>();
+        methodSpec = new LinkedList<VerilyType>();
     }
 
     private boolean baseSignatureIsValid(MethodDeclarationContext ctx){
-        if(mode == PwEParserModes.PwEModeType.TYPE_METHOD){
+        if(mode == VerilyParserModes.VerilyModeType.TYPE_METHOD){
             return methodIsPSFV(ctx);
         }
 
@@ -139,11 +139,11 @@ public class ExtractClassInfoListener extends JavaBaseListener {
     }
 
     private boolean methodHasNoLint(){
-        if(mode == PwEParserModes.PwEModeType.TYPE_CONTROLLER){ // don't allow writable values in the controller...
+        if(mode == VerilyParserModes.VerilyModeType.TYPE_ROUTER){ // don't allow writable values in the controller...
 
 
 
-            for(PwEType t : methodSpec){
+            for(VerilyType t : methodSpec){
                 if(t.isSessionWritable()){
                     logger.trace("{}Checking to see if this controller method tries to access WritableValues: [{}]", getDepth(), true);
 
@@ -198,11 +198,11 @@ public class ExtractClassInfoListener extends JavaBaseListener {
         return sb.toString();
     }
 
-    public PwEParserModes.PwEModeType getMode() {
+    public VerilyParserModes.VerilyModeType getMode() {
         return mode;
     }
 
-    public void setMode(PwEParserModes.PwEModeType mode) {
+    public void setMode(VerilyParserModes.VerilyModeType mode) {
         this.mode = mode;
     }
 }

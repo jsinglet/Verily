@@ -1,6 +1,5 @@
 package content;
 
-import com.sun.javafx.scene.shape.PathUtils;
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.cache.FileTemplateLoader;
 import freemarker.cache.MultiTemplateLoader;
@@ -8,7 +7,7 @@ import freemarker.cache.TemplateLoader;
 import freemarker.log.Logger;
 import freemarker.template.*;
 import org.slf4j.LoggerFactory;
-import pwe.lang.PwEParserModes;
+import verily.lang.VerilyParserModes;
 
 import java.io.*;
 import java.nio.file.DirectoryStream;
@@ -50,15 +49,15 @@ public class TemplateFactory {
 
             // built in layouts
             logger.info("Loading internal layouts...");
-            templateFactory.templateConfig.addAutoImport("pweLayouts", "pwe/layouts/layouts.ftl");
-            templateFactory.templateConfig.addAutoImport("pweUtils", "pwe/layouts/app.ftl");
+            templateFactory.templateConfig.addAutoImport("verilyLayouts", "verily/layouts/layouts.ftl");
+            templateFactory.templateConfig.addAutoImport("verilyUtils", "verily/layouts/app.ftl");
 
 
-            logger.info("Internal layouts loaded @ root pweLayouts");
+            logger.info("Internal layouts loaded @ root verilyLayouts");
 
 
             // TODO - test this first path
-            templateFactory.temp = Files.createTempDirectory("._PwE");
+            templateFactory.temp = Files.createTempDirectory("._Verily");
             FileTemplateLoader ftl1 = new FileTemplateLoader(templateFactory.temp.toFile());
 
             FileTemplateLoader ftl = new FileTemplateLoader(new File("src/main/resources/"));
@@ -87,7 +86,7 @@ public class TemplateFactory {
 
     public void reloadUserTemplates() {
 
-        templateConfig.removeAutoImport("pwe");
+        templateConfig.removeAutoImport("verily");
 
         //
         //user layouts
@@ -137,7 +136,7 @@ public class TemplateFactory {
 
 
             // get the temp file
-            Path tempFile = Files.createTempFile(temp, "pweUserTemplates", ".ftl");
+            Path tempFile = Files.createTempFile(temp, "verilyUserTemplates", ".ftl");
 
             Writer body = new FileWriter(tempFile.toFile());
 
@@ -149,7 +148,7 @@ public class TemplateFactory {
 
             logger.info("Combined templates @ {}", tempFile.toAbsolutePath().toString());
             // add it as an auto import.
-            templateFactory.templateConfig.addAutoImport("pwe", tempFile.getFileName().toString());
+            templateFactory.templateConfig.addAutoImport("verily", tempFile.getFileName().toString());
 
 
         } catch (Exception e) {
@@ -203,7 +202,7 @@ public class TemplateFactory {
     }
 
     public Template getAjaxTemplate() throws IOException {
-        Template t = templateConfig.getTemplate("pwe/app.ftl");
+        Template t = templateConfig.getTemplate("verily/app.ftl");
         return t;
     }
 
@@ -223,8 +222,8 @@ public class TemplateFactory {
     }
 
 
-    public Template getControllerTemplate() throws IOException {
-        Template t = templateConfig.getTemplate("classes/Controller.ftl");
+    public Template getRouterTemplate() throws IOException {
+        Template t = templateConfig.getTemplate("classes/Router.ftl");
         return t;
     }
 
@@ -241,7 +240,7 @@ public class TemplateFactory {
 
 
     public Template getLayoutTemplate() throws IOException {
-        Template t = templateConfig.getTemplate("pwe/layouts/pwe.ftl");
+        Template t = templateConfig.getTemplate("verily/layouts/verily.ftl");
         return t;
     }
 

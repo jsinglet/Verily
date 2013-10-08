@@ -1,6 +1,6 @@
 package methods;
 
-import pwe.lang.*;
+import verily.lang.*;
 
 public class ReadWrite{
 

@@ -1,5 +1,5 @@
 import org.junit.Test;
-import pwe.lang.*;
+import verily.lang.*;
 
 import static org.junit.Assert.assertTrue;
 

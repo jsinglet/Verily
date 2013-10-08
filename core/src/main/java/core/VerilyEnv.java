@@ -1,7 +1,7 @@
 package core;
 
-import pwe.lang.PwETable;
-import pwe.lang.exceptions.MethodNotMappedException;
+import verily.lang.VerilyTable;
+import verily.lang.exceptions.MethodNotMappedException;
 
 import java.nio.file.Path;
 
@@ -11,7 +11,7 @@ public class VerilyEnv {
     private int numberOfThreads;
     private String appName;
     private String appVersion;
-    private PwETable translationTable;
+    private VerilyTable translationTable;
     private int port;
     private boolean reload;
     private boolean daemon;
@@ -41,11 +41,11 @@ public class VerilyEnv {
         this.appVersion = appVersion;
     }
 
-    public PwETable getTranslationTable() {
+    public VerilyTable getTranslationTable() {
         return translationTable;
     }
 
-    public void setTranslationTable(PwETable translationTable) {
+    public void setTranslationTable(VerilyTable translationTable) {
         this.translationTable = translationTable;
     }
 

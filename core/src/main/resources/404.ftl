@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Page Not Found &middot; PwE</title>
+    <title>Page Not Found &middot; Verily</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -90,7 +90,7 @@
 
 <div id="footer">
     <div class="container">
-        <p class="muted credit">Page rendered by <a href="">PwE</a> version ${version}.</p>
+        <p class="muted credit">Page rendered by <a href="">Verily</a> version ${version}.</p>
     </div>
 </div>
 

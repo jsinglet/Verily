@@ -2,6 +2,6 @@ package verily.lang;
 
 public class VerilyParserModes {
 
-    public enum PwEModeType { TYPE_CONTROLLER, TYPE_METHOD};
+    public enum VerilyModeType { TYPE_ROUTER, TYPE_METHOD};
 
 }

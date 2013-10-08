@@ -29,5 +29,5 @@ cp parser/target/dependency/*.jar target/lib
 
 cd installer
 
-compile install.xml -b . -o ../target/pwe-installer.jar -k standard
+compile install.xml -b . -o ../target/verily-installer.jar -k standard
 

@@ -1,7 +1,7 @@
 /*!
- * main.ts (PwE)
+ * main.ts (Verily)
  *
- * http://github.com/jsinglet/PwE
+ * http://github.com/jsinglet/Verily
  *
  * Copyright 2013, John L. Singleton <jsinglet@gmail.com>
  * Licensed under the MIT license
@@ -10,10 +10,10 @@
  */
 
 
-///<reference path='pwe.ts'/>
-var a = new PwE.MyClass("test");
+///<reference path='verily.ts'/>
+var a = new Verily.MyClass("test");
 
-var b = new PwE.Foo("I am a string!");
+var b = new Verily.Foo("I am a string!");
 
 
 

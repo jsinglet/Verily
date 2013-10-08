@@ -1,7 +1,7 @@
 package reification;
 
-import pwe.lang.ReadableValue;
-import pwe.lang.WritableValue;
+import verily.lang.ReadableValue;
+import verily.lang.WritableValue;
 
 import java.util.HashMap;
 import java.util.Map;

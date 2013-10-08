@@ -1,9 +1,9 @@
 #!/bin/sh
 
 
-#PWE Deps
-PWE_HOME=$(/usr/bin/pwe-env -home)
-PWE_CP=$(/usr/bin/pwe-env -cp)
+#Verily Deps
+VERILY_HOME=$(/usr/bin/verily-env -home)
+VERILY_CP=$(/usr/bin/verily-env -cp)
 CP=""
 RUN="NO"
 
@@ -21,7 +21,7 @@ if [[ $RUN == "YES" ]]; then
 
     # the -fast option will specify that we should not try to recompute deps
 
-    # the -nocompile disables PwE from compiling before it runs (only used in development)
+    # the -nocompile disables Verily from compiling before it runs (only used in development)
 
     while getopts ":a" opt; do
 	case $opt in
@@ -40,7 +40,7 @@ if [[ $RUN == "YES" ]]; then
             exit $?
 	fi
     else
-	echo "Running PwE application without updating dependencies..."
+	echo "Running Verily application without updating dependencies..."
     fi
 
 
@@ -74,4 +74,4 @@ fi
 #
 # Background startup is handled in the startup script, since there are platform specific details
 #
-eval "java"  -cp "${PWE_CP}:${CP}" PwEMain "$@"
+eval "java"  -cp "${VERILY_CP}:${CP}" VerilyMain "$@"

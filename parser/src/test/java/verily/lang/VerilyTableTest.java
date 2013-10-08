@@ -11,22 +11,22 @@ import static org.junit.Assert.assertTrue;
 
 public class VerilyTableTest {
 
-    PwETable t;
-    PwEMethod m;
-    List<PwEType> formalParameters;
+    VerilyTable t;
+    VerilyMethod m;
+    List<VerilyType> formalParameters;
 
 
     @Before
     public void setUp() throws Exception {
-        t = new PwETable();
+        t = new VerilyTable();
 
         formalParameters = Arrays.asList(
-                new PwEType("String", "param1"),
-                new PwEType("String", "param2"),
-                new PwEType("String", "param3")
+                new VerilyType("String", "param1"),
+                new VerilyType("String", "param2"),
+                new VerilyType("String", "param3")
         );
 
-        m = new PwEMethod("myMethod", formalParameters);
+        m = new VerilyMethod("myMethod", formalParameters);
     }
 
     @After

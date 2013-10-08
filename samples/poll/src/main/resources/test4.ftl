@@ -1,4 +1,4 @@
-<@pwe.layout name="myTemplate">
+<@verily.layout name="myTemplate">
 
 
     <div class="page-header">
@@ -7,5 +7,5 @@
 
     </div>
 
-</@pwe.layout>
+</@verily.layout>
 

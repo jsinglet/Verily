@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectTasksOptions">
     <TaskOptions isEnabled="true">
-      <option name="arguments" value="--sourcemap $FileName$ -c --out ../js/_pwe.js " />
+      <option name="arguments" value="--sourcemap $FileName$ -c --out ../js/_verily.js " />
       <option name="checkSyntaxErrors" value="true" />
       <option name="description" value="Compiles .ts files into .js files" />
       <option name="exitCodeBehavior" value="ERROR" />

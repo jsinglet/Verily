@@ -10,7 +10,7 @@ ${theModule.name}.Async = {};
 //- the synchronous interface
 ${theModule.name}.${theFunction.name} = function(${theFunction.argList}){
 
-    var request = new PwE.Ajax();
+    var request = new Verily.Ajax();
 
     return request.executeMethod("${theModule.name}", "${theFunction.name}", [${theFunction.quotedArgList}], [${theFunction.argList}]);
 
@@ -19,9 +19,9 @@ ${theModule.name}.${theFunction.name} = function(${theFunction.argList}){
 //- the asynchronous interface
 ${theModule.name}.Async.${theFunction.name}  = function (${theFunction.argList}, success, failure) {
 
-    var callbacks = new PwE.AjaxCallback(success, failure);
+    var callbacks = new Verily.AjaxCallback(success, failure);
 
-    var request = new PwE.Ajax(callbacks);
+    var request = new Verily.Ajax(callbacks);
 
     request.executeMethod("${theModule.name}", "${theFunction.name}", [${theFunction.quotedArgList}], [${theFunction.argList}]);
 }

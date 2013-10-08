@@ -17,9 +17,9 @@ public class VerilyTypeTest {
     @Test
     public void testEquals() throws Exception {
 
-        PwEType t1 = new PwEType("String", "param1");
-        PwEType t2 = new PwEType("String", "param1");
-        PwEType t3 = new PwEType("String", "param2");
+        VerilyType t1 = new VerilyType("String", "param1");
+        VerilyType t2 = new VerilyType("String", "param1");
+        VerilyType t3 = new VerilyType("String", "param2");
 
         assertTrue(t1.equals(t2));
         assertFalse(t1.equals(t3));

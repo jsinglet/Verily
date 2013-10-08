@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Error in Method &middot; PwE</title>
+    <title>Error in Method &middot; Verily</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -77,7 +77,7 @@
         <div class="page-header">
             <h1>Error While Executing Method</h1>
         </div>
-        <p class="lead">The Method you accessed exists but it encountered an error while executing. You can see the PwE
+        <p class="lead">The Method you accessed exists but it encountered an error while executing. You can see the Verily
             logs for more information, but the specific error was: </p>
 
         <p class="lead" align="center"><code>${message}</code></p>
@@ -92,7 +92,7 @@
 
 <div id="footer">
     <div class="container">
-        <p class="muted credit">Page rendered by <a href="">PwE</a> version ${version}.</p>
+        <p class="muted credit">Page rendered by <a href="">Verily</a> version ${version}.</p>
     </div>
 </div>
 

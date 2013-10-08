@@ -1,9 +1,7 @@
-import pwe.lang.Content;
-import reification.PwEClassLoader;
+import reification.VerilyClassLoader;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
 import java.nio.file.*;
 
 public class TestMain {
@@ -51,7 +49,7 @@ public class TestMain {
 
 
         try {
-            Class c = Class.forName(String.format("methods.%s", "TestBasic"), false, new PwEClassLoader(TestMain.class.getClassLoader()));
+            Class c = Class.forName(String.format("methods.%s", "TestBasic"), false, new VerilyClassLoader(TestMain.class.getClassLoader()));
             c.getMethod("doIt", null).invoke(null, null);
 
         } catch (ClassNotFoundException e) {

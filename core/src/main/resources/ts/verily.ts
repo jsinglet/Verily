@@ -1,7 +1,7 @@
 /*!
- * pwe.ts (PwE)
+ * verily.ts (Verily)
  *
- * http://github.com/jsinglet/PwE
+ * http://github.com/jsinglet/Verily
  *
  * Copyright 2013, John L. Singleton <jsinglet@gmail.com>
  * Licensed under the MIT license
@@ -14,7 +14,7 @@
 ///<reference path='httpVerbs.ts'/>
 ///<reference path='arrays.ts'/>
 ///<reference path='ajaxCallback.ts'/>
-module PwE {
+module Verily {
 
     enum AjaxMode {
         ASYNC,
@@ -100,6 +100,9 @@ module PwE {
 
     }
 }
+
+
+
 
 
 
