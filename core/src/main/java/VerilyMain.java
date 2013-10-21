@@ -198,11 +198,19 @@ public class VerilyMain {
     public void init(CommandLine cl) throws InitException {
 
         String newProject = cl.getOptionValue(Verily.ARG_INIT);
+        String newProjectName = null;
 
         Path here = Paths.get("");
 
-        if (Files.exists(here.resolve(newProject))) {
-            throw new InitException(String.format("Directory %s already exists.", newProject));
+        // special case for IDE project creation.
+        if(newProject.startsWith("./")==false){
+            if (Files.exists(here.resolve(newProject))) {
+                throw new InitException(String.format("Directory %s already exists.", newProject));
+            }
+            newProjectName = newProject;
+        }else{
+            newProjectName = newProject.substring(newProject.indexOf("/")+1);
+            newProject     = ".";
         }
 
         // Step 1 - Create the directory hierarchy
@@ -233,7 +241,7 @@ public class VerilyMain {
             Map<String, String> vars = new HashMap<String, String>();
 
             vars.put("version", Verily.VERSION);
-            vars.put("projectName", newProject);
+            vars.put("projectName", newProjectName);
 
             Template t = TemplateFactory.getBootstrapInstance().getPOMTemplate();
 
