@@ -44,7 +44,12 @@ public class VerilyUtil {
 
     public static void compileProject() throws IOException, InterruptedException, VerilyCompileFailedException {
 
-        Process p = new ProcessBuilder("mvn", "package").redirectErrorStream(true).start();
+        Process p;
+
+        if(System.getProperty("os.name").startsWith("Windows"))
+            p = new ProcessBuilder("mvn.bat", "package").redirectErrorStream(true).start();
+        else
+            p = new ProcessBuilder("mvn", "package").redirectErrorStream(true).start();
 
         InputStream is = p.getInputStream();
 
@@ -69,7 +74,12 @@ public class VerilyUtil {
 
     public static void reloadProject() throws IOException, InterruptedException, VerilyCompileFailedException {
 
-        Process p = new ProcessBuilder("mvn", "compile", "-q").redirectErrorStream(true).start();
+        Process p;
+
+        if(System.getProperty("os.name").startsWith("Windows"))
+            p = new ProcessBuilder("mvn.bat", "compile", "-q").redirectErrorStream(true).start();
+        else
+            p = new ProcessBuilder("mvn", "compile", "-q").redirectErrorStream(true).start();
 
         InputStream is = p.getInputStream();
 
@@ -94,7 +104,12 @@ public class VerilyUtil {
 
     public static void test() throws IOException, InterruptedException, VerilyCompileFailedException {
 
-        Process p = new ProcessBuilder("mvn", "test").redirectErrorStream(true).start();
+        Process p;
+
+        if(System.getProperty("os.name").startsWith("Windows"))
+            p = new ProcessBuilder("mvn.bat", "test").redirectErrorStream(true).start();
+        else
+            p = new ProcessBuilder("mvn", "test").redirectErrorStream(true).start();
 
         InputStream is = p.getInputStream();
 
