@@ -72,6 +72,8 @@
 
             <file src="../stubs/verily" targetdir="$INSTALL_PATH"/>
             <file src="../stubs/update_links" targetdir="$INSTALL_PATH"/>
+            <file src="../stubs/verily.bat" targetdir="$INSTALL_PATH"/>
+            <file src="../stubs/update_path.bat" targetdir="$INSTALL_PATH"/>
 
 
             <executable os="unix" targetfile="$INSTALL_PATH/update_links" stage="postinstall" keep="false">
@@ -81,7 +83,15 @@
             </executable>
 
 
-            <executable targetfile="$INSTALL_PATH/verily" stage="never" keep="true"/>
+            <executable os="windows" targetfile="$INSTALL_PATH/update_path.bat" stage="postinstall"  keep="false">
+                <args>
+                    <arg value="$INSTALL_PATH"/>
+                </args>
+            </executable>
+
+
+            <executable os="windows" targetfile="$INSTALL_PATH/verily.bat" stage="never" keep="true"/>
+            <executable os="unix" targetfile="$INSTALL_PATH/verily" stage="never" keep="true"/>
 
         </pack>
     </packs>

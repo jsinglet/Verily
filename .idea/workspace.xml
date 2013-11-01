@@ -2,94 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c425601c-3ed7-4570-b135-f22be92e7e42" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/exceptions/VerilyCompileFailedException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/parser/src/test/java/verily/lang/VerilyMethodTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/src/main/java/exceptions/PwECompileFailedException.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/src/main/resources/js/_pwe.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/src/main/resources/js/_pwe.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/parser/src/test/java/pwe/lang/PwEMethodTest.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/PwE.iml" afterPath="$PROJECT_DIR$/Verily.iml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/java/PwEMain.java" afterPath="$PROJECT_DIR$/core/src/main/java/VerilyMain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/java/core/PwE.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/Verily.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/java/core/PwEContainer.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/java/core/PwEEnv.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyEnv.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/java/core/PwELog.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyLog.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/java/pwe/lang/Content.java" afterPath="$PROJECT_DIR$/core/src/main/java/verily/lang/Content.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/java/pwe/lang/HTMLContent.java" afterPath="$PROJECT_DIR$/core/src/main/java/verily/lang/HTMLContent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/java/pwe/lang/JSONContent.java" afterPath="$PROJECT_DIR$/core/src/main/java/verily/lang/JSONContent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/java/pwe/lang/TemplateHTMLContent.java" afterPath="$PROJECT_DIR$/core/src/main/java/verily/lang/TemplateHTMLContent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/java/pwe/lang/TextContent.java" afterPath="$PROJECT_DIR$/core/src/main/java/verily/lang/TextContent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/java/reification/PwEClassLoader.java" afterPath="$PROJECT_DIR$/core/src/main/java/reification/VerilyClassLoader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/java/reification/PwEModificationWatcher.java" afterPath="$PROJECT_DIR$/core/src/main/java/reification/VerilyModificationWatcher.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/java/utils/PwEUtil.java" afterPath="$PROJECT_DIR$/core/src/main/java/utils/VerilyUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/resources/classes/Controller.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/classes/Router.ftl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/resources/pwe/app.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/verily/app.ftl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/resources/pwe/core.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/verily/core.ftl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/resources/pwe/layouts/app.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/verily/layouts/app.ftl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/resources/pwe/layouts/layouts.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/verily/layouts/layouts.ftl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/resources/pwe/layouts/pwe.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/verily/layouts/verily.ftl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/resources/pwe/layouts/simple.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/verily/layouts/simple.ftl" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/src/main/resources/ts/pwe.ts" afterPath="$PROJECT_DIR$/core/src/main/resources/ts/verily.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/ExtractClassInfoListener.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/ExtractClassInfoListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/Java.g4" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/Java.g4" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/Java.tokens" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/Java.tokens" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/JavaBaseListener.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/JavaBaseListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/JavaLexer.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/JavaLexer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/JavaLexer.tokens" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/JavaLexer.tokens" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/JavaListener.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/JavaListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/JavaParser.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/JavaParser.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/PwEMethod.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyMethod.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/PwEParserModes.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyParserModes.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/PwETable.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyTable.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/PwEType.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyType.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/ReadableValue.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/ReadableValue.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/WritableValue.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/WritableValue.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/exceptions/MethodNotMappedException.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/MethodNotMappedException.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/main/java/pwe/lang/exceptions/TableHomomorphismException.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/TableHomomorphismException.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/test/java/pwe/lang/PwETableTest.java" afterPath="$PROJECT_DIR$/parser/src/test/java/verily/lang/VerilyTableTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/parser/src/test/java/pwe/lang/PwETypeTest.java" afterPath="$PROJECT_DIR$/parser/src/test/java/verily/lang/VerilyTypeTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/samples/poll/src/main/java/controllers/ReadWrite.java" afterPath="$PROJECT_DIR$/samples/poll/src/main/java/routers/ReadWrite.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/samples/poll/src/main/java/controllers/TestBasic.java" afterPath="$PROJECT_DIR$/samples/poll/src/main/java/routers/TestBasic.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/stubs/pwe" afterPath="$PROJECT_DIR$/stubs/verily" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/stubs/pwe.bat" afterPath="$PROJECT_DIR$/stubs/verily.bat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libs/README" afterPath="$PROJECT_DIR$/libs/README" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stubs/update_links" afterPath="$PROJECT_DIR$/stubs/update_links" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/400.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/400.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/404.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/404.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/500.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/500.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/content/ApplicationMessages.java" afterPath="$PROJECT_DIR$/core/src/main/java/content/ApplicationMessages.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/reification/Env.java" afterPath="$PROJECT_DIR$/core/src/main/java/reification/Env.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/core/Harness.java" afterPath="$PROJECT_DIR$/parser/src/main/java/core/Harness.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/reification/MemoryBackedSession.java" afterPath="$PROJECT_DIR$/core/src/main/java/reification/MemoryBackedSession.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/classes/Method.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/classes/Method.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/classes/POM.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/classes/POM.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/test/java/PwEUtilTest.java" afterPath="$PROJECT_DIR$/core/src/test/java/PwEUtilTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/src/main/java/methods/ReadWrite.java" afterPath="$PROJECT_DIR$/samples/poll/src/main/java/methods/ReadWrite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/src/test/java/ReadWriteTest.java" afterPath="$PROJECT_DIR$/samples/poll/src/test/java/ReadWriteTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/reification/Session.java" afterPath="$PROJECT_DIR$/core/src/main/java/reification/Session.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/content/TemplateFactory.java" afterPath="$PROJECT_DIR$/core/src/main/java/content/TemplateFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/classes/Test.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/classes/Test.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/src/main/java/methods/TestBasic.java" afterPath="$PROJECT_DIR$/samples/poll/src/main/java/methods/TestBasic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/TestMain.java" afterPath="$PROJECT_DIR$/core/src/main/java/TestMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/ts/ajaxCallback.ts" afterPath="$PROJECT_DIR$/core/src/main/resources/ts/ajaxCallback.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/ts/arrays.ts" afterPath="$PROJECT_DIR$/core/src/main/resources/ts/arrays.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/ts/httpVerbs.ts" afterPath="$PROJECT_DIR$/core/src/main/resources/ts/httpVerbs.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/installer/install.xml" afterPath="$PROJECT_DIR$/installer/install.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/ts/main.ts" afterPath="$PROJECT_DIR$/core/src/main/resources/ts/main.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.sh" afterPath="$PROJECT_DIR$/package.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/pom.xml" afterPath="$PROJECT_DIR$/core/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/pom.xml" afterPath="$PROJECT_DIR$/parser/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/pom.xml" afterPath="$PROJECT_DIR$/samples/poll/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/ts/requestHeaders.ts" afterPath="$PROJECT_DIR$/core/src/main/resources/ts/requestHeaders.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/src/main/resources/test1.ftl" afterPath="$PROJECT_DIR$/samples/poll/src/main/resources/test1.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/src/main/resources/test2.ftl" afterPath="$PROJECT_DIR$/samples/poll/src/main/resources/test2.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/src/main/resources/test3.ftl" afterPath="$PROJECT_DIR$/samples/poll/src/main/resources/test3.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/src/main/resources/test4.ftl" afterPath="$PROJECT_DIR$/samples/poll/src/main/resources/test4.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/src/main/resources/useInternalSimpleLayout.ftl" afterPath="$PROJECT_DIR$/samples/poll/src/main/resources/useInternalSimpleLayout.ftl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stubs/update_path.bat" afterPath="$PROJECT_DIR$/stubs/update_path.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PwE.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -99,8 +14,8 @@
     <file path="/PwELog.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1372473594079" ignored="false" />
     <file path="/pom.xml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381174165151" ignored="false" />
     <file path="/PwEContainer.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374960183268" ignored="false" />
-    <file path="/fragment.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381257319649" ignored="false" />
-    <file path="/Dummy.txt" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381256942220" ignored="false" />
+    <file path="/fragment.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1383346217638" ignored="false" />
+    <file path="/Dummy.txt" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1383180219159" ignored="false" />
     <file path="/PwEEnv.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374959264523" ignored="false" />
     <file path="/pwe.xml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1372531217170" ignored="false" />
     <file path="/TestBasic.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374960451868" ignored="false" />
@@ -153,8 +68,8 @@
     <file path="/Method.ftl.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373919554017" ignored="false" />
     <file path="/Controller.ftl.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373919602783" ignored="false" />
     <file path="/InitException.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373921967920" ignored="false" />
-    <file path="/package.sh" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381173944349" ignored="false" />
-    <file path="/install.xml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381174120272" ignored="false" />
+    <file path="/package.sh" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1383085076542" ignored="false" />
+    <file path="/install.xml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1383346784181" ignored="false" />
     <file path="/update_links" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381173855787" ignored="false" />
     <file path="/pwe" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374945318906" ignored="false" />
     <file path="/Content.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373994823954" ignored="false" />
@@ -167,32 +82,32 @@
     <file path="/test2.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381174531170" ignored="false" />
     <file path="/test3.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381174540479" ignored="false" />
     <file path="/Controller.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381174200685" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Demo/.idea/modules.xml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373998716340" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Demo/.idea/compiler.xml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373998716340" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Demo/.idea/workspace.xml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373998841461" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Demo/.idea/misc.xml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373998773470" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Demo/src/main/java/controllers/HitCounter.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373998840501" ignored="false" />
+    <file path="$USER_HOME$/Demo/.idea/modules.xml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373998716340" ignored="false" />
+    <file path="$USER_HOME$/Demo/.idea/compiler.xml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373998716340" ignored="false" />
+    <file path="$USER_HOME$/Demo/.idea/workspace.xml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373998841461" ignored="false" />
+    <file path="$USER_HOME$/Demo/.idea/misc.xml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373998773470" ignored="false" />
+    <file path="$USER_HOME$/Demo/src/main/java/controllers/HitCounter.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373998840501" ignored="false" />
     <file path="/HitCounter.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373998824813" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Demo/src/main/java/methods/HitCounter.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373998817100" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Yuyan/src/main/java/methods/Hits.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374082071212" ignored="false" />
+    <file path="$USER_HOME$/Demo/src/main/java/methods/HitCounter.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1373998817100" ignored="false" />
+    <file path="$USER_HOME$/Yuyan/src/main/java/methods/Hits.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374082071212" ignored="false" />
     <file path="/Hits.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374082088488" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Yuyan/src/main/java/controllers/Hits.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374082088998" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Yuyan/src/main/resources/hello.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374000196953" ignored="false" />
+    <file path="$USER_HOME$/Yuyan/src/main/java/controllers/Hits.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374082088998" ignored="false" />
+    <file path="$USER_HOME$/Yuyan/src/main/resources/hello.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374000196953" ignored="false" />
     <file path="/hello.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374000196523" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Yuyan/src/test/java/HitsTest.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374073797020" ignored="false" />
+    <file path="$USER_HOME$/Yuyan/src/test/java/HitsTest.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374073797020" ignored="false" />
     <file path="/HitsTest.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374001129801" ignored="false" />
     <file path="/WritableValue.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374001567653" ignored="false" />
     <file path="/ReadWrite.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381174418028" ignored="false" />
     <file path="/ReadableValue.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374079078499" ignored="false" />
     <file path="/Hit.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374863209955" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Hits/src/main/java/methods/Hit.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374863210644" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Hits/src/main/java/controllers/Hit.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374965441499" ignored="false" />
+    <file path="$USER_HOME$/Hits/src/main/java/methods/Hit.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374863210644" ignored="false" />
+    <file path="$USER_HOME$/Hits/src/main/java/controllers/Hit.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374965441499" ignored="false" />
     <file path="/test.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374084362527" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Hits/src/main/resources/test.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374084362527" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Hits/src/test/java/HitTest.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374085087356" ignored="false" />
+    <file path="$USER_HOME$/Hits/src/main/resources/test.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374084362527" ignored="false" />
+    <file path="$USER_HOME$/Hits/src/test/java/HitTest.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374085087356" ignored="false" />
     <file path="/HitTest.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374084758871" ignored="false" />
     <file path="/contact.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374862979265" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Hits/src/main/resources/contact.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374863001986" ignored="false" />
+    <file path="$USER_HOME$/Hits/src/main/resources/contact.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374863001986" ignored="false" />
     <file path="/PwEClassLoaderFactory.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374598382204" ignored="false" />
     <file path="/a.dummy" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381257140318" ignored="false" />
     <file path="/PwEClassLoader.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374601057110" ignored="false" />
@@ -220,11 +135,10 @@
     <file path="/app.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381258373051" ignored="false" />
     <file path="/useInternalSimpleLayout.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381257796205" ignored="false" />
     <file path="/dummy.txt" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374862835406" ignored="false" />
-    <file path="$PROJECT_DIR$/../../../../Hits/src/main/resources/layouts/myLayout.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374862575387" ignored="false" />
+    <file path="$USER_HOME$/Hits/src/main/resources/layouts/myLayout.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374862575387" ignored="false" />
     <file path="/CHANGELOG.org" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1374943182584" ignored="false" />
     <file path="/*.regexp" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1375118259971" ignored="false" />
     <file path="/verily" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381173916721" ignored="false" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381256524479" ignored="false" />
     <file path="/POM.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381174219413" ignored="false" />
     <file path="/Test.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381174227904" ignored="false" />
     <file path="/VerilyParserModes.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381175666996" ignored="false" />
@@ -232,7 +146,7 @@
     <file path="/VerilyContainer.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381176153362" ignored="false" />
     <file path="/VerilyEnv.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381176194880" ignored="false" />
     <file path="/VerilyModificationWatcher.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381176384033" ignored="false" />
-    <file path="/VerilyUtil.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381176477446" ignored="false" />
+    <file path="/VerilyUtil.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1383178954284" ignored="false" />
     <file path="/VerilyMain.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381176700883" ignored="false" />
     <file path="/verily.ts" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381178074568" ignored="false" />
     <file path="/Router.ftl" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381179031407" ignored="false" />
@@ -241,6 +155,12 @@
     <file path="$USER_HOME$/Downloads/Verily/src/verily.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381253065970" ignored="false" />
     <file path="$USER_HOME$/Downloads/Verily/src/Verily.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381253130804" ignored="false" />
     <file path="$USER_HOME$/Downloads/Test456/src/main/java/com/springapp/mvc/HelloController.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1381255307704" ignored="false" />
+    <file path="/update_path.bat" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1383348428074" ignored="false" />
+    <file path="$PROJECT_DIR$/../VerilyIdeaPlugin/src/verily/util/VerilyExeUtil.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1383178553018" ignored="false" />
+    <file path="/VerilyExeUtil.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1383178456498" ignored="false" />
+    <file path="$PROJECT_DIR$/../VerilyIdeaPlugin/src/verily/run/VerilyRunConfiguration.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1383179389610" ignored="false" />
+    <file path="/VerilyRunConfiguration.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1383179372869" ignored="false" />
+    <file path="/verily.bat" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1383346243873" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,6 +175,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -291,7 +212,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint url="file://$PROJECT_DIR$/core/src/main/java/VerilyMain.java" line="339" class="VerilyMain" package="">
         <option name="ENABLED" value="true" />
@@ -318,64 +238,94 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Router.ftl" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/resources/classes/Router.ftl">
+      <file leaf-file-name="update_path.bat" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/stubs/update_path.bat">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="15" selection-start="15" selection-end="15" vertical-scroll-proportion="-0.0">
+            <state line="15" column="63" selection-start="476" selection-end="476" vertical-scroll-proportion="0.44270834">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="POM.ftl" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/resources/classes/POM.ftl">
+      <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/installer/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.625">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="verily.ftl" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/resources/verily/layouts/verily.ftl">
+      <file leaf-file-name="verily" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stubs/verily">
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+            <state line="15" column="39" selection-start="184" selection-end="184" vertical-scroll-proportion="-0.68">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layouts.ftl" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/resources/verily/layouts/layouts.ftl">
+      <file leaf-file-name="verily.bat" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stubs/verily.bat">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.ftl" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/resources/verily/layouts/app.ftl">
+      <file leaf-file-name="package.bat" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.bat">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="44" selection-start="135" selection-end="135" vertical-scroll-proportion="-1.25">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="500.ftl" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/resources/500.ftl">
+      <file leaf-file-name="install.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/installer/install.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+            <state line="89" column="92" selection-start="2983" selection-end="2983" vertical-scroll-proportion="-18.12">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="core.ftl" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/src/main/resources/verily/core.ftl">
+      <file leaf-file-name="VerilyUtil.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/VerilyUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="30" selection-start="148" selection-end="148" vertical-scroll-proportion="0.13846155">
+            <state line="44" column="31" selection-start="1219" selection-end="1219" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/installer/package.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.sh" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="0" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -405,10 +355,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/core/src/main/java/reification/VerilyModificationWatcher.java" />
-        <option value="$PROJECT_DIR$/core/src/main/java/reification/VerilyClassLoader.java" />
-        <option value="$PROJECT_DIR$/core/src/main/java/utils/VerilyUtil.java" />
-        <option value="$PROJECT_DIR$/core/src/main/java/VerilyMain.java" />
         <option value="$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java" />
         <option value="$PROJECT_DIR$/core/src/main/resources/ts/ajaxCallback.ts" />
         <option value="$PROJECT_DIR$/core/src/main/resources/ts/arrays.ts" />
@@ -421,6 +367,10 @@
         <option value="$PROJECT_DIR$/samples/poll/src/main/resources/useInternalSimpleLayout.ftl" />
         <option value="$PROJECT_DIR$/core/src/main/resources/verily/layouts/app.ftl" />
         <option value="$PROJECT_DIR$/core/src/main/resources/verily/app.ftl" />
+        <option value="$PROJECT_DIR$/package.sh" />
+        <option value="$PROJECT_DIR$/core/src/main/java/utils/VerilyUtil.java" />
+        <option value="$PROJECT_DIR$/installer/install.xml" />
+        <option value="$PROJECT_DIR$/stubs/update_path.bat" />
       </list>
     </option>
   </component>
@@ -473,8 +423,10 @@
     <scope name="TS Resources" pattern="src[core]:ts.*" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1696" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -509,6 +461,16 @@
       <sortByType ProjectPane="false" />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PwE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -537,6 +499,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="stubs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -551,6 +527,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="installer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -570,40 +560,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Verily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Verily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -630,70 +586,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="verily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Verily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Verily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Verily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Verily" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -749,18 +641,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
+              <option name="myItemId" value="lang" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="PwE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -786,17 +698,17 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Hits" />
+    <property name="last_opened_file_path" value="C:/Program Files/Java/jdk1.7.0_45/bin/java.exe" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
-    <property name="FullScreen" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="Downloaded.Files.Path" value="$PROJECT_DIR$/lib" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="options.lastSelected" value="settings" />
+    <property name="options.lastSelected" value="preferences.externalTools" />
     <property name="project.structure.side.proportion" value="0.1954023" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
@@ -1430,35 +1342,35 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.177521" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6987296" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5275708" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26260504" sideWeight="0.34455323" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32940108" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28781512" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13043478" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24940334" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1272872" sideWeight="0.6969147" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20257038" sideWeight="0.7373949" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26260504" sideWeight="0.65544677" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19951041" sideWeight="0.73903" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26096997" sideWeight="0.65544677" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15672235" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31306714" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2631579" sideWeight="0.60298824" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28781512" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15789473" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1553,83 +1465,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/samples/poll/src/main/java/methods/ReadWrite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="38" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/poll/src/main/java/methods/TestBasic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="85" selection-end="85" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/poll/src/main/java/routers/TestBasic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="50" selection-start="843" selection-end="861" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/poll/src/main/resources/useInternalSimpleLayout.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="26" selection-end="26" vertical-scroll-proportion="-1.875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/resources/verily/layouts/simple.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="27.5">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/resources/playground.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/resources/500.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/resources/verily/layouts/app.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="44" selection-start="135" selection-end="135" vertical-scroll-proportion="-1.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/resources/verily/layouts/layouts.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/resources/verily/layouts/verily.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/resources/verily/app.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="26" selection-start="697" selection-end="697" vertical-scroll-proportion="0.5769231">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/java/content/TemplateFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="203" column="20" selection-start="6534" selection-end="6534" vertical-scroll-proportion="0.3323442">
@@ -1653,14 +1488,94 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/resources/classes/POM.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.625">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/resources/verily/core.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="30" selection-start="148" selection-end="148" vertical-scroll-proportion="0.13846155">
+        <state line="6" column="37" selection-start="148" selection-end="148" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stubs/update_links">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="0" selection-start="546" selection-end="546" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/VerilyUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="31" selection-start="1219" selection-end="1219" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/installer/package.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/installer/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stubs/verily">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="39" selection-start="184" selection-end="184" vertical-scroll-proportion="-0.68">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/installer/install.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="92" selection-start="2983" selection-end="2983" vertical-scroll-proportion="-18.12">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stubs/verily.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stubs/update_path.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="63" selection-start="476" selection-end="476" vertical-scroll-proportion="0.44270834">
           <folding />
         </state>
       </provider>
