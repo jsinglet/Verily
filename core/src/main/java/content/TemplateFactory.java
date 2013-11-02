@@ -37,12 +37,12 @@ public class TemplateFactory {
             org.slf4j.Logger logger = LoggerFactory.getLogger(TemplateFactory.class);
 
 
-            try {
-                Logger.selectLoggerLibrary(Logger.LIBRARY_SLF4J);
-            } catch (ClassNotFoundException e) {
-                // bad, but we can march on
-                e.printStackTrace();
-            }
+//            try {
+//                Logger.selectLoggerLibrary(Logger.LIBRARY_SLF4J);
+//            } catch (ClassNotFoundException e) {
+//                // bad, but we can march on
+//                e.printStackTrace();
+//            }
 
             templateFactory = new TemplateFactory();
             templateFactory.templateConfig = new Configuration();

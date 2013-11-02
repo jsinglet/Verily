@@ -155,7 +155,34 @@ public class VerilyUtil {
     }
 
     public static String mimeForType(URL file) {
-        return URLConnection.guessContentTypeFromName(file.getFile());
+        // this method isn't super reliable so we are going to do it the hard way
+        //return URLConnection.guessContentTypeFromName(file.getFile());
+
+        if(file.getFile().endsWith(".css")){
+            return "text/css";
+        }
+        if(file.getFile().endsWith(".js")){
+            return "text/javascript";
+        }
+        if(file.getFile().endsWith(".png")){
+            return "image/png";
+        }
+        if(file.getFile().endsWith(".gif")){
+            return "image/gif";
+        }
+        if(file.getFile().endsWith(".jpg")){
+            return "image/jpeg";
+        }
+        if(file.getFile().endsWith(".jpeg")){
+            return "image/jpeg";
+        }
+        if(file.getFile().endsWith(".pdf")){
+            return "application/pdf";
+        }
+
+
+
+        return "text/html";
     }
 
 
