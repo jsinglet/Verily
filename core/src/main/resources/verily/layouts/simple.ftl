@@ -86,7 +86,7 @@
 
 <div id="footer">
     <div class="container">
-        <p class="muted credit">Page rendered by <a href="">PwE</a>.</p>
+        <p class="muted credit">Page rendered by <a href="">Verily</a>.</p>
     </div>
 </div>
 
