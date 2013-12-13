@@ -74,7 +74,7 @@ public class TemplateFactory {
 
             templateFactory.templateConfig.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
 
-            templateFactory.templateConfig.setIncompatibleImprovements(new Version(2, 3, 20));
+            //templateFactory.templateConfig.setIncompatibleImprovements(new Version(2, 3, 20));
 
             templateFactory.reloadUserTemplates();
 

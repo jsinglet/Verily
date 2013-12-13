@@ -535,6 +535,11 @@ public class VerilyContainer implements Container {
                         fParams.put("name", f);
                         fParams.put("quotedArgList", "\"" + StringUtils.join(paramNames, "\", \"") + "\"");
                         fParams.put("argList", StringUtils.join(paramNames, ", "));
+                        fParams.put("asyncArgList", paramNames.size());
+
+
+
+
 
                         functions.add(fParams);
 
