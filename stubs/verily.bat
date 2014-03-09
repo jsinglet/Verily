@@ -19,6 +19,4 @@ if %RUN% == "YES" (
    rem del target\dependency\slf4j*.jar
 )
 
-
-java -classpath "target\dependency\*;%~dp0\lib\*" VerilyMain %*
-
+rem java -classpath "target\dependency\*;%~dp0\lib\*" VerilyMain %*

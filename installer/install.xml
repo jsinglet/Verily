@@ -18,7 +18,7 @@
         <authors>
             <author name="John L. Singleton" email="jsinglet@gmail.com"/>
         </authors>
-        <url>http://www.the-singleton.com/</url>
+        <url>http://goverily.org/</url>
         <run-privileged/>
     </info>
 
@@ -51,7 +51,7 @@
     -->
     <panels>
         <panel classname="HelloPanel"/>
-        <panel classname="InfoPanel"/>
+        <!--<panel classname="InfoPanel"/>-->
         <panel classname="LicencePanel"/>
         <panel classname="TargetPanel"/>
         <!--        <panel classname="PacksPanel"/> -->
@@ -66,14 +66,15 @@
     <packs>
         <pack name="Base" required="yes">
             <description>The base files</description>
-            <file src="README.txt" targetdir="$INSTALL_PATH"/>
+            <!--<file src="README.txt" targetdir="$INSTALL_PATH"/>-->
             <file src="LICENSE.txt" targetdir="$INSTALL_PATH"/>
             <file src="../target/lib/" targetdir="$INSTALL_PATH"/>
 
-            <file src="../stubs/verily" targetdir="$INSTALL_PATH"/>
-            <file src="../stubs/update_links" targetdir="$INSTALL_PATH"/>
-            <file src="../stubs/verily.bat" targetdir="$INSTALL_PATH"/>
-            <file src="../stubs/update_path.bat" targetdir="$INSTALL_PATH"/>
+            <file os="unix" src="../stubs/verily" targetdir="$INSTALL_PATH"/>
+            <file os="unix" src="../stubs/update_links" targetdir="$INSTALL_PATH"/>
+            <file os="windows" src="../stubs/verily.bat" targetdir="$INSTALL_PATH"/>
+            <file os="windows" src="../stubs/update_path.bat" targetdir="$INSTALL_PATH"/>
+            <file os="windows" src="../stubs/cygwin/verily" targetdir="$INSTALL_PATH"/>
 
 
             <executable os="unix" targetfile="$INSTALL_PATH/update_links" stage="postinstall" keep="false">
@@ -91,7 +92,7 @@
 
 
             <executable os="windows" targetfile="$INSTALL_PATH/verily.bat" stage="never" keep="true"/>
-            <executable os="unix" targetfile="$INSTALL_PATH/verily" stage="never" keep="true"/>
+            <executable targetfile="$INSTALL_PATH/verily" stage="never" keep="true"/>
 
         </pack>
     </packs>
