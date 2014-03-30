@@ -14,6 +14,7 @@ import static verily.lang.JavaParser.*;
 public class ExtractClassInfoListener extends JavaBaseListener {
 
     final Logger logger = LoggerFactory.getLogger(ExtractClassInfoListener.class);
+    /* Deprecated - void is no longer a requirement */
     private static final List<String> psfvReference = Arrays.asList("public", "static", "final", "void");
     private static final List<String> psfcReference = Arrays.asList("public", "static", "final", "Content");
     private VerilyParserModes.VerilyModeType mode;
@@ -73,10 +74,10 @@ public class ExtractClassInfoListener extends JavaBaseListener {
         if (methodHasNoLint() && baseSignatureIsValid(ctx) && currentClassIsFilename(ctx) && methodIsTopLevel(ctx)) {
             logger.trace("{}Discovered method \"{}\" will be mapped ➜ /{}/{}", getDepth(), ctx.Identifier(), classCtx.peek(), ctx.Identifier());
 
-            et.mapMethod(classCtx.peek(), new VerilyMethod(ctx.Identifier().getText(), methodSpec));
+            et.mapMethod(classCtx.peek(), new VerilyMethod(ctx.Identifier().getText(), methodSpec, ctx.type()));
 
         } else {
-            logger.trace("{}Discovered method \"{}\" not a candidate for PwE model.", getDepth(), ctx.Identifier());
+            logger.trace("{}Discovered method \"{}\" not a candidate for Verily.", getDepth(), ctx.Identifier());
         }
 
         methodSpec = new LinkedList<VerilyType>();
@@ -84,7 +85,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
 
     private boolean baseSignatureIsValid(MethodDeclarationContext ctx){
         if(mode == VerilyParserModes.VerilyModeType.TYPE_METHOD){
-            return methodIsPSFV(ctx);
+            return methodIsValidMethodFormat(ctx);
         }
 
         return methodIsPSFC(ctx);
@@ -110,6 +111,8 @@ public class ExtractClassInfoListener extends JavaBaseListener {
     }
 
     // checks to see that a method is public static final Content
+    //
+    // TODO: In the future, maybe do some more parsing to determine what the
     private boolean methodIsPSFC(MethodDeclarationContext ctx) {
 
         boolean isPSV = true; //false;
@@ -161,12 +164,12 @@ public class ExtractClassInfoListener extends JavaBaseListener {
     }
 
 
-    // checks to see that a method is public static final void
-    private boolean methodIsPSFV(MethodDeclarationContext ctx) {
+    // checks to see that a method is public static final *
+    private boolean methodIsValidMethodFormat(MethodDeclarationContext ctx) {
 
-        boolean isPSV = true; //false;
+        boolean isVMF = true; //false;
 
-        // if this method is valid, the signature will be public static void, which will be
+        // if this method is valid, the signature will be public static *, which will be
         // two levels up in the parser as follows
         // Note that ctx.type() == null when the return type is void
         if (ctx.type() == null && ctx.getParent() != null && ctx.getParent().getParent() != null) {
@@ -175,19 +178,19 @@ public class ExtractClassInfoListener extends JavaBaseListener {
 
                 for (int i = 0; i < ctx.getParent().getParent().children.size() - 1; i++) {
                     if (ctx.getParent().getParent().children.get(i).getText().equals(psfvReference.get(i)) == false) {
-                        isPSV = false;
+                        isVMF = false;
                         break;
                     }
                 }
             } else {
-                isPSV = false;
+                isVMF = false;
             }
         } else {
-            isPSV = false;
+            isVMF = false;
         }
 
-        logger.trace("{}Checking to see if method is PSFV: [{}]", getDepth(), isPSV);
-        return isPSV;
+        logger.trace("{}Checking to see if method is VMF: [{}]", getDepth(), isVMF);
+        return isVMF;
     }
 
     public String getDepth() {

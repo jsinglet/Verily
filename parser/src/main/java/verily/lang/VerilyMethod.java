@@ -5,16 +5,29 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import java.util.LinkedList;
 import java.util.List;
 
+import static verily.lang.JavaParser.*;
+
+
 public class VerilyMethod {
 
     private String method;
     private List<VerilyType> formalParameters;
     private List<VerilyType> sessionBoundParameters;
     private List<VerilyType> nonSessionBoundParameters;
-
-    public VerilyMethod(String method, List<VerilyType> formalParameters) {
+    // note this is NULL for void as per the parser.
+    private TypeContext type;
+    public VerilyMethod(String method, List<VerilyType> formalParameters, TypeContext type) {
         this.setMethod(method);
         this.setFormalParameters(formalParameters);
+	this.setType(type):
+    }
+
+    public setType(TypeContext type){
+	this.type = type;
+    }
+
+    public TypeContext getType(){
+	return this.type;
     }
 
     public String getMethod() {
