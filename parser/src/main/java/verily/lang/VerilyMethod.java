@@ -19,10 +19,10 @@ public class VerilyMethod {
     public VerilyMethod(String method, List<VerilyType> formalParameters, TypeContext type) {
         this.setMethod(method);
         this.setFormalParameters(formalParameters);
-	this.setType(type):
+        this.setType(type);
     }
 
-    public setType(TypeContext type){
+    public void setType(TypeContext type){
 	this.type = type;
     }
 

@@ -50,12 +50,12 @@ public class VerilyMethodTest {
         );
 
 
-        VerilyMethod m1 = new VerilyMethod("myMethod", fp1);
-        VerilyMethod m2 = new VerilyMethod("myMethod", fp2);
-        VerilyMethod m3 = new VerilyMethod("myMethod", fp3);
-        VerilyMethod m4 = new VerilyMethod("myMethod", fp4);
-        VerilyMethod m5 = new VerilyMethod("myMethod", fp5);
-        VerilyMethod m6 = new VerilyMethod("myMethod1", fp1);
+        VerilyMethod m1 = new VerilyMethod("myMethod", fp1, null);
+        VerilyMethod m2 = new VerilyMethod("myMethod", fp2, null);
+        VerilyMethod m3 = new VerilyMethod("myMethod", fp3, null);
+        VerilyMethod m4 = new VerilyMethod("myMethod", fp4, null);
+        VerilyMethod m5 = new VerilyMethod("myMethod", fp5, null);
+        VerilyMethod m6 = new VerilyMethod("myMethod1", fp1, null);
 
         assertTrue(m1.equals(m2));
         assertFalse(m1.equals(m3));
