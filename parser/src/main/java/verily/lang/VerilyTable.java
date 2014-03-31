@@ -96,10 +96,21 @@ public final class VerilyTable {
         return false;
     }
 
+    /**
+     * Checks that two tables satisfy the MeVC Contract.
+     *
+     * Some Rules:
+     * 1) Methods and routers must exist in parity, even if a given method does nothing.
+     * 2) The signatures of the functions must match, except for the case in which a method returns a value.
+     * 3) In this case we check that the LAST argument of the Router matches the return value of it's matched method.
+     *
+     * @param controllerTable
+     * @param methodTable
+     * @return
+     */
     public static boolean fulfillsMeVCContractWith(VerilyTable controllerTable, VerilyTable methodTable) {
 
-        boolean sameContents = true;
-        boolean sameAddress = (controllerTable == methodTable);
+        boolean sameContents = false;
 
         // simple size check first -- we don't care if they don't have at least the same elements
         if (controllerTable.size() != methodTable.size()) {
@@ -110,65 +121,67 @@ public final class VerilyTable {
         compareTwo:
         for (String context : controllerTable.mTable.keySet()) {
 
+	    // assume this will fail
+	    sameContents = false;
+
             Map<String, VerilyMethod> thisSegment = controllerTable.mTable.get(context);
             Map<String, VerilyMethod> thatSegment = methodTable.mTable.get(context);
 
-            // we have the context
-            if (thatSegment != null) {
+            // 1) Check that it has a matching method
+            if (thatSegment == null) break;
 
-                // find each method
-                for (String method : thisSegment.keySet()) {
+            // find each method
+            for (String method : thisSegment.keySet()) {
 
-                    VerilyMethod thisMethod = thisSegment.get(method);
-                    VerilyMethod thatMethod = thatSegment.get(method);
+                VerilyMethod thisMethod = thisSegment.get(method);
+                VerilyMethod thatMethod = thatSegment.get(method);
 
-                    // method exists
-                    if (thatMethod != null) {
+                // 2) check method exists
+		if(thatMethod==null) break compareTwo;
 
-                        // signatures match
-                        List<VerilyType> thisMethodType = thisMethod.getFormalParameters();
-                        List<VerilyType> thatMethodType = thatMethod.getFormalParameters();
+		// 3) Check signatures match
+		//
+		// note that we might modify the table, so we make sure to copy the structure
+		//
+		List<VerilyType> thisMethodType = new ArrayList(thisMethod.getFormalParameters());
+		List<VerilyType> thatMethodType = new ArrayList(thatMethod.getFormalParameters());
+		JavaParser.TypeContext methodSignature = thatMethod.getType();
 
-                        if (thisMethodType.size() == thatMethodType.size()) {
+		if (methodSignature != null) {
+		    // now it needs to be such that the controller should have one MORE parameter
+		    if(thisMethodType.size()-1==thatMethodType.size()){
+			// now the sizes will match
+			thatMethodType.add(new VerilyType(methodSignature.getText(), thisMethodType.get(thisMethodType.size()-1).getName()));
+		    }
+		}
 
-                            for (int i = 0; i < thisMethodType.size(); i++) {
+		if(thisMethodType.size()!=thatMethodType.size()) break compareTwo;
 
-                                VerilyType t1 = thisMethodType.get(i);
-                                VerilyType t2 = thatMethodType.get(i);
+		for (int i = 0; i < thisMethodType.size(); i++) {
 
-                                // total equality
-                                if (t1.equals(t2)) {
-                                    continue;
-                                }
+		    VerilyType t1 = thisMethodType.get(i);
+		    VerilyType t2 = thatMethodType.get(i);
 
-                                // equality by subclassing
-                                if(t2.isSubClassOf(t1) && t1.getName().equals(t2.getName())){
-                                    continue;
-                                }
+		    // total equality
+		    if (t1.equals(t2)) {
+			continue;
+		    }
 
-                                sameContents = false;
-                                break compareTwo;
-                            }
-                        } else {
-                            sameContents = false;
-                            break compareTwo;
-                        }
+		    // equality by subclassing
+		    if (t2.isSubClassOf(t1) && t1.getName().equals(t2.getName())) {
+			continue;
+		    }
 
+		    break compareTwo;
+		}
+	    }
+	    // assume this is the last time through
+	    sameContents = true;
+	}
 
-                    } else {
-                        sameContents = false;
-                        break compareTwo;
-                    }
-
-                }
-            } else {
-                sameContents = false;
-                break;
-            }
-        }
-
-        return sameAddress || sameContents;
+        return sameContents;
     }
+
 
     // this is awful. just don't look at me.
     public String asASCIITable(){
