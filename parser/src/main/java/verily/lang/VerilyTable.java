@@ -2,6 +2,8 @@ package verily.lang;
 
 import org.apache.commons.lang.StringUtils;
 import verily.lang.exceptions.MethodNotMappedException;
+import verily.lang.exceptions.TableHomomorphismException;
+import verily.lang.util.TableDiffResult;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -108,78 +110,8 @@ public final class VerilyTable {
      * @param methodTable
      * @return
      */
-    public static boolean fulfillsMeVCContractWith(VerilyTable controllerTable, VerilyTable methodTable) {
-
-        boolean sameContents = false;
-
-        // simple size check first -- we don't care if they don't have at least the same elements
-        if (controllerTable.size() != methodTable.size()) {
-            return false;
-        }
-
-        //next, make sure all elements in THIS table are in THAT table   -- comparison should happen this(controller) with that(methods)
-        compareTwo:
-        for (String context : controllerTable.mTable.keySet()) {
-
-	    // assume this will fail
-	    sameContents = false;
-
-            Map<String, VerilyMethod> thisSegment = controllerTable.mTable.get(context);
-            Map<String, VerilyMethod> thatSegment = methodTable.mTable.get(context);
-
-            // 1) Check that it has a matching method
-            if (thatSegment == null) break;
-
-            // find each method
-            for (String method : thisSegment.keySet()) {
-
-                VerilyMethod thisMethod = thisSegment.get(method);
-                VerilyMethod thatMethod = thatSegment.get(method);
-
-                // 2) check method exists
-		if(thatMethod==null) break compareTwo;
-
-		// 3) Check signatures match
-		//
-		// note that we might modify the table, so we make sure to copy the structure
-		//
-		List<VerilyType> thisMethodType = new ArrayList(thisMethod.getFormalParameters());
-		List<VerilyType> thatMethodType = new ArrayList(thatMethod.getFormalParameters());
-		JavaParser.TypeContext methodSignature = thatMethod.getType();
-
-		if (methodSignature != null) {
-		    // now it needs to be such that the controller should have one MORE parameter
-		    if(thisMethodType.size()-1==thatMethodType.size()){
-			// now the sizes will match
-			thatMethodType.add(new VerilyType(methodSignature.getText(), thisMethodType.get(thisMethodType.size()-1).getName()));
-		    }
-		}
-
-		if(thisMethodType.size()!=thatMethodType.size()) break compareTwo;
-
-		for (int i = 0; i < thisMethodType.size(); i++) {
-
-		    VerilyType t1 = thisMethodType.get(i);
-		    VerilyType t2 = thatMethodType.get(i);
-
-		    // total equality
-		    if (t1.equals(t2)) {
-			continue;
-		    }
-
-		    // equality by subclassing
-		    if (t2.isSubClassOf(t1) && t1.getName().equals(t2.getName())) {
-			continue;
-		    }
-
-		    break compareTwo;
-		}
-	    }
-	    // assume this is the last time through
-	    sameContents = true;
-	}
-
-        return sameContents;
+    public static List<TableDiffResult> checkMRRContractWith(VerilyTable routerTable, VerilyTable methodTable) {
+        return routerTable.diff(methodTable);
     }
 
 
@@ -263,8 +195,149 @@ public final class VerilyTable {
 
     }
 
+
+
+
     public Map<String, Map<String, VerilyMethod>> getTable(){
         return mTable;
     }
+
+
+    /**
+     * Diffs a router table against a method table. Note that the argument to this should then logically be a
+     * method table.
+     * @param that
+     * @return
+     */
+    public List<TableDiffResult> diff(VerilyTable that){
+
+        List<TableDiffResult> leftDiff = diffLeftToRight(this, that, VerilyParserModes.VerilyModeType.TYPE_ROUTER);
+        List<TableDiffResult> rightDiff = diffLeftToRight(that, this, VerilyParserModes.VerilyModeType.TYPE_METHOD);
+
+        // combine the diffs.
+        leftDiff.addAll(rightDiff);
+
+        return leftDiff;
+    }
+
+    private List<TableDiffResult> diffLeftToRight(VerilyTable left, VerilyTable right, VerilyParserModes.VerilyModeType mode){
+
+        List<TableDiffResult> diffResult = new ArrayList<TableDiffResult>();
+
+        // next, make sure all elements in THIS table are in THAT table /-/-\ comparison should happen this(controller) with that(methods)
+        compareTwo:
+        for (String context : left.mTable.keySet()) {
+
+
+            Map<String, VerilyMethod> thisSegment = left.mTable.get(context);
+            Map<String, VerilyMethod> thatSegment = right.mTable.get(context);
+
+            // 1) Check that it has a matching method
+            if (thatSegment == null) {
+                diffResult.add(new TableDiffResult(TableDiffResult.TableDiffKind.KIND_CLASS, context, null, mode));
+                continue;
+            }
+
+            // find each method
+            for (String method : thisSegment.keySet()) {
+
+                VerilyMethod thisMethod = thisSegment.get(method);
+                VerilyMethod thatMethod = thatSegment.get(method);
+
+                // 2) check method exists
+                if(thatMethod==null){
+                    diffResult.add(new TableDiffResult(TableDiffResult.TableDiffKind.KIND_METHOD, context, method, mode));
+                    continue;
+                }
+
+                // 3) Check signatures match
+                //
+                // note that we might modify the table, so we make sure to copy the structure
+                //
+                List<VerilyType> thisMethodType = new ArrayList(thisMethod.getFormalParameters());
+                List<VerilyType> thatMethodType = new ArrayList(thatMethod.getFormalParameters());
+
+                JavaParser.TypeContext thisMethodSignature = thisMethod.getType();
+                JavaParser.TypeContext thatMethodSignature = thatMethod.getType();
+
+                // this means the matching method has a return type.
+                // we should implicitly add this
+
+                // figure out which one of these things is the method, then, if the return type isn't null
+                // add the return type to the end of the formal parameters.
+
+                boolean usedImplicitParams = false;
+
+                if(mode== VerilyParserModes.VerilyModeType.TYPE_METHOD){
+                    // add it to THIS method
+                    if(thisMethodSignature!=null){
+                        if(thatMethodType.size()-1==thisMethodType.size()){
+                            thisMethodType.add
+                                    (
+                                            new VerilyType(thisMethodSignature.getText(), thatMethodType.get(thatMethodType.size()-1).getName())
+                                    );
+                        }else{
+                            // add one that will for sure fail, it's not in the router for some reason.
+                            thisMethodType.add(new VerilyType(thisMethodSignature.getText(), "__INVALID"));
+                        }
+                        usedImplicitParams = true;
+                    }
+                }else{
+                    if (thatMethodSignature != null) {
+                        // now it needs to be such that the controller should have one MORE parameter
+                        if(thisMethodType.size()-1==thatMethodType.size()){
+                            // now the sizes will match
+                            thatMethodType.add(new VerilyType(thatMethodSignature.getText(), thisMethodType.get(thisMethodType.size()-1).getName()));
+                        }else{
+                            thatMethodType.add(new VerilyType(thatMethodSignature.getText(), "__INVALID"));
+                        }
+
+                        usedImplicitParams = true;
+                    }
+
+                }
+
+
+                if(thisMethodType.size()!=thatMethodType.size()){
+                    diffResult.add(new TableDiffResult(TableDiffResult.TableDiffKind.KIND_SIGNATURE, context, method, mode, usedImplicitParams));
+                    continue;
+                }
+
+                for (int i = 0; i < thisMethodType.size(); i++) {
+
+                    VerilyType t1 = thisMethodType.get(i);
+                    VerilyType t2 = thatMethodType.get(i);
+
+                    // total equality
+                    if (t1.equals(t2)) {
+                        continue;
+                    }
+
+
+                    if(mode== VerilyParserModes.VerilyModeType.TYPE_ROUTER){
+                        // equality by subclassing
+                        if (t2.isSubClassOf(t1) && t1.getName().equals(t2.getName())) {
+                            continue;
+                        }
+
+                    }else{
+                        // equality by subclassing
+                        if (t1.isSubClassOf(t2) && t2.getName().equals(t1.getName())) {
+                            continue;
+                        }
+                    }
+
+
+                    // one difference is enough...
+                    diffResult.add(new TableDiffResult(TableDiffResult.TableDiffKind.KIND_SIGNATURE, context, method, mode));
+                    break;
+                }
+            }
+        }
+
+        return diffResult;
+    }
+
+
 
 }

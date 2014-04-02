@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.impl.SimpleLogger;
 import verily.lang.exceptions.TableHomomorphismException;
 import utils.VerilyUtil;
+import verily.lang.util.TableDiffResult;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -95,7 +96,6 @@ public class VerilyMain {
         System.setProperty(SimpleLogger.SHOW_LOG_NAME_KEY, "false");
         System.setProperty(SimpleLogger.LOG_FILE_KEY, "System.out");
         System.setProperty(SimpleLogger.SHOW_THREAD_NAME_KEY, "false");
-
     }
 
     public static void main(String args[]) {
@@ -161,6 +161,19 @@ public class VerilyMain {
 
         } catch (TableHomomorphismException e) {
             System.err.println(e.getMessage());
+
+            System.err.println("MRR Contract Violations:");
+            System.err.println("========================");
+
+            if(e.errorLocations!=null){
+                int i=1;
+                for(TableDiffResult r : e.errorLocations){
+                    System.err.println(String.format("%d: %s", i, r.toString()));
+                    i++;
+                }
+            }
+
+
         } catch (InterruptedException e) {
             // this is a little bit of an unexpected exception so we are going to bail ungracefully
             e.printStackTrace();

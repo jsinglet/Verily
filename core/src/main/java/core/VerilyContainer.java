@@ -291,7 +291,7 @@ public class VerilyContainer implements Container {
                     }
                 }
 
-                c.getMethod(m.getMethod(), clazz).invoke(null, args);
+                Object methodReturnValue = c.getMethod(m.getMethod(), clazz).invoke(null, args);
 
 
                 long ts2 = System.currentTimeMillis();

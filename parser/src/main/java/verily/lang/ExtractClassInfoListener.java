@@ -172,11 +172,11 @@ public class ExtractClassInfoListener extends JavaBaseListener {
         // if this method is valid, the signature will be public static *, which will be
         // two levels up in the parser as follows
         // Note that ctx.type() == null when the return type is void
-        if (ctx.type() == null && ctx.getParent() != null && ctx.getParent().getParent() != null) {
+        if (ctx.getParent() != null && ctx.getParent().getParent() != null) {
 
             if (ctx.getParent().getParent().children != null && ctx.getParent().getParent().children.size() == 4) {
 
-                for (int i = 0; i < ctx.getParent().getParent().children.size() - 1; i++) {
+                for (int i = 0; i < ctx.getParent().getParent().children.size() - 2; i++) {
                     if (ctx.getParent().getParent().children.get(i).getText().equals(psfvReference.get(i)) == false) {
                         isVMF = false;
                         break;

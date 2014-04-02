@@ -9,12 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import verily.lang.*;
 import verily.lang.exceptions.TableHomomorphismException;
+import verily.lang.util.TableDiffResult;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class Harness {
 
@@ -34,7 +36,18 @@ public class Harness {
 
         Harness h = new Harness(Paths.get(""));
 
-        VerilyTable t = h.extractTranslationTable();
+        try {
+            VerilyTable t = h.extractTranslationTable();
+        }catch(TableHomomorphismException e){
+
+            System.err.println(e.getMessage());
+
+            if(e.errorLocations!=null){
+                for(TableDiffResult r : e.errorLocations){
+                    System.err.println(r.toString());
+                }
+            }
+        }
     }
 
     public Harness(Path base) {
@@ -62,10 +75,12 @@ public class Harness {
         // Start checking things
 
         //
-        // Check translation table homomorphism
+        // Check Translation Table homomorphism
         //
-        if (VerilyTable.fulfillsMeVCContractWith(controllerTable, methodTable) == false) {
-            throw new TableHomomorphismException("Method and Controller tables do not match. For any given function in a method, there should be one matching in name, arity and type in your controllers.");
+        List<TableDiffResult> diffResultList = VerilyTable.checkMRRContractWith(controllerTable, methodTable);
+
+        if (diffResultList!=null && diffResultList.size()!=0) {
+            throw new TableHomomorphismException("Method and Controller tables do not match. For any given function in a method, there should be one matching in name, arity and type in your routers.", diffResultList);
         }
 
         if(methodTable.hasMultipleMutations()==true){
