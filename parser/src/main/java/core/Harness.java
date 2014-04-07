@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import verily.lang.*;
 import verily.lang.exceptions.TableHomomorphismException;
+import verily.lang.util.MRRTableSet;
 import verily.lang.util.TableDiffResult;
 
 import java.io.IOException;
@@ -37,7 +38,7 @@ public class Harness {
         Harness h = new Harness(Paths.get(""));
 
         try {
-            VerilyTable t = h.extractTranslationTable();
+            VerilyTable t = h.extractTranslationTable().getMethodTable();
         }catch(TableHomomorphismException e){
 
             System.err.println(e.getMessage());
@@ -54,14 +55,14 @@ public class Harness {
         this.base = base;
     }
 
-    public VerilyTable extractTranslationTable() throws IOException, TableHomomorphismException {
+    public MRRTableSet extractTranslationTable() throws IOException, TableHomomorphismException {
 
         // Parse out translation table from controllers
-        VerilyTable controllerTable = new VerilyTable();
+        VerilyTable routerTable = new VerilyTable();
 
         DirectoryStream<Path> controllerFiles = Files.newDirectoryStream(base.resolve("src").resolve("main").resolve("java").resolve(routersPath), "*.java");
         for (Path p : controllerFiles) {
-            parseFile(p.toString(), controllerTable, VerilyParserModes.VerilyModeType.TYPE_ROUTER);
+            parseFile(p.toString(), routerTable, VerilyParserModes.VerilyModeType.TYPE_ROUTER);
         }
 
         // Parse out translation table from methods
@@ -77,7 +78,7 @@ public class Harness {
         //
         // Check Translation Table homomorphism
         //
-        List<TableDiffResult> diffResultList = VerilyTable.checkMRRContractWith(controllerTable, methodTable);
+        List<TableDiffResult> diffResultList = VerilyTable.checkMRRContractWith(routerTable, methodTable);
 
         if (diffResultList!=null && diffResultList.size()!=0) {
             throw new TableHomomorphismException("Method and Controller tables do not match. For any given function in a method, there should be one matching in name, arity and type in your routers.", diffResultList);
@@ -95,7 +96,7 @@ public class Harness {
         }
 
 
-        return methodTable;
+        return new MRRTableSet(methodTable, routerTable);
     }
 
     public void parseFile(String f, VerilyTable table, VerilyParserModes.VerilyModeType mode) {

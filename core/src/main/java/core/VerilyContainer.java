@@ -23,6 +23,7 @@ import verily.lang.exceptions.MethodNotMappedException;
 import verily.lang.exceptions.TableHomomorphismException;
 import reification.*;
 import utils.VerilyUtil;
+import verily.lang.util.MRRTableSet;
 
 import java.io.*;
 import java.net.URL;
@@ -67,7 +68,7 @@ public class VerilyContainer implements Container {
             // set up the translation table
             Harness applicationHarness = new Harness(env.getHome());
 
-            VerilyTable translationTable = applicationHarness.extractTranslationTable();
+            MRRTableSet translationTable = applicationHarness.extractTranslationTable();
 
             env.setTranslationTable(translationTable);
 
@@ -91,7 +92,7 @@ public class VerilyContainer implements Container {
     public void reloadTranslationTable() throws IOException, TableHomomorphismException {
         Harness applicationHarness = new Harness(env.getHome());
 
-        VerilyTable translationTable = applicationHarness.extractTranslationTable();
+        MRRTableSet translationTable = applicationHarness.extractTranslationTable();
 
         env.setTranslationTable(translationTable);
 
@@ -107,8 +108,18 @@ public class VerilyContainer implements Container {
         String context = classContextFromRequest(r);
 
         // we don't need to check for null here, really.
-        return env.getTranslationTable().methodAt(context, method);
+        return env.findMappedMethod(context, method);
     }
+
+    public VerilyMethod getRouterForRequest(Request r) throws MethodNotMappedException {
+
+        String method = r.getPath().getName();
+        String context = classContextFromRequest(r);
+
+        // we don't need to check for null here, really.
+        return env.findMappedRouter(context, method);
+    }
+
 
     public List<Object> marshallRequestToMethod(Request r, VerilyMethod m, Context ctx, boolean readOnly) throws InvalidFormalArgumentsException {
 
@@ -242,6 +253,7 @@ public class VerilyContainer implements Container {
 
         // these are filled in later
         VerilyMethod m = null;
+        VerilyMethod r = null;
 
         int statusCode = 200;
         long ts1 = System.currentTimeMillis();
@@ -264,6 +276,7 @@ public class VerilyContainer implements Container {
                 // Step 1 - Map the incoming request onto a method call
 
                 m = getMethodForRequest(request);
+                r = getRouterForRequest(request);
 
                 // Step 2 - Decode the incoming request's parameters
                 //
@@ -312,15 +325,27 @@ public class VerilyContainer implements Container {
                 // To ensure that no tainting happened during the method call, we recalculate the actual parameters -- making sure to copy any session variables.
                 //
 
+                //
+                // To make this easy, we marshall the actual parameters from the request for the METHOD, since the
+                // final parameter (if it exists) won't be in the request (it's the return value of the method)
+                //
                 List<Object> controllerActualParameters = marshallRequestToMethod(request, m, ctx, true);
+
+
+                //
+                // As per the design, if the return type of the method isn't void (ie, null) then we
+                // should pass in whatever the return type from the method is.
+                //
+                if(m.getType()!=null){
+                    controllerActualParameters.add(methodReturnValue);
+                }
+
                 Object controllerArgs[] = controllerActualParameters.toArray(new Object[controllerActualParameters.size()]);
                 Class controllerClazz[] = new Class[controllerArgs.length];
 
                 for (int i = 0; i < controllerArgs.length; i++) {
-                    // in this particular case we might have to translate to primatives
-                    controllerClazz[i] = VerilyUtil.translatedType(m.getFormalParameters().get(i), controllerArgs[i].getClass());
+                    controllerClazz[i] = VerilyUtil.translatedType(r.getFormalParameters().get(i), controllerArgs[i].getClass());
                 }
-
 
                 // Step 7 - Using the exact same parameters, invoke the controller method.
                 Class controller = Class.forName(String.format("routers.%s", classContext), false, new VerilyClassLoader(this.getClass().getClassLoader()));
@@ -507,7 +532,7 @@ public class VerilyContainer implements Container {
 
                 List modules = new ArrayList();
 
-                VerilyTable table = getEnv().getTranslationTable();
+                VerilyTable table = getEnv().getTranslationTable().getMethodTable();
 
                 for (String module : table.getTable().keySet()) {
 

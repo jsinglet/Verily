@@ -12,6 +12,7 @@ import java.util.Map;
 
 public final class VerilyTable {
 
+
     private int size;
     //
     // The method table: A chained hashmap of methods

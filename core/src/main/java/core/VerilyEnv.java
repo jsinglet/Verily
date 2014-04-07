@@ -1,7 +1,9 @@
 package core;
 
+import verily.lang.VerilyMethod;
 import verily.lang.VerilyTable;
 import verily.lang.exceptions.MethodNotMappedException;
+import verily.lang.util.MRRTableSet;
 
 import java.nio.file.Path;
 
@@ -11,7 +13,7 @@ public class VerilyEnv {
     private int numberOfThreads;
     private String appName;
     private String appVersion;
-    private VerilyTable translationTable;
+    private MRRTableSet translationTable;
     private int port;
     private boolean reload;
     private boolean daemon;
@@ -41,17 +43,22 @@ public class VerilyEnv {
         this.appVersion = appVersion;
     }
 
-    public VerilyTable getTranslationTable() {
+    public MRRTableSet getTranslationTable() {
         return translationTable;
     }
 
-    public void setTranslationTable(VerilyTable translationTable) {
+    public void setTranslationTable(MRRTableSet translationTable) {
         this.translationTable = translationTable;
     }
 
-    public void findMappedMethod(String context, String method) throws MethodNotMappedException {
-        translationTable.methodAt(context, method);
+    public VerilyMethod findMappedMethod(String context, String method) throws MethodNotMappedException {
+        return translationTable.getMethodTable().methodAt(context, method);
     }
+
+    public VerilyMethod findMappedRouter(String context, String method) throws MethodNotMappedException {
+        return translationTable.getRouterTable().methodAt(context, method);
+    }
+
 
     public int getPort() {
         return port;
