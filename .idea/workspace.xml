@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c425601c-3ed7-4570-b135-f22be92e7e42" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/util/MRRTableSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/core/Harness.java" afterPath="$PROJECT_DIR$/parser/src/main/java/core/Harness.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/VerilyEnv.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyEnv.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyTable.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyTable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/core.iml" afterPath="$PROJECT_DIR$/core/core.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/parser.iml" afterPath="$PROJECT_DIR$/parser/parser.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PwE.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="samples/poll/target/" />
-    <file path="/Dummy.txt" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1396894892561" ignored="false" />
+    <file path="/Dummy.txt" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1396901368849" ignored="false" />
     <file path="/VerilyContainer.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1396900925458" ignored="false" />
     <file path="/fragment.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1396899257512" ignored="false" />
     <file path="$USER_HOME$/IdeaProjects/untitled1/src/main/java/methods/Test.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1396900976513" ignored="false" />
@@ -102,7 +94,7 @@
       <file leaf-file-name="VerilyContainer.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="534" column="83" selection-start="19437" selection-end="19437" vertical-scroll-proportion="0.6072187">
+            <state line="534" column="83" selection-start="19437" selection-end="19437" vertical-scroll-proportion="0.46579805">
               <folding>
                 <element signature="e#8163#8301#0" expanded="true" />
                 <element signature="e#8290#8291#0" expanded="true" />
@@ -1767,7 +1759,11 @@
       <created>1396475461134</created>
       <updated>1396475461134</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="added table for methods and routers, handled passthru of return values.">
+      <created>1396901371430</created>
+      <updated>1396901371430</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1797,7 +1793,7 @@
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41732284" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25646794" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6987296" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1815,7 +1811,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1272872" sideWeight="0.6969147" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20195839" sideWeight="0.5826772" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20195839" sideWeight="0.74353206" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32845894" sideWeight="0.65544677" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15672235" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1880,7 +1876,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated MRR contract enforcement and static checking." />
+    <option name="LAST_COMMIT_MESSAGE" value="added table for methods and routers, handled passthru of return values." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1894,7 +1890,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="fixed bug allows for different names on writable/readable pairs." />
     <MESSAGE value="Major work on refactoring writable sessions, adding checks for multiple mutations and much more." />
     <MESSAGE value="Added dynamic class reloading!" />
     <MESSAGE value="Moved test running to a different command line option -- packaging doesn't happen before running (cuts off startup time)" />
@@ -1919,6 +1914,7 @@
     <MESSAGE value="updated checker" />
     <MESSAGE value="Updated for method signature change." />
     <MESSAGE value="updated MRR contract enforcement and static checking." />
+    <MESSAGE value="added table for methods and routers, handled passthru of return values." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2041,7 +2037,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="534" column="83" selection-start="19437" selection-end="19437" vertical-scroll-proportion="0.6072187">
+        <state line="534" column="83" selection-start="19437" selection-end="19437" vertical-scroll-proportion="0.46579805">
           <folding>
             <element signature="e#8163#8301#0" expanded="true" />
             <element signature="e#8290#8291#0" expanded="true" />
