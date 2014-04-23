@@ -22,17 +22,23 @@ public class TableDiffResult {
     private String methodName;
     private VerilyParserModes.VerilyModeType existsIn;
     private boolean usedImplicitParams;
+    // note that the line number is a "best guess." Sometimes it's not possible to generate a
+    // line number that makes sense.
+    private Integer lineNumber;
 
-    public TableDiffResult(TableDiffKind diffKind, String className, String methodName, VerilyParserModes.VerilyModeType existsIn){
-        this(diffKind, className, methodName, existsIn, false);
+
+
+    public TableDiffResult(TableDiffKind diffKind, String className, String methodName, VerilyParserModes.VerilyModeType existsIn, Integer lineNumber){
+        this(diffKind, className, methodName, existsIn, lineNumber, false);
     }
 
-    public TableDiffResult(TableDiffKind diffKind, String className, String methodName, VerilyParserModes.VerilyModeType existsIn, boolean usedImplicitParams){
+    public TableDiffResult(TableDiffKind diffKind, String className, String methodName, VerilyParserModes.VerilyModeType existsIn, Integer lineNumber, boolean usedImplicitParams){
         this.diffKind   = diffKind;
         this.className  = className;
         this.methodName = methodName;
         this.existsIn   = existsIn;
         this.usedImplicitParams = usedImplicitParams;
+        this.lineNumber = lineNumber;
     }
 
 
@@ -44,7 +50,16 @@ public class TableDiffResult {
         return VerilyParserModes.VerilyModeType.TYPE_ROUTER;
     }
 
+    public Integer getLineNumber(){ return lineNumber;}
+    public void setLineNumber(Integer lineNumber){this.lineNumber=lineNumber;}
 
+
+    private String maybeLineNumber(){
+        if(getLineNumber()!=null){
+            return String.format("%s.java:%d ", className, lineNumber);
+        }
+        return "";
+    }
 
     /**
      * Prints a nice text explanation for this particular diff...
@@ -55,20 +70,20 @@ public class TableDiffResult {
 
         if(diffKind==TableDiffKind.KIND_CLASS){
             sb.append(
-                    String.format("[HomomorphismError] The %s \"%s\" exists in your %ss table, but not in your %ss table.", diffKind.toString(), className, getExistsIn(), getDoesntExistIn())
+                    String.format("%s[HomomorphismError] The %s \"%s\" exists in your %ss table, but not in your %ss table.", maybeLineNumber(), diffKind.toString(), className, getExistsIn(), getDoesntExistIn())
             );
         }else if(diffKind==TableDiffKind.KIND_METHOD){
             sb.append(
-                    String.format("[ParityError] The %s \"%s.%s\" exists in your %ss but not in its matching %s", diffKind.toString(), className, methodName, getExistsIn(), getDoesntExistIn())
+                    String.format("%s[ParityError] The %s \"%s.%s\" exists in your %ss but not in its matching %s", maybeLineNumber(), diffKind.toString(), className, methodName, getExistsIn(), getDoesntExistIn())
             );
         }else if(diffKind==TableDiffKind.KIND_SIGNATURE) {
             if(usedImplicitParams) {
                 sb.append(
-                        String.format("[SignatureMismatchError] The Signatures for the Method/Router pair %s.%s do not match. Note that the return type of the method is required to be a formal parameter of its Router.", className, methodName)
+                        String.format("%s[SignatureMismatchError] The Signatures for the Method/Router pair %s.%s do not match. Note that the return type of the method is required to be a formal parameter of its Router.", maybeLineNumber(), className, methodName)
                 );
             }else{
                 sb.append(
-                        String.format("[SignatureMismatchError] The Signatures for the Method/Router pair %s.%s do not match.", className, methodName)
+                        String.format("%s[SignatureMismatchError] The Signatures for the Method/Router pair %s.%s do not match.", maybeLineNumber(), className, methodName)
                 );
             }
         }else{

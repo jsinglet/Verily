@@ -38,6 +38,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
 
         logger.trace("{}Descending into class {}...", getDepth(), ctx.Identifier());
         classCtx.push(ctx.Identifier().toString());
+
     }
 
     @Override
@@ -74,7 +75,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
         if (methodHasNoLint() && baseSignatureIsValid(ctx) && currentClassIsFilename(ctx) && methodIsTopLevel(ctx)) {
             logger.trace("{}Discovered method \"{}\" will be mapped ➜ /{}/{}", getDepth(), ctx.Identifier(), classCtx.peek(), ctx.Identifier());
 
-            et.mapMethod(classCtx.peek(), new VerilyMethod(ctx.Identifier().getText(), methodSpec, ctx.type()));
+            et.mapMethod(classCtx.peek(), new VerilyMethod(ctx.Identifier().getText(), methodSpec, ctx.type(), ctx.getStart().getLine()));
 
         } else {
             logger.trace("{}Discovered method \"{}\" not a candidate for Verily.", getDepth(), ctx.Identifier());

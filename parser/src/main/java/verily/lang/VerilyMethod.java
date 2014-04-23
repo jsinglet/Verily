@@ -14,13 +14,18 @@ public class VerilyMethod {
     private List<VerilyType> formalParameters;
     private List<VerilyType> sessionBoundParameters;
     private List<VerilyType> nonSessionBoundParameters;
+    private Integer lineNumber;
+
     // note this is NULL for void as per the parser.
     private TypeContext type;
-    public VerilyMethod(String method, List<VerilyType> formalParameters, TypeContext type) {
+    public VerilyMethod(String method, List<VerilyType> formalParameters, TypeContext type, Integer lineNumber) {
         this.setMethod(method);
         this.setFormalParameters(formalParameters);
         this.setType(type);
     }
+
+    public Integer getLineNumber(){return this.lineNumber;}
+    public void setLineNumber(Integer lineNumber){this.lineNumber = lineNumber;}
 
     public void setType(TypeContext type){
 	this.type = type;

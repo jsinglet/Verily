@@ -107,9 +107,6 @@ public final class VerilyTable {
      * 2) The signatures of the functions must match, except for the case in which a method returns a value.
      * 3) In this case we check that the LAST argument of the Router matches the return value of it's matched method.
      *
-     * @param controllerTable
-     * @param methodTable
-     * @return
      */
     public static List<TableDiffResult> checkMRRContractWith(VerilyTable routerTable, VerilyTable methodTable) {
         return routerTable.diff(methodTable);
@@ -235,7 +232,7 @@ public final class VerilyTable {
 
             // 1) Check that it has a matching method
             if (thatSegment == null) {
-                diffResult.add(new TableDiffResult(TableDiffResult.TableDiffKind.KIND_CLASS, context, null, mode));
+                diffResult.add(new TableDiffResult(TableDiffResult.TableDiffKind.KIND_CLASS, context, null, mode,1));
                 continue;
             }
 
@@ -247,7 +244,7 @@ public final class VerilyTable {
 
                 // 2) check method exists
                 if(thatMethod==null){
-                    diffResult.add(new TableDiffResult(TableDiffResult.TableDiffKind.KIND_METHOD, context, method, mode));
+                    diffResult.add(new TableDiffResult(TableDiffResult.TableDiffKind.KIND_METHOD, context, method, mode, thisMethod.getLineNumber()));
                     continue;
                 }
 
@@ -300,7 +297,7 @@ public final class VerilyTable {
 
 
                 if(thisMethodType.size()!=thatMethodType.size()){
-                    diffResult.add(new TableDiffResult(TableDiffResult.TableDiffKind.KIND_SIGNATURE, context, method, mode, usedImplicitParams));
+                    diffResult.add(new TableDiffResult(TableDiffResult.TableDiffKind.KIND_SIGNATURE, context, method, mode, thisMethod.getLineNumber(), usedImplicitParams));
                     continue;
                 }
 
@@ -330,7 +327,7 @@ public final class VerilyTable {
 
 
                     // one difference is enough...
-                    diffResult.add(new TableDiffResult(TableDiffResult.TableDiffKind.KIND_SIGNATURE, context, method, mode));
+                    diffResult.add(new TableDiffResult(TableDiffResult.TableDiffKind.KIND_SIGNATURE, context, method, mode, thisMethod.getLineNumber()));
                     break;
                 }
             }

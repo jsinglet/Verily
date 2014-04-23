@@ -26,7 +26,7 @@ public class VerilyTableTest {
                 new VerilyType("String", "param3")
         );
 
-        m = new VerilyMethod("myMethod", formalParameters, null);
+        m = new VerilyMethod("myMethod", formalParameters, null,0);
     }
 
     @After
