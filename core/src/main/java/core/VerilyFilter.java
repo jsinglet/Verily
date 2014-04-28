@@ -14,7 +14,8 @@ public abstract class VerilyFilter {
     public enum VerilyFilterAction {
         OK,
         STOP,
-        ERROR;
+        ERROR,
+        CONTINUE;
 
         private Object reason;
         private int statusCode;

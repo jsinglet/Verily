@@ -57,11 +57,11 @@ public class AjaxHarnessFilter extends VerilyFilter {
 
             long time = System.currentTimeMillis();
 
-            response.setValue("Content-Type", "text/javascript");
-            response.setValue("Server", "Verily-Powered");
-            response.setDate("Date", time);
-            response.setDate("Last-Modified", time);
-            response.setCode(200);
+            response.setValue(CONTENT_TYPE, "text/javascript");
+            response.setValue(SERVER, SERVER_NAME);
+            response.setDate(DATE, time);
+            response.setDate(LAST_MODIFIED, time);
+            response.setCode(HTTP_OK);
 
             try {
 
