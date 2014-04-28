@@ -15,6 +15,11 @@ import static core.ResponseUtils.*;
  */
 public class ContractValidationFilter extends VerilyFilter {
 
+    protected static String filterName = "VerilyContractValidationFilter";
+
+    public ContractValidationFilter(){super(filterName);}
+
+
     @Override
     public VerilyFilterAction handleRequest(Request request, Response response, VerilyEnv env, VerilyFilterAction lastFilterResult) {
        if(lastFilterResult!=CONTINUE || !(lastFilterResult.getReason() instanceof AssertionError)){

@@ -21,21 +21,21 @@ import static core.ResponseUtils.*;
  */
 public class StaticContentFilter extends VerilyFilter {
 
+    private static String filterName = "VerilyStaticContentFilter";
+
+    public StaticContentFilter(){super(filterName);}
+
+
     @Override
     public VerilyFilterAction handleRequest(Request request, Response response, VerilyEnv env, VerilyFilterAction lastFilterResult) {
-
-        logger.info("Executing static content filter...");
 
         URL u = this.getClass().getResource(request.getPath().getPath());
 
         if (u != null && u.getPath().endsWith("/") == false) { // static content
             sendFile(u, response, logger);
 
-            logger.info("\tFilter Status: STOP");
             return getFilterResponse(STOP, HTTP_OK);
         }
-
-        logger.info("\tFilter Status: OK");
-        return OK;
+        return CONTINUE;
     }
 }

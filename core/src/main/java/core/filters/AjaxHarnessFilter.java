@@ -33,6 +33,10 @@ import static core.ResponseUtils.*;
 public class AjaxHarnessFilter extends VerilyFilter {
 
 
+    protected static String filterName = "VerilyAjaxHarnessFilter";
+
+    public AjaxHarnessFilter(){super(filterName);}
+
 
     @Override
     public VerilyFilterAction handleRequest(Request request, Response response, VerilyEnv env, VerilyFilterAction lastFilterResult) {

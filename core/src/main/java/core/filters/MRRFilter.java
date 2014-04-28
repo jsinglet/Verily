@@ -34,6 +34,10 @@ import static core.ResponseUtils.*;
  */
 public class MRRFilter extends VerilyFilter {
 
+    protected static String filterName = "VerilyMRRFilter";
+
+    public MRRFilter(){super(filterName);}
+
     private VerilyEnv env;
 
     @Override

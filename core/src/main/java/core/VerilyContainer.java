@@ -138,13 +138,16 @@ public class VerilyContainer implements Container {
         VerilyFilter.VerilyFilterAction lastAction = null;
         long ts1 = System.currentTimeMillis();
 
+        int filterNumber = 1;
         // move through filter chain
         for(VerilyFilter filter : filters) {
 
             // by design, this catch should never be reached. if this warning is ever emitted
             // it is considered a design flaw and show be fixed in the offending filter.
             try {
+                logger.info("[{}] - Executing Filter: {}", filterNumber, filter.getFilterName());
                 lastAction = filter.handleRequest(request, response, getEnv(), lastAction);
+                logger.info("\tFilter Status: {}", lastAction);
             }catch(Exception e){
                 logger.warn("[{}] - \"{} {}\" {} - last filter failed with exception {}", new Date(), request.getMethod(), request.getPath().getPath(), lastAction.getStatusCode(), e.getMessage());
                 break;
@@ -156,6 +159,8 @@ public class VerilyContainer implements Container {
                 dispatchError(request, response, lastAction.getReason(), lastAction.getStatusCode());
                 break;
             } // otherwise status is CONTINUE or OK.
+
+            filterNumber++;
         }
 
         long ts2 = System.currentTimeMillis();

@@ -9,7 +9,14 @@ import verily.lang.util.MRRTableSet;
 public abstract class VerilyFilter {
 
     protected final Logger logger = LoggerFactory.getLogger(VerilyFilter.class);
+    protected String filterName;
 
+    public VerilyFilter(String filterName){
+        this.filterName = filterName;
+    }
+    public String getFilterName(){
+        return filterName;
+    }
 
     public enum VerilyFilterAction {
         OK,         // OK means we did some processing and it worked.
