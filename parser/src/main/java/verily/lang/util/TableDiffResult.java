@@ -56,7 +56,7 @@ public class TableDiffResult {
 
     private String maybeLineNumber(){
         if(getLineNumber()!=null){
-            return String.format("%s.java:%d ", className, lineNumber);
+            return String.format("%s ",String.format("%s.java:%d:", className, lineNumber));
         }
         return "";
     }
@@ -70,20 +70,20 @@ public class TableDiffResult {
 
         if(diffKind==TableDiffKind.KIND_CLASS){
             sb.append(
-                    String.format("%s[HomomorphismError] The %s \"%s\" exists in your %ss table, but not in your %ss table.", maybeLineNumber(), diffKind.toString(), className, getExistsIn(), getDoesntExistIn())
+                    String.format("%sThe %s \"%s\" exists in your %ss table, but not in your %ss table [HomomorphismError]", maybeLineNumber(), diffKind.toString(), className, getExistsIn(), getDoesntExistIn())
             );
         }else if(diffKind==TableDiffKind.KIND_METHOD){
             sb.append(
-                    String.format("%s[ParityError] The %s \"%s.%s\" exists in your %ss but not in its matching %s", maybeLineNumber(), diffKind.toString(), className, methodName, getExistsIn(), getDoesntExistIn())
+                    String.format("%sThe %s \"%s.%s\" exists in your %ss but not in its matching %s [ParityError]", maybeLineNumber(), diffKind.toString(), className, methodName, getExistsIn(), getDoesntExistIn())
             );
         }else if(diffKind==TableDiffKind.KIND_SIGNATURE) {
             if(usedImplicitParams) {
                 sb.append(
-                        String.format("%s[SignatureMismatchError] The Signatures for the Method/Router pair %s.%s do not match. Note that the return type of the method is required to be a formal parameter of its Router.", maybeLineNumber(), className, methodName)
+                        String.format("%sThe Signatures for the Method/Router pair %s.%s do not match. Note that the return type of the method is required to be a formal parameter of its Router [SignatureMismatchError]", maybeLineNumber(), className, methodName)
                 );
             }else{
                 sb.append(
-                        String.format("%s[SignatureMismatchError] The Signatures for the Method/Router pair %s.%s do not match.", maybeLineNumber(), className, methodName)
+                        String.format("%sThe Signatures for the Method/Router pair %s.%s do not match [SignatureMismatchError]", maybeLineNumber(), className, methodName)
                 );
             }
         }else{

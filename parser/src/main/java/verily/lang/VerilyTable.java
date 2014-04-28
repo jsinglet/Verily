@@ -1,6 +1,8 @@
 package verily.lang;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import verily.lang.exceptions.MethodNotMappedException;
 import verily.lang.exceptions.TableHomomorphismException;
 import verily.lang.util.TableDiffResult;
@@ -11,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 public final class VerilyTable {
+
+    final Logger logger = LoggerFactory.getLogger(VerilyTable.class);
 
 
     private int size;
@@ -244,6 +248,7 @@ public final class VerilyTable {
 
                 // 2) check method exists
                 if(thatMethod==null){
+                    logger.trace("Adding Parity error at line number {}", thisMethod.getLineNumber());
                     diffResult.add(new TableDiffResult(TableDiffResult.TableDiffKind.KIND_METHOD, context, method, mode, thisMethod.getLineNumber()));
                     continue;
                 }

@@ -22,6 +22,7 @@ public class VerilyMethod {
         this.setMethod(method);
         this.setFormalParameters(formalParameters);
         this.setType(type);
+        this.setLineNumber(lineNumber);
     }
 
     public Integer getLineNumber(){return this.lineNumber;}

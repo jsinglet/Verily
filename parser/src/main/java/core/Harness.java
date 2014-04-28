@@ -33,6 +33,12 @@ public class Harness {
         methodsPath = "methods";
     }
 
+    //
+    // Note to future explorers:
+    //
+    // To turn on more logging, manipulate the simplelogger system property like so:
+    // -Dorg.slf4j.simpleLogger.defaultLogLevel=trace
+    //
     public static void main(String args[]) throws IOException, TableHomomorphismException {
 
         Harness h = new Harness(Paths.get(""));
@@ -46,6 +52,11 @@ public class Harness {
             if(e.errorLocations!=null){
                 for(TableDiffResult r : e.errorLocations){
                     System.err.println(r.toString());
+                }
+                if(e.errorLocations.size()==1){
+                    System.err.println("1 error");
+                }else{
+                    System.err.println(String.format("\n%d errors", e.errorLocations.size()));
                 }
             }
         }

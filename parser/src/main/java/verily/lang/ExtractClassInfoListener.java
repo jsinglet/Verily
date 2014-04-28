@@ -70,12 +70,14 @@ public class ExtractClassInfoListener extends JavaBaseListener {
     @Override
     public void exitMethodDeclaration(MethodDeclarationContext ctx) {
 
-        logger.trace("{}Evaluating class method: {}", getDepth(), ctx.Identifier());
+        int maybeLineNumber = ctx.getStart().getLine();
+
+        logger.trace("{}Evaluating class method: \"{}\" on line {}", getDepth(), ctx.Identifier(), maybeLineNumber);
 
         if (methodHasNoLint() && baseSignatureIsValid(ctx) && currentClassIsFilename(ctx) && methodIsTopLevel(ctx)) {
-            logger.trace("{}Discovered method \"{}\" will be mapped ➜ /{}/{}", getDepth(), ctx.Identifier(), classCtx.peek(), ctx.Identifier());
+            logger.trace("{}Discovered method {}:{} will be mapped ➜ /{}/{}", getDepth(), ctx.Identifier(), maybeLineNumber, classCtx.peek(), ctx.Identifier());
 
-            et.mapMethod(classCtx.peek(), new VerilyMethod(ctx.Identifier().getText(), methodSpec, ctx.type(), ctx.getStart().getLine()));
+            et.mapMethod(classCtx.peek(), new VerilyMethod(ctx.Identifier().getText(), methodSpec, ctx.type(), maybeLineNumber));
 
         } else {
             logger.trace("{}Discovered method \"{}\" not a candidate for Verily.", getDepth(), ctx.Identifier());
