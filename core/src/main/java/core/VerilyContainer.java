@@ -141,14 +141,21 @@ public class VerilyContainer implements Container {
         // move through filter chain
         for(VerilyFilter filter : filters) {
 
-            lastAction = filter.handleRequest(request, response, getEnv(), lastAction);
+            // by design, this catch should never be reached. if this warning is ever emitted
+            // it is considered a design flaw and show be fixed in the offending filter.
+            try {
+                lastAction = filter.handleRequest(request, response, getEnv(), lastAction);
+            }catch(Exception e){
+                logger.warn("[{}] - \"{} {}\" {} - last filter failed with exception {}", new Date(), request.getMethod(), request.getPath().getPath(), lastAction.getStatusCode(), e.getMessage());
+                break;
+            }
 
             if(lastAction==STOP){
                 break;
             }else if(lastAction==ERROR){
                 dispatchError(request, response, lastAction.getReason(), lastAction.getStatusCode());
                 break;
-            }
+            } // otherwise status is CONTINUE or OK.
         }
 
         long ts2 = System.currentTimeMillis();

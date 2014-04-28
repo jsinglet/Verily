@@ -45,7 +45,7 @@ public class AjaxHarnessFilter extends VerilyFilter {
             return getFilterResponse(STOP, HTTP_OK);
         }
 
-        return OK;
+        return CONTINUE;
     }
 
 
