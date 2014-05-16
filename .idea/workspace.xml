@@ -2,23 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c425601c-3ed7-4570-b135-f22be92e7e42" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/ExtractClassInfoListener.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/ExtractClassInfoListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/core/Harness.java" afterPath="$PROJECT_DIR$/parser/src/main/java/core/Harness.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/util/TableDiffResult.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/util/TableDiffResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyMethod.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyMethod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyTable.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyTable.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/core/checkers/ContractsChecker.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/core/checkers/MRRChecker.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyChainableAction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyChecker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/filters/AjaxHarnessFilter.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/filters/AjaxHarnessFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/filters/ContractValidationFilter.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/filters/ContractValidationFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/filters/MRRFilter.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/filters/MRRFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/MethodNotMappedException.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/MethodNotMappedException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/test/java/PwEUtilTest.java" afterPath="$PROJECT_DIR$/core/src/test/java/PwEUtilTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/filters/StaticContentFilter.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/filters/StaticContentFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/TableHomomorphismException.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/TableHomomorphismException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/src/main/java/routers/TestBadder.java" afterPath="$PROJECT_DIR$/samples/poll/src/main/java/routers/TestBadder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/Verily.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/Verily.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/VerilyEnv.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyEnv.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/VerilyFilter.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/VerilyMain.java" afterPath="$PROJECT_DIR$/core/src/main/java/VerilyMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/reification/VerilyModificationWatcher.java" afterPath="$PROJECT_DIR$/core/src/main/java/reification/VerilyModificationWatcher.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PwE.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="samples/poll/target/" />
-    <file path="/Dummy.txt" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398704321168" ignored="false" />
-    <file path="/VerilyContainer.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1396900925458" ignored="false" />
-    <file path="/fragment.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398366617648" ignored="false" />
-    <file path="$USER_HOME$/IdeaProjects/untitled1/src/main/java/methods/Test.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1396900976513" ignored="false" />
+    <file path="/Dummy.txt" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400190022597" ignored="false" />
+    <file path="/VerilyContainer.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400218743738" ignored="false" />
+    <file path="/fragment.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400217202752" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/untitled1/src/main/java/methods/Test.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400219801556" ignored="false" />
     <file path="/VerilyTable.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398366830073" ignored="false" />
     <file path="/Harness.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398368633129" ignored="false" />
-    <file path="/VerilyEnv.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1396900285375" ignored="false" />
+    <file path="/VerilyEnv.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400216443382" ignored="false" />
     <file path="/ReadWrite.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398281604395" ignored="false" />
     <file path="/ExtractClassInfoListener.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398367997310" ignored="false" />
     <file path="/TableDiffResult.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398368242384" ignored="false" />
@@ -29,6 +42,22 @@
     <file path="$PROJECT_DIR$/../VerilyIdeaPlugin/src/verily/VerilyErrorLineMarkerProvider.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398284762931" ignored="false" />
     <file path="/VerilyErrorLineMarkerProvider.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398284618965" ignored="false" />
     <file path="/*.regexp" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398366940704" ignored="false" />
+    <file path="/File Header.txt.ft" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398706450327" ignored="false" />
+    <file path="/VerilyFilter.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398717494670" ignored="false" />
+    <file path="/StaticContentFilter.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398717828173" ignored="false" />
+    <file path="/ResponseUtils.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398711299300" ignored="false" />
+    <file path="/PwEUtilTest.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398707959311" ignored="false" />
+    <file path="/Constants.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398709691748" ignored="false" />
+    <file path="/AjaxHarnessFilter.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398717619675" ignored="false" />
+    <file path="/MRRFilter.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398717652879" ignored="false" />
+    <file path="/ContractValidationFilter.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398717639314" ignored="false" />
+    <file path="/FilterError.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400217683576" ignored="false" />
+    <file path="/VerilyMain.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400218813447" ignored="false" />
+    <file path="/Verily.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400214101075" ignored="false" />
+    <file path="/VerilyModificationWatcher.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400219682650" ignored="false" />
+    <file path="/VerilyChecker.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400218516259" ignored="false" />
+    <file path="/MMRChecker.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400218449412" ignored="false" />
+    <file path="/Test.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400219798783" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +115,7 @@
       </breakpoint>
     </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java" line="407" class="core.VerilyContainer" package="core">
+      <breakpoint url="file://$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java" line="10" class="VerilyContainer.java" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -170,100 +199,178 @@
     <favorites_list name="PwE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Harness.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/parser/src/main/java/core/Harness.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="46" selection-start="1100" selection-end="1100" vertical-scroll-proportion="0.024271844">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GMSClassInfoListener.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/GMSClassInfoListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="166" column="46" selection-start="5563" selection-end="5633" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VerilyMain.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/java/VerilyMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="345" column="17" selection-start="13516" selection-end="13516" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parser/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="24" selection-start="1557" selection-end="1569" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VerilyTable.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyTable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="0" selection-start="1030" selection-end="1030" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExtractClassInfoListener.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/ExtractClassInfoListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="55" selection-start="2971" selection-end="2971" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MethodNotMappedException.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/MethodNotMappedException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="13" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VerilyMethod.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyMethod.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="37" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TableDiffResult.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/util/TableDiffResult.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="41" selection-start="3376" selection-end="3376" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5824847">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="VerilyChecker.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyChecker.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="21" column="63" selection-start="593" selection-end="593" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MRRFilter.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/main/java/core/filters/MRRFilter.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="160" column="31" selection-start="6198" selection-end="6198" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="FilterError.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/main/java/core/filters/FilterError.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="7" column="13" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MRRChecker.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/main/java/core/checkers/MRRChecker.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="37" column="21" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="VerilyChainableAction.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyChainableAction.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="8" column="4" selection-start="242" selection-end="242" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="StaticContentFilter.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/main/java/core/filters/StaticContentFilter.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="25" column="23" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AjaxHarnessFilter.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/main/java/core/filters/AjaxHarnessFilter.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="42" column="32" selection-start="1143" selection-end="1143" vertical-scroll-proportion="0.0">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="VerilyFilter.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyFilter.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="31" column="0" selection-start="615" selection-end="1016" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="VerilyContainer.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="108" column="79" selection-start="3364" selection-end="3364" vertical-scroll-proportion="-13.8">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#1111#1125#0" expanded="true" />
+                    <element signature="e#1177#1192#0" expanded="true" />
+                    <element signature="e#3602#3740#0" expanded="true" />
+                    <element signature="e#3729#3730#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="VerilyModificationWatcher.java" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/core/src/main/java/reification/VerilyModificationWatcher.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="72" column="0" selection-start="1969" selection-end="1969" vertical-scroll-proportion="0.9428076">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="VerilyMain.java" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/core/src/main/java/VerilyMain.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="172" column="13" selection-start="5846" selection-end="6266" vertical-scroll-proportion="0.51993066">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PwEUtilTest.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/test/java/PwEUtilTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="35" column="23" selection-start="933" selection-end="933" vertical-scroll-proportion="-9.2">
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="TestBadder.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/samples/poll/src/main/java/routers/TestBadder.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="11" column="6" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="TableHomomorphismException.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/TableHomomorphismException.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="6" column="65" selection-start="164" selection-end="164" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MethodNotMappedException.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/MethodNotMappedException.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="2" column="63" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="VerilyUtil.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/VerilyUtil.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="74" column="23" selection-start="2056" selection-end="2056" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -287,22 +394,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/stubs/update_links" />
-        <option value="$PROJECT_DIR$/installer/install.xml" />
-        <option value="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyParserModes.java" />
-        <option value="$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/TableHomomorphismException.java" />
-        <option value="$PROJECT_DIR$/core/src/main/java/VerilyMain.java" />
-        <option value="$PROJECT_DIR$/parser/src/main/java/verily/lang/util/MRRTableSet.java" />
-        <option value="$PROJECT_DIR$/core/src/main/java/core/VerilyEnv.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/VerilyFilter.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/checkers/MMRChecker.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/filters/AjaxHarnessFilter.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/filters/ContractValidationFilter.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/filters/FilterError.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/filters/MRRFilter.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/filters/StaticContentFilter.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/checkers/MRRChecker.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/VerilyChecker.java" />
         <option value="$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java" />
-        <option value="$PROJECT_DIR$/samples/poll/src/main/java/methods/ReadWrite.java" />
-        <option value="$PROJECT_DIR$/parser/src/test/java/verily/lang/VerilyTableTest.java" />
-        <option value="$PROJECT_DIR$/parser/src/test/java/verily/lang/VerilyMethodTest.java" />
-        <option value="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyTable.java" />
-        <option value="$PROJECT_DIR$/parser/src/main/java/verily/lang/ExtractClassInfoListener.java" />
-        <option value="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyMethod.java" />
-        <option value="$PROJECT_DIR$/parser/src/main/java/verily/lang/util/TableDiffResult.java" />
-        <option value="$PROJECT_DIR$/parser/src/main/java/core/Harness.java" />
+        <option value="$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/MethodNotMappedException.java" />
+        <option value="$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/TableHomomorphismException.java" />
+        <option value="$PROJECT_DIR$/core/src/test/java/PwEUtilTest.java" />
+        <option value="$PROJECT_DIR$/samples/poll/src/main/java/routers/TestBadder.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/VerilyMain.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/reification/VerilyModificationWatcher.java" />
       </list>
     </option>
   </component>
@@ -357,8 +464,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1696" />
-    <option name="height" value="1026" />
+    <option name="width" value="1936" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -371,9 +478,23 @@
             <id>Android Lint</id>
           </State>
           <State>
+            <id>General</id>
+          </State>
+          <State>
             <id>Plugin DevKit</id>
           </State>
+          <State>
+            <id>Scala: General</id>
+          </State>
+          <State>
+            <id>XPath</id>
+          </State>
         </expanded-state>
+        <selected-state>
+          <State>
+            <id>Abstraction issues</id>
+          </State>
+        </selected-state>
       </profile-state>
     </entry>
   </component>
@@ -405,6 +526,16 @@
       <sortByType ProjectPane="false" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -836,6 +967,14 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -885,6 +1024,104 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="filters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="checkers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane">
@@ -897,20 +1134,10 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="298" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="300" />
@@ -945,7 +1172,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="options.lastSelected" value="copyright.profiles" />
     <property name="project.structure.side.proportion" value="0.1954023" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
@@ -954,12 +1181,12 @@
     <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="" />
       <recent name="pwe.lang" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/samples/poll/src/main/resources" />
@@ -969,13 +1196,6 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="pwe.lang.exceptions" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="verily.lang" />
-      <recent name="core" />
-      <recent name="utils" />
-      <recent name="reification" />
-      <recent name="java.lang" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\John\SkyDrive\Research\Interaction Oriented Programming\Verily\stubs\cygwin" />
       <recent name="$PROJECT_DIR$/parser/src/main/java/verily/lang" />
@@ -983,8 +1203,15 @@
       <recent name="$PROJECT_DIR$/core/src/main/resources/css" />
       <recent name="$PROJECT_DIR$/src/test" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="verily.lang" />
+      <recent name="core" />
+      <recent name="utils" />
+      <recent name="reification" />
+      <recent name="java.lang" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.Harness">
+  <component name="RunManager" selected="Application.VerilyMain">
     <configuration default="false" name="Harness" type="Application" factoryName="Application" singleton="true" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="core.Harness" />
@@ -1012,31 +1239,8 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="VerilyMain" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-run -w -n 2" />
+      <option name="PROGRAM_PARAMETERS" value="-run -w -n 1" />
       <option name="WORKING_DIRECTORY" value="file://$USER_HOME$/IdeaProjects/untitled1" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="core" />
-      <envs />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="VerilyTestMain" type="Application" factoryName="Application" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="TestMain" />
-      <option name="VM_PARAMETERS" value="-Dsjava.system.class.loader=reification.PwEClassLoader" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/samples/poll" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
@@ -1100,6 +1304,29 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="parser" />
       <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="PwEUtilTest" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="core" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PwEUtilTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
@@ -1345,17 +1572,17 @@
       <item index="0" class="java.lang.String" itemvalue="Application.VerilyMain (help)" />
       <item index="1" class="java.lang.String" itemvalue="Application.Harness" />
       <item index="2" class="java.lang.String" itemvalue="Application.VerilyMain" />
-      <item index="3" class="java.lang.String" itemvalue="Application.VerilyTestMain" />
-      <item index="4" class="java.lang.String" itemvalue="Application.GMSChecker" />
-      <item index="5" class="java.lang.String" itemvalue="Application.Test" />
+      <item index="3" class="java.lang.String" itemvalue="Application.GMSChecker" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Test" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.PwEUtilTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Harness" />
-        <item index="1" class="java.lang.String" itemvalue="Application.VerilyMain" />
-        <item index="2" class="java.lang.String" itemvalue="Application.GMSChecker" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Test" />
-        <item index="4" class="java.lang.String" itemvalue="Application.VerilyTestMain" />
+        <item index="0" class="java.lang.String" itemvalue="Application.VerilyMain" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.PwEUtilTest" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Harness" />
+        <item index="3" class="java.lang.String" itemvalue="Application.GMSChecker" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Test" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -1731,7 +1958,27 @@
       <created>1398284998070</created>
       <updated>1398284998070</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="updates to line numbering">
+      <created>1398705302322</created>
+      <updated>1398705302322</updated>
+    </task>
+    <task id="LOCAL-00084" summary="work moving Verily to a handler model">
+      <created>1398709269327</created>
+      <updated>1398709269327</updated>
+    </task>
+    <task id="LOCAL-00085" summary="more work on filter based execution, added ContractValidationFilter, as well as the main MRR filter.">
+      <created>1398715640623</created>
+      <updated>1398715640623</updated>
+    </task>
+    <task id="LOCAL-00086" summary="more work on filter based execution, added ContractValidationFilter, as well as the main MRR filter.">
+      <created>1398716831148</created>
+      <updated>1398716831148</updated>
+    </task>
+    <task id="LOCAL-00087" summary="more clear processing of filters, filter outputs are now sorted and numbered in the response.">
+      <created>1398717922479</created>
+      <updated>1398717922479</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1758,28 +2005,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23905724" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3869105" sideWeight="0.59179926" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6987296" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49156356" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26260504" sideWeight="0.34455323" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27221596" sideWeight="0.40820074" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26862925" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2820019" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6717998" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13043478" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24919957" sideWeight="0.6717998" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1272872" sideWeight="0.6969147" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15361077" sideWeight="0.76094276" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27461708" sideWeight="0.65544677" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2139808" sideWeight="0.6130895" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29258904" sideWeight="0.65544677" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15672235" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31306714" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
@@ -1789,7 +2037,6 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996324" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42294714" sideWeight="0.60298824" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28233972" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15789473" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1844,7 +2091,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="added line numbering to various table checking issues." />
+    <option name="LAST_COMMIT_MESSAGE" value="more clear processing of filters, filter outputs are now sorted and numbered in the response." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1858,10 +2105,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Added dynamic class reloading!" />
-    <MESSAGE value="Moved test running to a different command line option -- packaging doesn't happen before running (cuts off startup time)" />
-    <MESSAGE value="added some more tests." />
-    <MESSAGE value="added table reload" />
     <MESSAGE value="modified translation table reloading to only happen if the class in question is actually a controller or method." />
     <MESSAGE value="minor change" />
     <MESSAGE value="Added table printing mechanism for use when reloading" />
@@ -1883,6 +2126,10 @@
     <MESSAGE value="updated MRR contract enforcement and static checking." />
     <MESSAGE value="added table for methods and routers, handled passthru of return values." />
     <MESSAGE value="added line numbering to various table checking issues." />
+    <MESSAGE value="updates to line numbering" />
+    <MESSAGE value="work moving Verily to a handler model" />
+    <MESSAGE value="more work on filter based execution, added ContractValidationFilter, as well as the main MRR filter." />
+    <MESSAGE value="more clear processing of filters, filter outputs are now sorted and numbered in the response." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1894,113 +2141,135 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyEnv.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/filters/ContractValidationFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="29" selection-start="1493" selection-end="1493" vertical-scroll-proportion="0.0" />
+        <state line="22" column="23" selection-start="530" selection-end="531" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/filters/StaticContentFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="433" column="46" selection-start="15989" selection-end="15989" vertical-scroll-proportion="0.0">
+        <state line="25" column="23" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/filters/AjaxHarnessFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="32" selection-start="1143" selection-end="1143" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/filters/FilterError.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="13" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samples/poll/src/main/java/methods/ReadWrite.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/filters/MRRFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="6" selection-start="408" selection-end="408" vertical-scroll-proportion="0.0">
+        <state line="160" column="31" selection-start="6198" selection-end="6198" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="615" selection-end="1016" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser/src/test/java/verily/lang/VerilyTableTest.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyChainableAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="65" selection-start="661" selection-end="661" vertical-scroll-proportion="0.0">
+        <state line="8" column="4" selection-start="242" selection-end="242" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser/src/test/java/verily/lang/VerilyMethodTest.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="33" selection-start="1101" selection-end="1101" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/TableHomomorphismException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="107" selection-start="382" selection-end="425" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="21" column="63" selection-start="593" selection-end="593" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser/pom.xml">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/checkers/MRRChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="24" selection-start="1557" selection-end="1569" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="37" column="21" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/MethodNotMappedException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
+        <state line="2" column="63" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/GMSClassInfoListener.java">
+    <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/TableHomomorphismException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="166" column="46" selection-start="5563" selection-end="5633" vertical-scroll-proportion="0.0">
+        <state line="6" column="65" selection-start="164" selection-end="164" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/test/java/PwEUtilTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="23" selection-start="933" selection-end="933" vertical-scroll-proportion="-9.2">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samples/poll/src/main/java/routers/TestBadder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="6" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="108" column="79" selection-start="3364" selection-end="3364" vertical-scroll-proportion="-13.8">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1111#1125#0" expanded="true" />
+            <element signature="e#1177#1192#0" expanded="true" />
+            <element signature="e#3602#3740#0" expanded="true" />
+            <element signature="e#3729#3730#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/java/VerilyMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="345" column="17" selection-start="13516" selection-end="13516" vertical-scroll-proportion="0.0">
+        <state line="172" column="13" selection-start="5846" selection-end="6266" vertical-scroll-proportion="0.51993066">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/ExtractClassInfoListener.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/reification/VerilyModificationWatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="55" selection-start="2971" selection-end="2971" vertical-scroll-proportion="0.0">
+        <state line="72" column="0" selection-start="1969" selection-end="1969" vertical-scroll-proportion="0.9428076">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="37" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="1030" selection-end="1030" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/util/TableDiffResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="41" selection-start="3376" selection-end="3376" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser/src/main/java/core/Harness.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="46" selection-start="1100" selection-end="1100" vertical-scroll-proportion="0.024271844">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2014,6 +2283,18 @@
             <option name="proportions">
               <list>
                 <option value="0.1954023" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="Copyright.UI">
+        <settings>
+          <last-edited>GPL</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>
@@ -2033,6 +2314,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
+          <last-edited>grails-1.2.2</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -2056,12 +2338,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>core</last-edited>
+          <last-edited>Verily</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.1954023" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

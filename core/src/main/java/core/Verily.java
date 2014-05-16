@@ -16,6 +16,7 @@ public class Verily {
     public static final String ARG_DAEMON = "d";
     public static final String ARG_THREADS = "n";
     public static final String ARG_NUM_THREADS = "threads";
+    public static final String ARG_CONTRACTS = "contracts";
 
 
 

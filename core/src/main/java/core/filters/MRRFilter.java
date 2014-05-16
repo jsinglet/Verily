@@ -1,6 +1,7 @@
 package core.filters;
 
 import core.Verily;
+import core.VerilyChainableAction;
 import core.VerilyEnv;
 import core.VerilyFilter;
 import exceptions.InvalidFormalArgumentsException;
@@ -18,15 +19,13 @@ import verily.lang.exceptions.MethodNotMappedException;
 
 import java.io.OutputStream;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import static core.VerilyFilter.VerilyFilterAction.*;
+import static core.VerilyChainableAction.*;
 import static core.Constants.*;
-import static core.ResponseUtils.*;
 
 
 /**
@@ -41,7 +40,7 @@ public class MRRFilter extends VerilyFilter {
     private VerilyEnv env;
 
     @Override
-    public VerilyFilterAction handleRequest(Request request, Response response, VerilyEnv env, VerilyFilterAction lastFilterResult) {
+    public VerilyChainableAction handleRequest(Request request, Response response, VerilyEnv env, VerilyChainableAction lastFilterResult) {
 
         this.env = env;
 

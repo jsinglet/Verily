@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import verily.lang.exceptions.TableHomomorphismException;
 import utils.VerilyUtil;
+import verily.lang.util.TableDiffResult;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -66,19 +67,29 @@ public class VerilyModificationWatcher implements Runnable, FileListener {
             VerilyUtil.reloadProject();
 
             if (fileChangeEvent.getFile().getParent().getName().getBaseName().equals("methods") || fileChangeEvent.getFile().getParent().getName().getBaseName().equals("routers")) {
-                VerilyContainer.getContainer().reloadTranslationTable();
+                VerilyContainer.getContainer().verilize();
             }
 
         } catch (VerilyCompileFailedException e) {
             logger.info("Errors exist in your project: {}", e.getMessage());
         } catch (TableHomomorphismException e) {
-            logger.info("Could not reload the MRR mappings. Won't touch the old one.");
-            logger.error("Error was: {}", e.getMessage());
 
+            logger.error(e.getMessage());
+
+            logger.error("MRR Contract Violations:");
+            logger.error("========================");
+
+            if(e.errorLocations!=null){
+                int i=1;
+                for(TableDiffResult r : e.errorLocations){
+                    logger.error(String.format("%d: %s", i, r.toString()));
+                    i++;
+                }
+            }
+            logger.info("Could not reload the MRR mappings. Won't touch the old one.");
         }
 
         logger.info("Reloading Complete.");
-
 
     }
 }

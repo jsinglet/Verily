@@ -17,6 +17,7 @@ public class VerilyEnv {
     private int port;
     private boolean reload;
     private boolean daemon;
+    private boolean enableContracts;
 
 
     public Path getHome() {
@@ -90,5 +91,13 @@ public class VerilyEnv {
 
     public void setDaemon(boolean daemon) {
         this.daemon = daemon;
+    }
+
+    public boolean isEnableContracts() {
+        return enableContracts;
+    }
+
+    public void setEnableContracts(boolean enableContracts) {
+        this.enableContracts = enableContracts;
     }
 }

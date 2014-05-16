@@ -6,36 +6,25 @@ package core;
  *
  */
 
-import content.TemplateFactory;
+import core.checkers.MRRChecker;
 import core.filters.*;
-import exceptions.InvalidFormalArgumentsException;
-import freemarker.template.Template;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.SerializationUtils;
-import org.apache.commons.lang.StringUtils;
-import org.simpleframework.http.Cookie;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.simpleframework.http.core.Container;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import verily.lang.*;
-import verily.lang.exceptions.MethodNotMappedException;
 import verily.lang.exceptions.TableHomomorphismException;
 import reification.*;
-import utils.VerilyUtil;
 import verily.lang.util.MRRTableSet;
 
 import java.io.*;
-import java.net.URL;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 
-import static core.VerilyFilter.VerilyFilterAction.*;
-import static core.Constants.*;
+import static core.VerilyChainableAction.*;
 import static core.ResponseUtils.*;
 
 public class VerilyContainer implements Container {
@@ -48,13 +37,15 @@ public class VerilyContainer implements Container {
     private VerilyEnv env;
 
     List<VerilyFilter> filters = new ArrayList<VerilyFilter>();
+    List<VerilyChecker> checkers = new ArrayList<VerilyChecker>();
+
 
     private VerilyContainer(VerilyEnv env) {
         this.setEnv(env);
         logger.info("Constructed new Verily container @ {}", new Date());
     }
 
-    public static VerilyContainer getContainer(int threads) throws IOException, TableHomomorphismException {
+    public static VerilyContainer getContainer(int threads) throws Exception {
 
         final Logger logger = LoggerFactory.getLogger(VerilyContainer.class);
 
@@ -70,18 +61,10 @@ public class VerilyContainer implements Container {
             // where are we?
             env.setHome(Paths.get(""));
 
-            //verify that this is a Verily application
-            //env.getHome().
-
-            // set up the translation table
-            Harness applicationHarness = new Harness(env.getHome());
-
-            MRRTableSet translationTable = applicationHarness.extractTranslationTable();
-
-            env.setTranslationTable(translationTable);
-
             verilyContainer = new VerilyContainer(env);
 
+            verilyContainer.initCheckers();
+            verilyContainer.verilize();
             verilyContainer.initFilters();
 
             logger.info("Created new thread pool with [{}] threads.", threads);
@@ -104,6 +87,10 @@ public class VerilyContainer implements Container {
 
     }
 
+    protected void initCheckers(){
+        checkers.add(new MRRChecker());
+    }
+
     public static VerilyContainer getContainer() {
         if (verilyContainer == null) {
           throw new RuntimeException("Container not initialized.");
@@ -111,13 +98,20 @@ public class VerilyContainer implements Container {
         return verilyContainer;
     }
 
-    public void reloadTranslationTable() throws IOException, TableHomomorphismException {
-        Harness applicationHarness = new Harness(env.getHome());
 
-        MRRTableSet translationTable = applicationHarness.extractTranslationTable();
+    public void verilize() throws Exception {
 
-        env.setTranslationTable(translationTable);
+        VerilyChainableAction lastResult = null;
 
+        for(VerilyChecker checker : checkers){
+            lastResult = checker.check(getEnv(), lastResult);
+
+            if(lastResult==ERROR){
+                Exception e = (Exception)lastResult.getReason();
+                throw e;
+            }
+
+        }
     }
 
     @Override
@@ -135,7 +129,7 @@ public class VerilyContainer implements Container {
 
     public void doHandle(Request request, Response response){
 
-        VerilyFilter.VerilyFilterAction lastAction = null;
+        VerilyChainableAction lastAction = null;
         long ts1 = System.currentTimeMillis();
 
         int filterNumber = 1;

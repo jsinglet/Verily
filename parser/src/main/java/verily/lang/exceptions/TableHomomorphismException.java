@@ -4,7 +4,7 @@ import verily.lang.util.TableDiffResult;
 
 import java.util.List;
 
-public class TableHomomorphismException extends Throwable {
+public class TableHomomorphismException extends RuntimeException  {
 
     public List<TableDiffResult> errorLocations;
 

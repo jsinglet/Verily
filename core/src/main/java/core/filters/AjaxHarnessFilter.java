@@ -2,17 +2,15 @@ package core.filters;
 
 import content.TemplateFactory;
 import core.Verily;
+import core.VerilyChainableAction;
 import core.VerilyEnv;
 import core.VerilyFilter;
 import freemarker.template.Template;
 import org.apache.commons.lang.StringUtils;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import verily.lang.VerilyTable;
 import verily.lang.VerilyType;
-import verily.lang.util.MRRTableSet;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -22,9 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static core.VerilyFilter.VerilyFilterAction.*;
+import static core.VerilyChainableAction.*;
 import static core.Constants.*;
-import static core.ResponseUtils.*;
 
 
 /**
@@ -39,7 +36,7 @@ public class AjaxHarnessFilter extends VerilyFilter {
 
 
     @Override
-    public VerilyFilterAction handleRequest(Request request, Response response, VerilyEnv env, VerilyFilterAction lastFilterResult) {
+    public VerilyChainableAction handleRequest(Request request, Response response, VerilyEnv env, VerilyChainableAction lastFilterResult) {
 
         if(request.getPath().toString().equals("/_verilyApp.js")) {
 

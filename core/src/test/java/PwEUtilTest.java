@@ -1,10 +1,11 @@
+import core.VerilyChainableAction;
 import core.VerilyFilter;
 import org.junit.Test;
 import utils.VerilyUtil;
 
 import static org.junit.Assert.assertTrue;
 
-import static core.VerilyFilter.VerilyFilterAction.*;
+import static core.VerilyChainableAction.*;
 
 public class PwEUtilTest {
     @Test
@@ -32,11 +33,11 @@ public class PwEUtilTest {
     @Test
     public void testEnumPassing(){
 
-        VerilyFilter.VerilyFilterAction a1 = OK;
-        VerilyFilter.VerilyFilterAction a2 = ERROR;
+        VerilyChainableAction a1 = OK;
+        VerilyChainableAction a2 = ERROR;
 
-        VerilyFilter.VerilyFilterAction b1 = OK;
-        VerilyFilter.VerilyFilterAction b2 = ERROR;
+        VerilyChainableAction b1 = OK;
+        VerilyChainableAction b2 = ERROR;
 
         assertTrue(a1==b1);
         assertTrue(a2==b2);

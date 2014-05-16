@@ -79,6 +79,7 @@ public class VerilyMain {
                 .withDescription("the number of threads to create for handling requests.")
                 .create(Verily.ARG_THREADS);
 
+        Option contracts = new Option(Verily.ARG_CONTRACTS, "enable checking of contracts");
 
         argList.addOption(port);
         argList.addOption(help);
@@ -91,6 +92,7 @@ public class VerilyMain {
         argList.addOption(test);
         argList.addOption(daemon);
         argList.addOption(threads);
+        argList.addOption(contracts);
 
         System.setProperty(SimpleLogger.LEVEL_IN_BRACKETS_KEY, "true");
         System.setProperty(SimpleLogger.SHOW_LOG_NAME_KEY, "false");
@@ -152,9 +154,6 @@ public class VerilyMain {
         } catch (NoSuchFileException e) {
             System.err.println(VerilyUtil.getMessage("MsgInvalidDirectoryFormat"));
             EXIT = 1;
-        } catch (IOException e) {
-            System.err.println(VerilyUtil.getMessage("MsgContainerInitFailed") + e.getMessage());
-            EXIT = 1;
         } catch (NumberFormatException e) {
             System.err.println(VerilyUtil.getMessage("MsgInvalidPort"));
             EXIT = 1;
@@ -180,6 +179,9 @@ public class VerilyMain {
             EXIT = 1;
         } catch (VerilyCompileFailedException e) {
             System.err.println(VerilyUtil.getMessage("MsgCompileFailed"));
+            EXIT = 1;
+        }catch (Exception e) {
+            System.err.println(VerilyUtil.getMessage("MsgContainerInitFailed") + e.getMessage());
             EXIT = 1;
         }
 
@@ -331,10 +333,11 @@ public class VerilyMain {
 
     }
 
-    public void bootstrap(CommandLine cl) throws IOException, NumberFormatException, TableHomomorphismException {
+    public void bootstrap(CommandLine cl) throws Exception {
 
         int port = Verily.DEFAULT_PORT;
         int numThreads = Verily.DEFAULT_THREADS;
+
 
         if (cl.getOptionValue(Verily.ARG_PORT) != null) {
             port = Integer.parseInt(cl.getOptionValue(Verily.ARG_PORT));
@@ -357,10 +360,15 @@ public class VerilyMain {
 
         VerilyContainer.getContainer().getEnv().setPort(port);
 
+
         if (cl.hasOption(Verily.ARG_WATCH)) {
             VerilyContainer.getContainer().getEnv().setReload(true);
         } else {
             VerilyContainer.getContainer().getEnv().setReload(false);
+        }
+
+        if(cl.hasOption(Verily.ARG_CONTRACTS)){
+            VerilyContainer.getContainer().getEnv().setEnableContracts(true);
         }
 
 

@@ -1,18 +1,14 @@
 package core.filters;
 
-import core.ResponseUtils;
-import core.VerilyContainer;
+import core.VerilyChainableAction;
 import core.VerilyEnv;
 import core.VerilyFilter;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import verily.lang.util.MRRTableSet;
 
 import java.net.URL;
 
-import static core.VerilyFilter.VerilyFilterAction.*;
+import static core.VerilyChainableAction.*;
 import static core.Constants.*;
 import static core.ResponseUtils.*;
 
@@ -27,7 +23,7 @@ public class StaticContentFilter extends VerilyFilter {
 
 
     @Override
-    public VerilyFilterAction handleRequest(Request request, Response response, VerilyEnv env, VerilyFilterAction lastFilterResult) {
+    public VerilyChainableAction handleRequest(Request request, Response response, VerilyEnv env, VerilyChainableAction lastFilterResult) {
 
         URL u = this.getClass().getResource(request.getPath().getPath());
 
