@@ -117,12 +117,17 @@ public class VerilyMain {
             if (line.hasOption(Verily.ARG_RUN)) {
 
                 long ts1 = System.currentTimeMillis();
-                m.bootstrap(line);
+
+                VerilyUtil.prepareForAnalysis();
+
+               // m.bootstrap(line);
 
                 // compile the project
                 if (line.hasOption(Verily.ARG_NOCOMPILE) == false) {
                     VerilyUtil.reloadProject();
                 }
+
+                m.bootstrap(line);
 
                 long ts2 = System.currentTimeMillis();
 

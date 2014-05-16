@@ -2,13 +2,19 @@ package utils;
 
 import exceptions.InvalidFormalArgumentsException;
 import exceptions.VerilyCompileFailedException;
+import org.apache.commons.io.FileUtils;
 import verily.lang.VerilyType;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -40,6 +46,18 @@ public class VerilyUtil {
 
     public static String getMessage(String key) {
         return msgResources.getString(key);
+    }
+
+    // copy everything over to the correct source directory
+    public static void prepareForAnalysis() throws IOException {
+
+        Path base = Paths.get("");
+
+        //if(Files.exists(base.resolve(".gen")))
+        //    FileUtils.deleteDirectory(new File(".gen"));
+
+        FileUtils.copyDirectory(new File("src"), new File(".veriltGen/src"), true);
+
     }
 
     public static void compileProject() throws IOException, InterruptedException, VerilyCompileFailedException {

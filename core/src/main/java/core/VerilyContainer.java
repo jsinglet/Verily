@@ -6,13 +6,17 @@ package core;
  *
  */
 
+import core.checkers.ContractTransformationChecker;
+import core.checkers.ExtendedStaticChecker;
 import core.checkers.MRRChecker;
+import core.checkers.RuntimeContractsToValidationChecker;
 import core.filters.*;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.simpleframework.http.core.Container;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import utils.VerilyUtil;
 import verily.lang.exceptions.TableHomomorphismException;
 import reification.*;
 import verily.lang.util.MRRTableSet;
@@ -89,6 +93,9 @@ public class VerilyContainer implements Container {
 
     protected void initCheckers(){
         checkers.add(new MRRChecker());
+        checkers.add(new ContractTransformationChecker());
+        checkers.add(new ExtendedStaticChecker());
+        checkers.add(new RuntimeContractsToValidationChecker());
     }
 
     public static VerilyContainer getContainer() {
@@ -112,6 +119,11 @@ public class VerilyContainer implements Container {
             }
 
         }
+
+        // always recompile after a verilize pass since we could have
+        // actually modified source code
+        VerilyUtil.reloadProject();
+
     }
 
     @Override

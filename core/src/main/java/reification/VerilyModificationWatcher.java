@@ -63,7 +63,11 @@ public class VerilyModificationWatcher implements Runnable, FileListener {
 
         logger.info("Reloading application classes: {}", fileChangeEvent.getFile().toString());
 
+
         try {
+
+            VerilyUtil.prepareForAnalysis();
+
             VerilyUtil.reloadProject();
 
             if (fileChangeEvent.getFile().getParent().getName().getBaseName().equals("methods") || fileChangeEvent.getFile().getParent().getName().getBaseName().equals("routers")) {
