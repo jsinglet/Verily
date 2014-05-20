@@ -77,10 +77,13 @@ public class OpenJMLUtil {
 
         Prover p;
 
+        //
+        // Z3 is all we support for now.
+        //
         if(System.getProperty("os.name").startsWith("Windows"))
-            p = new Z3Prover(VerilyContainer.getContainer().getEnv().getZ3Home() + "bin/z3.exe");
+            p = new Z3Prover(VerilyContainer.getContainer().getEnv().getZ3Home() + "\\bin\\z3.exe");
         else
-            p = new Z3Prover(VerilyContainer.getContainer().getEnv().getZ3Home() + "bin/z3");
+            p = new Z3Prover(VerilyContainer.getContainer().getEnv().getZ3Home() + "/bin/z3");
 
 
         Properties properties = new Properties();

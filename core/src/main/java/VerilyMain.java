@@ -222,9 +222,9 @@ public class VerilyMain {
             throw new ParseException("Exactly one of -init, -run, -test, or -new must be specified");
         }
 
-        if(orun){
+        if(orun && l.hasOption(Verily.ARG_CONTRACTS)){
             if(l.hasOption(Verily.ARG_JML_HOME)==false || l.hasOption(Verily.ARG_Z3_HOME)==false)
-                throw new ParseException("The paths to OpenJML and Z3 must be specified with -jml and -z3");
+                throw new ParseException("The paths to OpenJML and Z3 must be specified with -jml and -z3 to enable contract checking.");
 
         }
     }

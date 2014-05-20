@@ -3,10 +3,13 @@ package core.checkers;
 import core.VerilyChainableAction;
 import core.VerilyChecker;
 import core.VerilyEnv;
+import utils.OpenJMLUtil;
 
 /**
  * Author: John L. Singleton <jsinglet@gmail.com>
  */
+
+import java.io.IOException;
 
 import static core.VerilyChainableAction.*;
 
@@ -21,6 +24,13 @@ public class RuntimeContractsToValidationChecker extends VerilyChecker {
 
         if(env.isEnableContracts()==false){
             return CONTINUE;
+        }
+
+        // setup
+        try {
+            OpenJMLUtil.preJML();
+        } catch (IOException e) {
+            return getResult(ERROR, e);
         }
 
         //
