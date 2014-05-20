@@ -68,7 +68,6 @@ public class VerilyContainer implements Container {
             verilyContainer = new VerilyContainer(env);
 
             verilyContainer.initCheckers();
-            verilyContainer.verilize();
             verilyContainer.initFilters();
 
             logger.info("Created new thread pool with [{}] threads.", threads);

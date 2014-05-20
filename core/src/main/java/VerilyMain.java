@@ -403,6 +403,14 @@ public class VerilyMain {
         VerilyContainer.getContainer().getEnv().setZ3Home(cl.getOptionValue(Verily.ARG_Z3_HOME));
 
 
+        //
+        // Start the container
+        //
+        logger.info("Starting Verily container...");
+        VerilyContainer.getContainer().verilize();
+
+
+
         logger.info("Starting services...");
 
         VerilyContainer.getContainer().startServices();
