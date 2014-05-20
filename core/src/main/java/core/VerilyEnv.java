@@ -18,6 +18,8 @@ public class VerilyEnv {
     private boolean reload;
     private boolean daemon;
     private boolean enableContracts;
+    private String jmlHome;
+    private String z3Home;
 
 
     public Path getHome() {
@@ -99,5 +101,21 @@ public class VerilyEnv {
 
     public void setEnableContracts(boolean enableContracts) {
         this.enableContracts = enableContracts;
+    }
+
+    public String getJmlHome() {
+        return jmlHome;
+    }
+
+    public void setJmlHome(String jmlHome) {
+        this.jmlHome = jmlHome;
+    }
+
+    public String getZ3Home() {
+        return z3Home;
+    }
+
+    public void setZ3Home(String z3Home) {
+        this.z3Home = z3Home;
     }
 }

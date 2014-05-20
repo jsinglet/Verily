@@ -81,6 +81,17 @@ public class VerilyMain {
 
         Option contracts = new Option(Verily.ARG_CONTRACTS, "enable checking of contracts");
 
+        Option z3 = OptionBuilder.withArgName(Verily.ARG_Z3HOME)
+                .hasArg()
+                .withDescription("the path to the Z3 installation directory.")
+                .create(Verily.ARG_Z3_HOME);
+
+        Option jml = OptionBuilder.withArgName(Verily.ARG_JMLHOME)
+                .hasArg()
+                .withDescription("the path to the OpenJML installation directory.")
+                .create(Verily.ARG_JML_HOME);
+
+
         argList.addOption(port);
         argList.addOption(help);
         argList.addOption(init);
@@ -93,6 +104,8 @@ public class VerilyMain {
         argList.addOption(daemon);
         argList.addOption(threads);
         argList.addOption(contracts);
+        argList.addOption(z3);
+        argList.addOption(jml);
 
         System.setProperty(SimpleLogger.LEVEL_IN_BRACKETS_KEY, "true");
         System.setProperty(SimpleLogger.SHOW_LOG_NAME_KEY, "false");
@@ -207,6 +220,12 @@ public class VerilyMain {
 
         if (orun ^ oinit ^ onew ^ otest == false) {
             throw new ParseException("Exactly one of -init, -run, -test, or -new must be specified");
+        }
+
+        if(orun){
+            if(l.hasOption(Verily.ARG_JML_HOME)==false || l.hasOption(Verily.ARG_Z3_HOME)==false)
+                throw new ParseException("The paths to OpenJML and Z3 must be specified with -jml and -z3");
+
         }
     }
 
@@ -352,6 +371,7 @@ public class VerilyMain {
             numThreads = Integer.parseInt(cl.getOptionValue(Verily.ARG_THREADS));
         }
 
+
         logger.info("Bootstrapping Verily on port {}...", port);
 
 
@@ -375,6 +395,12 @@ public class VerilyMain {
         if(cl.hasOption(Verily.ARG_CONTRACTS)){
             VerilyContainer.getContainer().getEnv().setEnableContracts(true);
         }
+
+        //
+        // JML and SMT Solvers
+        //
+        VerilyContainer.getContainer().getEnv().setJmlHome(cl.getOptionValue(Verily.ARG_JML_HOME));
+        VerilyContainer.getContainer().getEnv().setZ3Home(cl.getOptionValue(Verily.ARG_Z3_HOME));
 
 
         logger.info("Starting services...");

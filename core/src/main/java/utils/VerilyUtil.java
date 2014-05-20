@@ -56,7 +56,9 @@ public class VerilyUtil {
         //if(Files.exists(base.resolve(".gen")))
         //    FileUtils.deleteDirectory(new File(".gen"));
 
-        FileUtils.copyDirectory(new File("src"), new File(".veriltGen/src"), true);
+        FileUtils.forceMkdir(new File(".verily/gen/src/"));
+
+        FileUtils.copyDirectory(new File("src"), new File(".verily/gen/src"), true);
 
     }
 
