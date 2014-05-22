@@ -79,7 +79,11 @@ public class OpenJMLUtil {
 
     }
 
-    public static void racOutputToFiles(List<String> racOutput) throws FileNotFoundException, UnsupportedEncodingException {
+    public static boolean racOutputToFiles(List<String> racOutput) throws FileNotFoundException, UnsupportedEncodingException {
+
+        if(racOutput.size()==0 || racOutput.get(0).startsWith("[jmlrac")==false){
+            return false;
+        }
 
         logger.info("Saving RAC Generated Files...");
 
@@ -117,15 +121,13 @@ public class OpenJMLUtil {
             }
         }
 
-
-
-
+        return true;
     }
 
     public static String racCompileProject() throws IOException, InterruptedException, VerilyCompileFailedException {
 
 
-        // java -jar "C:\Program Files\Verily\tools\openjml\openjml.jar" -rac -classpath "C:\Program Files\Verily\lib\core-1.0-SNAPSHOT.jar" -show -d testClass -s testSrc -dir src\main\java
+        // java -jar "C:\Program Files\Verily\tools\openjml\openjml.jar" -rac -classpath "C:\Program Files\Verily\lib\core-1.0-SNAPSHOT.jar" -show -d .verily/out -dir src\main\java
 
         // TODO: build path manually, by adding all jars.
 
@@ -153,12 +155,25 @@ public class OpenJMLUtil {
         int exitStatus = p.waitFor();
 
 
+        // because of a JML bug this doesn't work!!
+
 //        if (exitStatus != 0) {
 //            throw new VerilyCompileFailedException("Building project failed. Please see output for details.");
 //        }
 
 
-        racOutputToFiles(racOutput);
+        boolean ok = racOutputToFiles(racOutput);
+
+        if(!ok){
+            for(String l : racOutput){
+                if(l.startsWith(".verily"))
+                    logger.error(l.substring(12)); // hides the fact that these are generated files...
+                else
+                    logger.error(l);
+            }
+
+            throw new VerilyCompileFailedException("JML Rac Translation Failed.");
+        }
 
         return sb.toString();
     }

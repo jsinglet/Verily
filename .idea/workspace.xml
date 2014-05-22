@@ -2,34 +2,102 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c425601c-3ed7-4570-b135-f22be92e7e42" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/res/jml-logo-small64.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/res/ApplicationMessages.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/CVC4Prover.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/ConfigureSMTProversDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/MessageUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/utils/OpenJMLUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/Prover.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ProverConfigurationException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ProverValidator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/Strings.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/YicesProver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/Z3Prover.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/design/VerilyLogo-ForCropping.png" afterPath="$PROJECT_DIR$/design/VerilyLogo-ForCropping.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/design/VerilyLogo-ForCropping.xcf" afterPath="$PROJECT_DIR$/design/VerilyLogo-ForCropping.xcf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/design/VerilyLogo.xcf" afterPath="$PROJECT_DIR$/design/VerilyLogo.xcf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/images/glyphicons-halflings-white.png" afterPath="$PROJECT_DIR$/core/src/main/resources/images/glyphicons-halflings-white.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/images/glyphicons-halflings.png" afterPath="$PROJECT_DIR$/core/src/main/resources/images/glyphicons-halflings.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/res/jml-logo-small64.png" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/res/jml-logo-small64.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mvn/bin/mvnDebug" afterPath="$PROJECT_DIR$/mvn/bin/mvnDebug" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mvn/bin/mvn" afterPath="$PROJECT_DIR$/mvn/bin/mvn" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mvn/bin/mvnyjp" afterPath="$PROJECT_DIR$/mvn/bin/mvnyjp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/verily-manual.org" afterPath="$PROJECT_DIR$/docs/verily-manual.org" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/design/verily_16x16.png" afterPath="$PROJECT_DIR$/design/verily_16x16.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/design/verily_16x16_3.png" afterPath="$PROJECT_DIR$/design/verily_16x16_3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/design/verily_24x24.png" afterPath="$PROJECT_DIR$/design/verily_24x24.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitattributes" afterPath="$PROJECT_DIR$/.gitattributes" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/filters/AjaxHarnessFilter.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/filters/AjaxHarnessFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/res/ApplicationMessages.java" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/res/ApplicationMessages.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/utils/openjml/CVC4Prover.java" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/CVC4Prover.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/ConfigureSMTProversDialog.java" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/ConfigureSMTProversDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/Constants.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/checkers/ContractTransformationChecker.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/checkers/ContractTransformationChecker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/filters/ContractValidationFilter.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/filters/ContractValidationFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/checkers/ExtendedStaticChecker.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/checkers/ExtendedStaticChecker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/ExtractClassInfoListener.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/ExtractClassInfoListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/filters/FilterError.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/filters/FilterError.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/GMSAccess.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/GMSAccess.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/core/GMSChecker.java" afterPath="$PROJECT_DIR$/parser/src/main/java/core/GMSChecker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/GMSClassInfoListener.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/GMSClassInfoListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/core/Harness.java" afterPath="$PROJECT_DIR$/parser/src/main/java/core/Harness.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/checkers/MRRChecker.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/checkers/MRRChecker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/filters/MRRFilter.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/filters/MRRFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/util/MRRTableSet.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/util/MRRTableSet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/MessageUtil.java" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/MessageUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/MethodNotMappedException.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/MethodNotMappedException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/utils/OpenJMLUtil.java" afterPath="$PROJECT_DIR$/core/src/main/java/utils/OpenJMLUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/utils/openjml/Prover.java" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/Prover.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ProverConfigurationException.java" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ProverConfigurationException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ProverValidator.java" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/ProverValidator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/test/java/PwEUtilTest.java" afterPath="$PROJECT_DIR$/core/src/test/java/PwEUtilTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/installer/README.txt" afterPath="$PROJECT_DIR$/installer/README.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/src/main/java/methods/ReadWrite.java" afterPath="$PROJECT_DIR$/samples/poll/src/main/java/methods/ReadWrite.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/ResponseUtils.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/ResponseUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/checkers/RuntimeContractsToValidationChecker.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/checkers/RuntimeContractsToValidationChecker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/filters/StaticContentFilter.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/filters/StaticContentFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/utils/openjml/Strings.java" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/Strings.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/util/TableDiffResult.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/util/TableDiffResult.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/TableHomomorphismException.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/TableHomomorphismException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/content/TemplateFactory.java" afterPath="$PROJECT_DIR$/core/src/main/java/content/TemplateFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/core/Test.java" afterPath="$PROJECT_DIR$/parser/src/main/java/core/Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/src/main/java/methods/TestBad.java" afterPath="$PROJECT_DIR$/samples/poll/src/main/java/methods/TestBad.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/src/main/java/routers/TestBadder.java" afterPath="$PROJECT_DIR$/samples/poll/src/main/java/routers/TestBadder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samples/poll/src/main/java/routers/TestBasic.java" afterPath="$PROJECT_DIR$/samples/poll/src/main/java/routers/TestBasic.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/Verily.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/Verily.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/VerilyChainableAction.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyChainableAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/VerilyChecker.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyChecker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/VerilyEnv.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyEnv.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/core/VerilyFilter.java" afterPath="$PROJECT_DIR$/core/src/main/java/core/VerilyFilter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/VerilyMain.java" afterPath="$PROJECT_DIR$/core/src/main/java/VerilyMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/utils/VerilyUtil.java" afterPath="$PROJECT_DIR$/core/src/main/java/utils/VerilyUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyMethod.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyMethod.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/test/java/verily/lang/VerilyMethodTest.java" afterPath="$PROJECT_DIR$/parser/src/test/java/verily/lang/VerilyMethodTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/reification/VerilyModificationWatcher.java" afterPath="$PROJECT_DIR$/core/src/main/java/reification/VerilyModificationWatcher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyParserModes.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyParserModes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyTable.java" afterPath="$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyTable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/src/test/java/verily/lang/VerilyTableTest.java" afterPath="$PROJECT_DIR$/parser/src/test/java/verily/lang/VerilyTableTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/utils/openjml/YicesProver.java" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/YicesProver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/utils/openjml/Z3Prover.java" afterPath="$PROJECT_DIR$/core/src/main/java/utils/openjml/Z3Prover.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/verily/app.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/verily/app.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/css/bootstrap.css" afterPath="$PROJECT_DIR$/core/src/main/resources/css/bootstrap.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/js/bootstrap.js" afterPath="$PROJECT_DIR$/core/src/main/resources/js/bootstrap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/core/src/main/resources/css/bootstrap.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/core/src/main/resources/js/bootstrap.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/core.iml" afterPath="$PROJECT_DIR$/core/core.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/installer/install.xml" afterPath="$PROJECT_DIR$/installer/install.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.bat" afterPath="$PROJECT_DIR$/package.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.sh" afterPath="$PROJECT_DIR$/package.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/installer/package.sh" afterPath="$PROJECT_DIR$/installer/package.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser/parser.iml" afterPath="$PROJECT_DIR$/parser/parser.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/resources/verily/layouts/simple.ftl" afterPath="$PROJECT_DIR$/core/src/main/resources/verily/layouts/simple.ftl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stubs/update_path.bat" afterPath="$PROJECT_DIR$/stubs/update_path.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/verily-manual.html" afterPath="$PROJECT_DIR$/docs/verily-manual.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stubs/verily.bat" afterPath="$PROJECT_DIR$/stubs/verily.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stubs/verily" afterPath="$PROJECT_DIR$/stubs/verily" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stubs/cygwin/verily" afterPath="$PROJECT_DIR$/stubs/cygwin/verily" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PwE.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="samples/poll/target/" />
-    <file path="/Dummy.txt" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400226670111" ignored="false" />
+    <file path="/Dummy.txt" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400787221863" ignored="false" />
     <file path="/VerilyContainer.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400225371990" ignored="false" />
-    <file path="/fragment.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400217202752" ignored="false" />
-    <file path="$USER_HOME$/IdeaProjects/untitled1/src/main/java/methods/Test.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400223406523" ignored="false" />
+    <file path="/fragment.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400786404816" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/untitled1/src/main/java/methods/Test.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400789670484" ignored="false" />
     <file path="/VerilyTable.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398366830073" ignored="false" />
     <file path="/Harness.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398368633129" ignored="false" />
-    <file path="/VerilyEnv.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400551933843" ignored="false" />
+    <file path="/VerilyEnv.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400790582820" ignored="false" />
     <file path="/ReadWrite.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398281604395" ignored="false" />
     <file path="/ExtractClassInfoListener.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398367997310" ignored="false" />
     <file path="/TableDiffResult.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398368242384" ignored="false" />
@@ -50,21 +118,30 @@
     <file path="/MRRFilter.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398717652879" ignored="false" />
     <file path="/ContractValidationFilter.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1398717639314" ignored="false" />
     <file path="/FilterError.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400217683576" ignored="false" />
-    <file path="/VerilyMain.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400552090996" ignored="false" />
-    <file path="/Verily.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400549583235" ignored="false" />
+    <file path="/VerilyMain.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400790895882" ignored="false" />
+    <file path="/Verily.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400790810454" ignored="false" />
     <file path="/VerilyModificationWatcher.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400221745287" ignored="false" />
     <file path="/VerilyChecker.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400218516259" ignored="false" />
     <file path="/MMRChecker.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400218449412" ignored="false" />
-    <file path="/Test.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400223405088" ignored="false" />
+    <file path="/Test.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400789670484" ignored="false" />
     <file path="/ContractsChecker.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400220049239" ignored="false" />
-    <file path="/VerilyUtil.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400546689076" ignored="false" />
+    <file path="/VerilyUtil.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400784268438" ignored="false" />
     <file path="$USER_HOME$/IdeaProjects/untitled1/src/main/java/routers/Test.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400222609862" ignored="false" />
     <file path="/MRRChecker.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400223158276" ignored="false" />
-    <file path="/ExtendedStaticChecker.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400223892823" ignored="false" />
-    <file path="/ContractTransformationChecker.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400223955462" ignored="false" />
-    <file path="/OpenJMLUtil.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400563562247" ignored="false" />
+    <file path="/ExtendedStaticChecker.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400790598345" ignored="false" />
+    <file path="/ContractTransformationChecker.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400790502906" ignored="false" />
+    <file path="/OpenJMLUtil.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400790455850" ignored="false" />
     <file path="/ConfigureSMTProversDialog.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400554002542" ignored="false" />
     <file path="/ApplicationMessages.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400554134557" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/untitled1/testjml.bat" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400616908870" ignored="false" />
+    <file path="/testjml.bat" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400616850590" ignored="false" />
+    <file path="$USER_HOME$/Projects/DecryptionKeyRelease-JMLChecked/gen/org/leavenslab/examples/DecryptionKeyRelease/R.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400615279238" ignored="false" />
+    <file path="$USER_HOME$/Projects/PasswordChecker/project.properties" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400700446369" ignored="false" />
+    <file path="$USER_HOME$/Projects/DecryptionKeyReleaseRedux/openjml/jmlspecs/com/readystatesoftware/sqliteasset/SQLiteAssetHelper.jml" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400701338119" ignored="false" />
+    <file path="$PROJECT_DIR$/../../GL-Flexible Flow Assurance/BipartiteGraphModelofInformationFlow/Talks/IFIP-Talk/sparta-example/DecryptionKeyRelease/src/org/leavenslab/examples/DecryptionKeyRelease/db/MovieDB.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400729573787" ignored="false" />
+    <file path="$PROJECT_DIR$/../../GL-Flexible Flow Assurance/BipartiteGraphModelofInformationFlow/Talks/IFIP-Talk/bgm-example/DecryptionKeyRelease/src/org/leavenslab/examples/DecryptionKeyRelease/db/MovieDB.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400729773718" ignored="false" />
+    <file path="/MovieDB.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400729771408" ignored="false" />
+    <file path="/RuntimeContractsToValidationChecker.java" changelist="c425601c-3ed7-4570-b135-f22be92e7e42" time="1400790940747" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,37 +229,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/parser/src/main/java/core/Harness.java" line="91" class="core.Harness" package="core">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/VerilyTable.java" line="34" class="verily.lang.VerilyTable" package="verily.lang">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/ExtractClassInfoListener.java" line="79" class="verily.lang.ExtractClassInfoListener" package="verily.lang">
+      <breakpoint url="file://$PROJECT_DIR$/core/src/main/java/utils/OpenJMLUtil.java" line="135" class="utils.OpenJMLUtil" package="utils">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -207,97 +254,96 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="OpenJMLUtil.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="OpenJMLUtil.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/OpenJMLUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="28" selection-start="2467" selection-end="2467" vertical-scroll-proportion="0.8078995">
+            <state line="35" column="23" selection-start="982" selection-end="982" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1207#1215#0" expanded="true" />
+                <element signature="e#1783#1791#0" expanded="true" />
+                <element signature="e#4209#4217#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Strings.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/openjml/Strings.java">
+      <file leaf-file-name="ContractTransformationChecker.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/main/java/core/checkers/ContractTransformationChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="0" selection-start="987" selection-end="987" vertical-scroll-proportion="0.0">
+            <state line="27" column="27" selection-start="702" selection-end="702" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MRRFilter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/java/core/filters/MRRFilter.java">
+      <file leaf-file-name="RuntimeContractsToValidationChecker.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/src/main/java/core/checkers/RuntimeContractsToValidationChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="38" selection-start="919" selection-end="919" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FilterError.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/java/core/filters/FilterError.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="13" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
+            <state line="29" column="27" selection-start="749" selection-end="749" vertical-scroll-proportion="0.36585367">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageUtil.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/MessageUtil.java">
+      <file leaf-file-name="ExtendedStaticChecker.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/main/java/core/checkers/ExtendedStaticChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="62" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Prover.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/openjml/Prover.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="22" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
+            <state line="36" column="27" selection-start="847" selection-end="847" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProverConfigurationException.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/openjml/ProverConfigurationException.java">
+      <file leaf-file-name="Verily.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/main/java/core/Verily.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="13" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0">
+            <state line="19" column="43" selection-start="678" selection-end="678" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApplicationMessages.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/java/content/ApplicationMessages.java">
+      <file leaf-file-name="VerilyEnv.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyEnv.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="13" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
+            <state line="22" column="24" selection-start="579" selection-end="579" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VerilyFilter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyFilter.java">
+      <file leaf-file-name="MRRChecker.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/main/java/core/checkers/MRRChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="37" selection-start="194" selection-end="275" vertical-scroll-proportion="0.0">
+            <state line="34" column="42" selection-start="984" selection-end="1011" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Z3Prover.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/openjml/Z3Prover.java">
+      <file leaf-file-name="VerilyMain.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/main/java/VerilyMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="13" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0">
+            <state line="402" column="9" selection-start="15514" selection-end="15514" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VerilyContainer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="70" column="0" selection-start="2058" selection-end="2058" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VerilyUtil.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/VerilyUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="22" selection-start="1683" selection-end="1683" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -327,14 +373,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java" />
-        <option value="$PROJECT_DIR$/core/src/main/java/utils/VerilyUtil.java" />
-        <option value="$PROJECT_DIR$/core/src/main/java/core/Verily.java" />
-        <option value="$PROJECT_DIR$/core/src/main/java/core/VerilyEnv.java" />
-        <option value="$PROJECT_DIR$/core/src/main/java/VerilyMain.java" />
-        <option value="$PROJECT_DIR$/core/src/main/java/utils/openjml/CVC4Prover.java" />
-        <option value="$PROJECT_DIR$/core/src/main/java/utils/openjml/Prover.java" />
-        <option value="$PROJECT_DIR$/core/src/main/java/utils/openjml/ProverConfigurationException.java" />
         <option value="$PROJECT_DIR$/core/src/main/java/utils/openjml/ProverValidator.java" />
         <option value="$PROJECT_DIR$/core/src/main/java/utils/openjml/YicesProver.java" />
         <option value="$PROJECT_DIR$/core/src/main/java/utils/openjml/Z3Prover.java" />
@@ -342,7 +380,15 @@
         <option value="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/ConfigureSMTProversDialog.java" />
         <option value="$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/MessageUtil.java" />
         <option value="$PROJECT_DIR$/core/src/main/java/utils/openjml/Strings.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/utils/VerilyUtil.java" />
         <option value="$PROJECT_DIR$/core/src/main/java/utils/OpenJMLUtil.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/VerilyEnv.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/Verily.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/VerilyMain.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/checkers/ContractTransformationChecker.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/checkers/ExtendedStaticChecker.java" />
+        <option value="$PROJECT_DIR$/core/src/main/java/core/checkers/RuntimeContractsToValidationChecker.java" />
       </list>
     </option>
   </component>
@@ -459,6 +505,16 @@
       <sortByType ProjectPane="false" />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PwE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -498,6 +554,128 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="stubs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -837,18 +1015,42 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="content" />
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="checkers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="PwE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Verily" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -869,7 +1071,7 @@
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../VerilyIdeaPlugin" />
+    <property name="last_opened_file_path" value="C:/Program Files (x86)/Git/bin/git.exe" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="303" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="975" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="976" />
@@ -891,7 +1093,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="copyright.profiles" />
+    <property name="options.lastSelected" value="vcs.Git" />
     <property name="project.structure.side.proportion" value="0.1954023" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
@@ -958,7 +1160,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="VerilyMain" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="-run -w -n 1" />
+      <option name="PROGRAM_PARAMETERS" value="-run -w -n 1 -contracts -z3 &quot;C:\Program Files\Verily\tools\z3-4.3.0-win&quot; -jml &quot;C:\Program Files\Verily\tools\openjml&quot;" />
       <option name="WORKING_DIRECTORY" value="file://$USER_HOME$/IdeaProjects/untitled1" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -1710,7 +1912,23 @@
       <created>1400226672459</created>
       <updated>1400226672459</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="work integrating provers.">
+      <created>1400563817798</created>
+      <updated>1400563817798</updated>
+    </task>
+    <task id="LOCAL-00091" summary="work integrating provers.">
+      <created>1400611416641</created>
+      <updated>1400611416641</updated>
+    </task>
+    <task id="LOCAL-00092" summary="fixes to openjml configuration generation.">
+      <created>1400613438336</created>
+      <updated>1400613438336</updated>
+    </task>
+    <task id="LOCAL-00093" summary="jml rac translation saving.">
+      <created>1400787228146</created>
+      <updated>1400787228146</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1740,12 +1958,12 @@
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.43888354" sideWeight="0.59179926" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28392684" sideWeight="0.59179926" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.6987296" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32975337" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49156356" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3676612" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27221596" sideWeight="0.40820074" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -1758,7 +1976,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1272872" sideWeight="0.6969147" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2139808" sideWeight="0.56111646" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17716116" sideWeight="0.71607316" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3387873" sideWeight="0.65544677" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15672235" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1823,7 +2041,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="more checker pipeline work" />
+    <option name="LAST_COMMIT_MESSAGE" value="jml rac translation saving." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1837,9 +2055,6 @@
     <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="Added table printing mechanism for use when reloading" />
-    <MESSAGE value="Greatly toned down logging" />
-    <MESSAGE value="updated some more logging information." />
     <MESSAGE value="added layouts system and added some core layouts." />
     <MESSAGE value="implemented javascript cross compile" />
     <MESSAGE value="updated running scripts to get rid of slf4j errors. removed compilation process from the scripts." />
@@ -1862,6 +2077,9 @@
     <MESSAGE value="more clear processing of filters, filter outputs are now sorted and numbered in the response." />
     <MESSAGE value="Improvements to the verification pipeline" />
     <MESSAGE value="more checker pipeline work" />
+    <MESSAGE value="work integrating provers." />
+    <MESSAGE value="fixes to openjml configuration generation." />
+    <MESSAGE value="jml rac translation saving." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1873,125 +2091,118 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/openjml/CVC4Prover.java">
+    <entry file="file://$PROJECT_DIR$/stubs/cygwin/verily">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_45/src.zip!/java/lang/ProcessBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="215" column="11" selection-start="7853" selection-end="7853" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/openjml/YicesProver.java">
+    <entry file="file://$PROJECT_DIR$/parser/src/main/java/core/Harness.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0">
+        <state line="69" column="44" selection-start="2027" selection-end="2027" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/MethodNotMappedException.java">
+    <entry file="file://$PROJECT_DIR$/stubs/verily.bat">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="63" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
+        <state line="22" column="18" selection-start="415" selection-end="415" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/test/java/PwEUtilTest.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="23" selection-start="933" selection-end="933" vertical-scroll-proportion="0.5609756">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser/src/main/java/verily/lang/exceptions/TableHomomorphismException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="65" selection-start="164" selection-end="164" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samples/poll/src/main/java/routers/TestBadder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="6" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0">
+        <state line="10" column="22" selection-start="236" selection-end="236" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/openjml/Strings.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="987" selection-end="987" vertical-scroll-proportion="0.0">
+        <state line="5" column="13" selection-start="86" selection-end="86" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/content/ApplicationMessages.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyEnv.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="69" selection-end="69" vertical-scroll-proportion="0.0">
+        <state line="22" column="24" selection-start="579" selection-end="579" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/filters/MRRFilter.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/Verily.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="38" selection-start="919" selection-end="919" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/filters/FilterError.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
+        <state line="19" column="43" selection-start="678" selection-end="678" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/openjml/ui/MessageUtil.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/VerilyMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="62" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/openjml/Prover.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="22" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
+        <state line="402" column="9" selection-start="15514" selection-end="15514" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/openjml/ProverConfigurationException.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/VerilyUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0">
+        <state line="59" column="22" selection-start="1683" selection-end="1683" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyFilter.java">
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/checkers/MRRChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="37" selection-start="194" selection-end="275" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/openjml/Z3Prover.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="37" selection-end="37" vertical-scroll-proportion="0.0">
+        <state line="34" column="42" selection-start="984" selection-end="1011" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/java/utils/OpenJMLUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="28" selection-start="2467" selection-end="2467" vertical-scroll-proportion="0.8078995">
+        <state line="35" column="23" selection-start="982" selection-end="982" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1207#1215#0" expanded="true" />
+            <element signature="e#1783#1791#0" expanded="true" />
+            <element signature="e#4209#4217#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/VerilyContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="0" selection-start="2058" selection-end="2058" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/checkers/ContractTransformationChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="27" selection-start="702" selection-end="702" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/checkers/ExtendedStaticChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="27" selection-start="847" selection-end="847" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/main/java/core/checkers/RuntimeContractsToValidationChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="27" selection-start="749" selection-end="749" vertical-scroll-proportion="0.36585367">
+          <folding />
         </state>
       </provider>
     </entry>

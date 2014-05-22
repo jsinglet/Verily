@@ -25,6 +25,8 @@ public class ContractTransformationChecker extends VerilyChecker {
             return CONTINUE;
         }
 
+        logger.info("[jml] Transforming contracts for JML...");
+
         // read the source located in .verily/gen/src/ and transform it
         // to be JML-compatible.
 

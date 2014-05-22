@@ -91,6 +91,7 @@ public class VerilyMain {
                 .withDescription("the path to the OpenJML installation directory.")
                 .create(Verily.ARG_JML_HOME);
 
+        Option noesc = new Option(Verily.ARG_NOSTATIC, "disables extended static checking");
 
         argList.addOption(port);
         argList.addOption(help);
@@ -106,6 +107,7 @@ public class VerilyMain {
         argList.addOption(contracts);
         argList.addOption(z3);
         argList.addOption(jml);
+        argList.addOption(noesc);
 
         System.setProperty(SimpleLogger.LEVEL_IN_BRACKETS_KEY, "true");
         System.setProperty(SimpleLogger.SHOW_LOG_NAME_KEY, "false");
@@ -394,6 +396,10 @@ public class VerilyMain {
 
         if(cl.hasOption(Verily.ARG_CONTRACTS)){
             VerilyContainer.getContainer().getEnv().setEnableContracts(true);
+        }
+
+        if(cl.hasOption(Verily.ARG_NOSTATIC)){
+            VerilyContainer.getContainer().getEnv().setNoEsc(true);
         }
 
         //

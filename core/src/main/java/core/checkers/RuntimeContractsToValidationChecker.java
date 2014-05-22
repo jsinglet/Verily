@@ -27,14 +27,9 @@ public class RuntimeContractsToValidationChecker extends VerilyChecker {
             return CONTINUE;
         }
 
-        // setup
-        try {
-            OpenJMLUtil.preJML();
-        } catch (IOException e) {
-            return getResult(ERROR, e);
-        }
-
+        logger.info("[jml] Translating RAC contracts...");
         //
+
         // run checker.
         //
         try {

@@ -17,7 +17,7 @@ public class Verily {
     public static final String ARG_THREADS = "n";
     public static final String ARG_NUM_THREADS = "threads";
     public static final String ARG_CONTRACTS = "contracts";
-
+    public static final String ARG_NOSTATIC     = "nostatic";
     public static final String ARG_JML_HOME = "jml";
     public static final String ARG_Z3_HOME = "z3";
 

@@ -20,6 +20,7 @@ public class VerilyEnv {
     private boolean enableContracts;
     private String jmlHome;
     private String z3Home;
+    private boolean noEsc;
 
 
     public Path getHome() {
@@ -117,5 +118,13 @@ public class VerilyEnv {
 
     public void setZ3Home(String z3Home) {
         this.z3Home = z3Home;
+    }
+
+    public boolean isNoEsc() {
+        return noEsc;
+    }
+
+    public void setNoEsc(boolean noEsc) {
+        this.noEsc = noEsc;
     }
 }

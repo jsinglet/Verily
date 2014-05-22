@@ -22,12 +22,19 @@ public class ExtendedStaticChecker extends VerilyChecker {
     @Override
     public VerilyChainableAction check(VerilyEnv env, VerilyChainableAction lastCheckerResult) {
 
+
+        if(env.isEnableContracts()==false || env.isNoEsc()){
+            return CONTINUE;
+        }
+
         // setup
         try {
             OpenJMLUtil.preJML();
         } catch (IOException e) {
             return getResult(ERROR, e);
         }
+
+        logger.info("[jml] Performing ESC...");
 
         // at this point, the contracts should be transformed.
         // run the extended static checker.
