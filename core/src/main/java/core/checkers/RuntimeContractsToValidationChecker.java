@@ -3,6 +3,7 @@ package core.checkers;
 import core.VerilyChainableAction;
 import core.VerilyChecker;
 import core.VerilyEnv;
+import exceptions.VerilyCompileFailedException;
 import utils.OpenJMLUtil;
 
 /**
@@ -36,7 +37,13 @@ public class RuntimeContractsToValidationChecker extends VerilyChecker {
         //
         // run checker.
         //
-
+        try {
+            OpenJMLUtil.racCompileProject();
+        } catch (InterruptedException e) {
+            return OK;
+        } catch (IOException | VerilyCompileFailedException e) {
+            return getResult(ERROR, e);
+        }
 
 
         return OK;

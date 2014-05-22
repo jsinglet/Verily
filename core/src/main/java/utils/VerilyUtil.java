@@ -1,5 +1,6 @@
 package utils;
 
+import core.VerilyContainer;
 import exceptions.InvalidFormalArgumentsException;
 import exceptions.VerilyCompileFailedException;
 import org.apache.commons.io.FileUtils;
@@ -51,12 +52,15 @@ public class VerilyUtil {
     // copy everything over to the correct source directory
     public static void prepareForAnalysis() throws IOException {
 
-        Path base = Paths.get("");
+        // ignore if this fails
+        try {
+            FileUtils.forceDelete(new File(".verily"));
+        }catch(Exception e){}
 
-        //if(Files.exists(base.resolve(".gen")))
-        //    FileUtils.deleteDirectory(new File(".gen"));
-
+        // need these.
         FileUtils.forceMkdir(new File(".verily/gen/src/"));
+        FileUtils.forceMkdir(new File(".verily/out"));
+
 
         FileUtils.copyDirectory(new File("src"), new File(".verily/gen/src"), true);
 

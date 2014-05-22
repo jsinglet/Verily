@@ -2,6 +2,7 @@ package utils;
 
 import core.VerilyContainer;
 import exceptions.VerilyCompileFailedException;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.openjml.Prover;
@@ -11,10 +12,15 @@ import utils.openjml.Z3Prover;
 import utils.openjml.ui.ConfigureSMTProversDialog;
 import utils.openjml.ui.MessageUtil;
 import utils.openjml.ui.res.ApplicationMessages;
+import verily.lang.VerilyParserModes;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.*;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -33,27 +39,113 @@ public class OpenJMLUtil {
 
     }
 
+    private static List<String> jarsInProject() throws IOException {
+
+        List<String> jars = new ArrayList<String>();
+
+        Path base = VerilyContainer.getContainer().getEnv().getHome();
+
+        DirectoryStream<Path> depJars  = Files.newDirectoryStream(base.resolve("target").resolve("dependency"), "*.jar");
+        for (Path p : depJars) {
+            jars.add(p.toString());
+        }
+
+        return jars;
+    }
+
+    public static String pathToJMLJar(){
+        return VerilyContainer.getContainer().getEnv().getJmlHome() + File.separator + "openjml.jar";
+    }
+
+    private static String[] getRacCommandArgs() throws IOException {
+
+        List<String> args = new ArrayList<String>();
+        List<String> jars = jarsInProject();
+
+        args.add("java");
+        args.add("-jar");
+        args.add(pathToJMLJar());
+        args.add("-rac");
+        args.add("-classpath");
+        args.add("\"" + StringUtils.join(jars, File.pathSeparator) + "\"");
+        args.add("-show");
+        args.add("-d");
+        args.add(".verily/out/");
+        args.add("-dir");
+        args.add(".verily/gen/src/main/java/");
+
+        String[] ar = new String[args.size()];
+        return args.toArray(ar);
+
+    }
+
+    public static void racOutputToFiles(List<String> racOutput) throws FileNotFoundException, UnsupportedEncodingException {
+
+        logger.info("Saving RAC Generated Files...");
+
+        Iterator<String> it = racOutput.iterator();
+
+        while(it.hasNext()){
+
+            String l = it.next();
+            // output this file.
+            if(l.startsWith("[jmlrac] RAC Transformed")){
+                // get the filename
+                String filename = l.replace("[jmlrac] RAC Transformed: ", "");
+
+                File f = new File(filename);
+                logger.info("[jmlrac] Writing " + filename);
+                PrintWriter writer = new PrintWriter(f, "UTF-8");
+
+                l = it.next();
+
+                while(l.startsWith("[jmlrac")){
+
+                    int closePos = l.indexOf(']');
+                    String substr = l.substring(closePos+1);
+
+                    String line = substr.replace("    " , "");
+
+                    writer.write(line + System.getProperty("line.separator"));
+
+                    l = it.next();
+
+                }
+
+                writer.close();
+
+            }
+        }
+
+
+
+
+    }
 
     public static String racCompileProject() throws IOException, InterruptedException, VerilyCompileFailedException {
 
 
-        Process p;
-        StringBuffer sb = new StringBuffer();
+        // java -jar "C:\Program Files\Verily\tools\openjml\openjml.jar" -rac -classpath "C:\Program Files\Verily\lib\core-1.0-SNAPSHOT.jar" -show -d testClass -s testSrc -dir src\main\java
 
-        if(System.getProperty("os.name").startsWith("Windows"))
-            p = new ProcessBuilder("mvn.bat", "package").redirectErrorStream(true).start();
-        else
-            p = new ProcessBuilder("mvn", "package").redirectErrorStream(true).start();
+        // TODO: build path manually, by adding all jars.
+
+        Process p;
+
+        p = new ProcessBuilder(getRacCommandArgs()).redirectErrorStream(true).start();
 
         InputStream is = p.getInputStream();
 
         InputStreamReader isr = new InputStreamReader(is);
 
-        int c = isr.read();
+        List<String> racOutput = new ArrayList<String>();
 
-        while (c != -1) {
-            sb.append(c);
-            c = isr.read();
+        BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ( (line = br.readLine()) != null) {
+            sb.append(line);
+            sb.append(System.getProperty("line.separator"));
+            racOutput.add(line);
         }
 
         is.close();
@@ -61,9 +153,13 @@ public class OpenJMLUtil {
         int exitStatus = p.waitFor();
 
 
-        if (exitStatus != 0) {
-            throw new VerilyCompileFailedException("Building project failed. Please see output for details.");
-        }
+//        if (exitStatus != 0) {
+//            throw new VerilyCompileFailedException("Building project failed. Please see output for details.");
+//        }
+
+
+        racOutputToFiles(racOutput);
+
         return sb.toString();
     }
 
