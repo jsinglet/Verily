@@ -225,8 +225,11 @@ public class VerilyMain {
         }
 
         if(orun && l.hasOption(Verily.ARG_CONTRACTS)){
-            if(l.hasOption(Verily.ARG_JML_HOME)==false || l.hasOption(Verily.ARG_Z3_HOME)==false)
-                throw new ParseException("The paths to OpenJML and Z3 must be specified with -jml and -z3 to enable contract checking.");
+            if(l.hasOption(Verily.ARG_JML_HOME)==false)
+                throw new ParseException("The path to OpenJML with -jml and -z3 to enable contract checking.");
+
+            if(l.hasOption(Verily.ARG_NOSTATIC)==false && l.hasOption(Verily.ARG_Z3_HOME)==false)
+                throw new ParseException("To enable static checking you must specify the path to z3 to enable contract checking.");
 
         }
     }
