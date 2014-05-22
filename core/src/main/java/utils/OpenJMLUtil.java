@@ -57,6 +57,31 @@ public class OpenJMLUtil {
         return VerilyContainer.getContainer().getEnv().getJmlHome() + File.separator + "openjml.jar";
     }
 
+    public static String pathToJMLESCJar(){
+        return VerilyContainer.getContainer().getEnv().getJmlHome() + "-head" + File.separator + "openjml.jar";
+    }
+
+
+    private static String[] getESCCommandArgs() throws IOException {
+
+        List<String> args = new ArrayList<String>();
+        List<String> jars = jarsInProject();
+
+        args.add("java");
+        args.add("-jar");
+        args.add(pathToJMLESCJar());
+        args.add("-esc");
+        args.add("-classpath");
+        args.add("\"" + StringUtils.join(jars, File.pathSeparator) + "\"");
+        args.add("-dir");
+        args.add(".verily/gen/src/main/java/");
+
+        String[] ar = new String[args.size()];
+        return args.toArray(ar);
+
+    }
+
+
     private static String[] getRacCommandArgs() throws IOException {
 
         List<String> args = new ArrayList<String>();
@@ -124,12 +149,54 @@ public class OpenJMLUtil {
         return true;
     }
 
+
+    public static String escCompileProject() throws IOException, InterruptedException, VerilyCompileFailedException {
+
+        Process p;
+
+        p = new ProcessBuilder(getESCCommandArgs()).redirectErrorStream(true).start();
+
+        InputStream is = p.getInputStream();
+
+        InputStreamReader isr = new InputStreamReader(is);
+
+        List<String> escOutput = new ArrayList<String>();
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        while ( (line = br.readLine()) != null) {
+            sb.append(line);
+            sb.append(System.getProperty("line.separator"));
+            escOutput.add(line);
+        }
+
+        is.close();
+
+        int exitStatus = p.waitFor();
+
+
+
+        if (exitStatus != 0 || (escOutput.size() > 0 && escOutput.get(escOutput.size()-1).contains("warnings"))) {
+
+            for(String l : escOutput){
+                if(l.startsWith(".verily"))
+                    logger.error(l.substring(12)); // hides the fact that these are generated files...
+                else
+                    logger.error(l);
+            }
+            throw new VerilyCompileFailedException("ESC checking failed. Please see output for details.");
+        }
+
+        return sb.toString();
+
+    }
+
     public static String racCompileProject() throws IOException, InterruptedException, VerilyCompileFailedException {
 
 
         // java -jar "C:\Program Files\Verily\tools\openjml\openjml.jar" -rac -classpath "C:\Program Files\Verily\lib\core-1.0-SNAPSHOT.jar" -show -d .verily/out -dir src\main\java
 
-        // TODO: build path manually, by adding all jars.
 
         Process p;
 

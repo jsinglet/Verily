@@ -3,6 +3,7 @@ package core.checkers;
 import core.VerilyChainableAction;
 import core.VerilyChecker;
 import core.VerilyEnv;
+import exceptions.VerilyCompileFailedException;
 import utils.OpenJMLUtil;
 
 import java.io.IOException;
@@ -38,6 +39,14 @@ public class ExtendedStaticChecker extends VerilyChecker {
 
         // at this point, the contracts should be transformed.
         // run the extended static checker.
+        try {
+            OpenJMLUtil.escCompileProject();
+        } catch (InterruptedException e) {
+            return OK;
+        } catch (IOException | VerilyCompileFailedException e) {
+            return getResult(ERROR, e);
+        }
+
 
         return OK;
     }
