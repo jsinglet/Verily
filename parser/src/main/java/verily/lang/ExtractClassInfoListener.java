@@ -38,7 +38,6 @@ public class ExtractClassInfoListener extends JavaBaseListener {
 
         logger.trace("{}Descending into class {}...", getDepth(), ctx.Identifier());
         classCtx.push(ctx.Identifier().toString());
-
     }
 
     @Override

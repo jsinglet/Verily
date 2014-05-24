@@ -19,10 +19,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class Harness {
+public class MRRHarness {
 
 
-    final Logger logger = LoggerFactory.getLogger(Harness.class);
+    final Logger logger = LoggerFactory.getLogger(MRRHarness.class);
 
     private Path base;
     private static String routersPath;
@@ -41,7 +41,7 @@ public class Harness {
     //
     public static void main(String args[]) throws IOException, TableHomomorphismException {
 
-        Harness h = new Harness(Paths.get(""));
+        MRRHarness h = new MRRHarness(Paths.get(""));
 
         try {
             VerilyTable t = h.extractTranslationTable().getMethodTable();
@@ -62,9 +62,38 @@ public class Harness {
         }
     }
 
-    public Harness(Path base) {
+    public MRRHarness(Path base) {
         this.base = base;
     }
+
+    public List<JMLTransformedSource> transformToJMLCompatibleSource() throws IOException {
+
+        // should return a list of method signatures to generate.
+        // Parse out translation table from methods
+        VerilyTable methodTable = new VerilyTable();
+
+
+        DirectoryStream<Path> methodFiles = Files.newDirectoryStream(base.resolve("src").resolve("main").resolve("java").resolve(methodsPath), "*.java");
+        for (Path p : methodFiles) {
+
+            String origFile = p.toString();
+
+            // extract the methods from the class.
+            parseFile(p.toString(), methodTable, VerilyParserModes.VerilyModeType.TYPE_METHOD);
+
+            //
+
+
+
+
+        }
+
+
+
+
+        return null;
+    }
+
 
     public MRRTableSet extractTranslationTable() throws IOException, TableHomomorphismException {
 

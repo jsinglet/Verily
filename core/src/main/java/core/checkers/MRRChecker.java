@@ -1,10 +1,9 @@
 package core.checkers;
 
-import core.Harness;
+import core.MRRHarness;
 import core.VerilyChainableAction;
 import core.VerilyChecker;
 import core.VerilyEnv;
-import reification.Env;
 import verily.lang.exceptions.TableHomomorphismException;
 import verily.lang.util.MRRTableSet;
 
@@ -24,7 +23,7 @@ public class MRRChecker extends VerilyChecker {
     @Override
     public VerilyChainableAction check(VerilyEnv env, VerilyChainableAction lastCheckerResult) {
 
-        Harness applicationHarness = new Harness(env.getHome());
+        MRRHarness applicationHarness = new MRRHarness(env.getHome());
 
         MRRTableSet translationTable = null;
         try {

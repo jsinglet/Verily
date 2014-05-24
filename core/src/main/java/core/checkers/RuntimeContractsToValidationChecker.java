@@ -41,6 +41,8 @@ public class RuntimeContractsToValidationChecker extends VerilyChecker {
         }
 
 
+        // TODO: Transform JML Comments
+
         return OK;
     }
 }
