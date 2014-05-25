@@ -76,7 +76,7 @@ public class TransformtoJMLRACListener extends JavaBaseListener {
             if(method.getOnFailClause()!=null){
                 sb.append(String.format("public static final Content %s() {", method.getMethod()));
                 sb.append(System.getProperty("line.separator"));
-                sb.append(String.format("\treturn routers.%s;", method.getOnFailClause()));
+                sb.append(String.format("\treturn routers.%s.%s;", context, method.getOnFailClause()));
                 sb.append(System.getProperty("line.separator"));
                 sb.append("}");
 

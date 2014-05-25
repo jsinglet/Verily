@@ -128,6 +128,9 @@ public class OpenJMLUtil {
 
                 l = it.next();
 
+                String importLine = null;
+                boolean hasPackageAlready = false;
+
                 while(l.startsWith("[jmlrac")){
 
                     int closePos = l.indexOf(']');
@@ -135,7 +138,17 @@ public class OpenJMLUtil {
 
                     String line = substr.replace("    " , "");
 
-                    writer.write(line + System.getProperty("line.separator"));
+                    if(line.contains("import org.jmlspecs")){
+                        importLine = line;
+                    }else{
+                        writer.write(line + System.getProperty("line.separator"));
+                    }
+
+                    if(line.contains("package") && importLine!=null){
+                        writer.write(importLine + System.getProperty("line.separator"));
+                        importLine = null;
+                    }
+
 
                     l = it.next();
 

@@ -121,7 +121,8 @@ public class VerilyContainer implements Container {
 
         // always recompile after a verilize pass since we could have
         // actually modified source code
-        VerilyUtil.reloadProject();
+        logger.info("[verily] Reloading project...");
+        VerilyUtil.reloadProjectFromGen();
 
     }
 

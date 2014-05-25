@@ -10,6 +10,8 @@
     <version>1.0-SNAPSHOT</version>
 
 
+
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -41,6 +43,34 @@
             <version>4.8.1</version>
             <scope>test</scope>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.jmlspecs</groupId>
+            <artifactId>jmlruntime</artifactId>
+            <version>20140525</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/jmlruntime.jar</systemPath>
+        </dependency>
+
     </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <showDeprecation>false</showDeprecation>
+                    <showWarnings>false</showWarnings>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

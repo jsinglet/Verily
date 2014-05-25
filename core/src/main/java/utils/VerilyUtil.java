@@ -251,4 +251,47 @@ public class VerilyUtil {
         return o;
     }
 
+    public static void reloadProjectFromGen() throws IOException, InterruptedException, VerilyCompileFailedException {
+
+        // step 1, copy the target directory and the pom file to .verily/gen
+        FileUtils.copyDirectoryToDirectory(new File("target"), new File(".verily/gen/"));
+
+        FileUtils.copyFileToDirectory(new File("pom.xml"), new File(".verily/gen/"));
+
+        FileUtils.copyDirectoryToDirectory(new File("lib"), new File(".verily/gen/"));
+
+        // run the maven reload
+
+        //mvn -f .verily/gen/pom.xml compile
+
+        Process p;
+
+        if(System.getProperty("os.name").startsWith("Windows"))
+            p = new ProcessBuilder("mvn.bat", "-f", ".verily\\gen\\pom.xml", "compile", "-q").redirectErrorStream(true).start();
+        else
+            p = new ProcessBuilder("mvn", "-f", ".verily\\gen\\pom.xml", "compile", "-q").redirectErrorStream(true).start();
+
+        InputStream is = p.getInputStream();
+
+        InputStreamReader isr = new InputStreamReader(is);
+
+        int c = isr.read();
+
+        while (c != -1) {
+            System.out.write(c);
+            c = isr.read();
+        }
+
+        is.close();
+
+        int exitStatus = p.waitFor();
+
+
+        if (exitStatus != 0) {
+            throw new VerilyCompileFailedException("Building project failed. Please see output for details.");
+        }
+
+        //copy it all back.
+        FileUtils.copyDirectoryToDirectory(new File(".verily/gen/target"), VerilyContainer.getContainer().getEnv().getHome().toFile());
+    }
 }
