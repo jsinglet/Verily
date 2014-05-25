@@ -1,9 +1,9 @@
 package core.checkers;
 
-import core.VerilyChainableAction;
-import core.VerilyChecker;
-import core.VerilyEnv;
+import core.*;
 import utils.OpenJMLUtil;
+import verily.lang.JMLTransformationError;
+import verily.lang.util.MRRTableSet;
 
 import java.io.IOException;
 
@@ -31,6 +31,15 @@ public class ContractTransformationChecker extends VerilyChecker {
         // to be JML-compatible.
 
         // TODO
+        JMLTransformationHarness applicationHarness = new JMLTransformationHarness(env.getHome().resolve(".verily").resolve("gen"));
+
+        try {
+            applicationHarness.transformToJMLCompatibleSource(env.getTranslationTable().getMethodTable(), env.getTranslationTable().getRouterTable());
+        } catch (IOException e) {
+            return getResult(ERROR, e);
+        } catch (JMLTransformationError jmlTransformationError) {
+            return getResult(ERROR, jmlTransformationError);
+        }
 
 
         return OK;

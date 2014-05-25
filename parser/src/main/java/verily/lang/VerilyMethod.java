@@ -15,6 +15,7 @@ public class VerilyMethod {
     private List<VerilyType> sessionBoundParameters;
     private List<VerilyType> nonSessionBoundParameters;
     private Integer lineNumber;
+    private String onFailClause;
 
     // note this is NULL for void as per the parser.
     private TypeContext type;
@@ -103,4 +104,11 @@ public class VerilyMethod {
     }
 
 
+    public String getOnFailClause() {
+        return onFailClause;
+    }
+
+    public void setOnFailClause(String onFailClause) {
+        this.onFailClause = onFailClause;
+    }
 }

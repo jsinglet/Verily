@@ -1,5 +1,6 @@
 package core.checkers;
 
+import core.JMLTransformationHarness;
 import core.VerilyChainableAction;
 import core.VerilyChecker;
 import core.VerilyEnv;
@@ -41,7 +42,16 @@ public class RuntimeContractsToValidationChecker extends VerilyChecker {
         }
 
 
-        // TODO: Transform JML Comments
+        // TODO: transform any runtime contracts to something verily
+        // can catch
+        JMLTransformationHarness applicationHarness = new JMLTransformationHarness(env.getHome().resolve(".verily").resolve("gen"));
+
+        try {
+            applicationHarness.toVerilyRTE(env.getTranslationTable().getMethodTable(), env.getTranslationTable().getRouterTable());
+        } catch (IOException e) {
+            return getResult(ERROR, e);
+        }
+
 
         return OK;
     }

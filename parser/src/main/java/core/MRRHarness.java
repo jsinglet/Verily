@@ -66,33 +66,6 @@ public class MRRHarness {
         this.base = base;
     }
 
-    public List<JMLTransformedSource> transformToJMLCompatibleSource() throws IOException {
-
-        // should return a list of method signatures to generate.
-        // Parse out translation table from methods
-        VerilyTable methodTable = new VerilyTable();
-
-
-        DirectoryStream<Path> methodFiles = Files.newDirectoryStream(base.resolve("src").resolve("main").resolve("java").resolve(methodsPath), "*.java");
-        for (Path p : methodFiles) {
-
-            String origFile = p.toString();
-
-            // extract the methods from the class.
-            parseFile(p.toString(), methodTable, VerilyParserModes.VerilyModeType.TYPE_METHOD);
-
-            //
-
-
-
-
-        }
-
-
-
-
-        return null;
-    }
 
 
     public MRRTableSet extractTranslationTable() throws IOException, TableHomomorphismException {

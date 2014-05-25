@@ -64,6 +64,7 @@ public class ExtractClassInfoListener extends JavaBaseListener {
     @Override
     public void enterMethodDeclaration(MethodDeclarationContext ctx) {
         logger.trace("{}Parsing class method: {}", getDepth(), ctx.Identifier());
+
     }
 
     @Override

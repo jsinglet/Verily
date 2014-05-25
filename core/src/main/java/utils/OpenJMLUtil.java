@@ -97,7 +97,7 @@ public class OpenJMLUtil {
         args.add("-d");
         args.add(".verily/out/");
         args.add("-dir");
-        args.add(".verily/gen/src/main/java/");
+        args.add(".verily/gen/src/main/java/methods");
 
         String[] ar = new String[args.size()];
         return args.toArray(ar);
