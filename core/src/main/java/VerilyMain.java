@@ -278,6 +278,12 @@ public class VerilyMain {
 
             Files.copy(Paths.get(cl.getOptionValue(Verily.ARG_JML_HOME)).resolve("jmlruntime.jar"), here.resolve(newProject).resolve("lib").resolve("jmlruntime.jar"));
 
+            // cheat and copy maven artifacts
+
+            Files.copy(Paths.get(cl.getOptionValue(Verily.ARG_JML_HOME)).resolve("../").resolve("../").resolve("lib").resolve("core-1.0-SNAPSHOT.jar"), here.resolve(newProject).resolve("lib").resolve("core-1.0-SNAPSHOT.jar"));
+            Files.copy(Paths.get(cl.getOptionValue(Verily.ARG_JML_HOME)).resolve("../").resolve("../").resolve("lib").resolve("parser-1.0-SNAPSHOT.jar"), here.resolve(newProject).resolve("lib").resolve("parser-1.0-SNAPSHOT.jar"));
+
+
 
             logger.info("Done.");
 

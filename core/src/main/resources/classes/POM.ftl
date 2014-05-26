@@ -25,19 +25,6 @@
         </dependency>
 
         <dependency>
-            <groupId>Verily</groupId>
-            <artifactId>parser</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>Verily</groupId>
-            <artifactId>core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.1</version>
@@ -52,6 +39,23 @@
             <scope>system</scope>
             <systemPath>${r"${project.basedir}"}/lib/jmlruntime.jar</systemPath>
         </dependency>
+
+        <dependency>
+            <groupId>Verily</groupId>
+            <artifactId>parser</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${r"${project.basedir}"}/lib/parser-1.0-SNAPSHOT.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>Verily</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${r"${project.basedir}"}/lib/core-1.0-SNAPSHOT.jar</systemPath>
+        </dependency>
+
 
 
     </dependencies>
