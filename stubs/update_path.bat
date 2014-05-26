@@ -13,7 +13,8 @@ echo msgbox "Your Path has been updated to include the Verily Framework at: %~1"
 wscript.exe "%temp%\confirm.vbs"
 
 
-echo java -classpath "target\dependency\*;%~1\lib\*" VerilyMain %%* >> %1\verily.bat
+
+echo java -classpath "target\dependency\*;%~1\lib\*;%~1\tools\openjml-head\jmlruntime.jar" VerilyMain -z3 "%~1\tools\z3-4.3.0-win" -jml "%~1\tools\openjml" %%* >> %1\verily.bat
 
 
 rem old user path

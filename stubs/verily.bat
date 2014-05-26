@@ -16,7 +16,13 @@ SHIFT & GOTO PROCESSOPTS
 if %RUN% == "YES" (
    if %UPDATE_DEPS% == "YES" call mvn dependency:copy-dependencies
 
-   rem del target\dependency\slf4j*.jar
+   del target\dependency\slf4j*.jar
+   del target\dependency\jmlruntime*.jar
+
 )
 
-rem java -classpath "target\dependency\*;%~dp0\lib\*" VerilyMain %*
+rem -run -w -n 1 -contracts -nostatic -z3 "C:\Program Files\Verily\tools\z3-4.3.0-win" -jml "C:\Program Files\Verily\tools\openjml"
+
+rem java -classpath "target\dependency\*;%~dp0\lib\*;%~dp0\tools\openjml-head\jmlruntime.jar" VerilyMain %*
+
+rem java -classpath "target\dependency\*;C:\Program Files\Verily\lib\*" VerilyMain %*

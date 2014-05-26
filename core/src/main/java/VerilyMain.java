@@ -271,9 +271,18 @@ public class VerilyMain {
 
             Files.createDirectories(here.resolve(newProject).resolve("src").resolve("test").resolve("java"));
 
+
+            Files.createDirectories(here.resolve(newProject).resolve("lib"));
+
+            // copy over jmlruntime
+
+            Files.copy(Paths.get(cl.getOptionValue(Verily.ARG_JML_HOME)).resolve("jmlruntime.jar"), here.resolve(newProject).resolve("lib").resolve("jmlruntime.jar"));
+
+
             logger.info("Done.");
 
         } catch (IOException e) {
+            e.printStackTrace();
             throw new InitException(String.format("Error creating project directories. Message: %s", e.getMessage()));
 
         }

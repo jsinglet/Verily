@@ -27,6 +27,11 @@
         <module name="parser" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="core" target="1.7" />
+      <module name="parser" target="1.7" />
+      <module name="Verily" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 

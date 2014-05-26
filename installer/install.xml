@@ -69,6 +69,14 @@
             <!--<file src="README.txt" targetdir="$INSTALL_PATH"/>-->
             <file src="LICENSE.txt" targetdir="$INSTALL_PATH"/>
             <file src="../target/lib/" targetdir="$INSTALL_PATH"/>
+            <file src="../target/tools/openjml/" targetdir="$INSTALL_PATH/tools/"/>
+            <file src="../target/tools/openjml-head/" targetdir="$INSTALL_PATH/tools/"/>
+
+            <file os="windows" src="../target/tools/os/win/z3-4.3.0-win" targetdir="$INSTALL_PATH/tools/"/>
+            <file os="unix" src="../target/tools/os/unix/z3-4.3.2-unix/" targetdir="$INSTALL_PATH/tools/"/>
+            <file os="mac" src="../target/tools/os/osx/z3-4.3.2-unix/" targetdir="$INSTALL_PATH/tools/"/>
+
+
 
             <file os="unix" src="../stubs/verily" targetdir="$INSTALL_PATH"/>
             <file os="unix" src="../stubs/update_links" targetdir="$INSTALL_PATH"/>

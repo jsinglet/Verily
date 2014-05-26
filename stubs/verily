@@ -57,6 +57,8 @@ if [[ $RUN == "YES" ]]; then
     CP=""
 
     rm target/dependency/slf4j*.jar > /dev/null 2>&1
+    rm target/dependency/jmlruntime*.jar > /dev/null 2>&1
+
 
     for jar in "target/dependency"/*.jar
     do
@@ -74,4 +76,6 @@ fi
 #
 # Background startup is handled in the startup script, since there are platform specific details
 #
-eval "java"  -cp "${VERILY_CP}:${CP}" VerilyMain "$@"
+eval "java"  -cp "${VERILY_CP}:${CP}" VerilyMain -z3 "${VERILY_HOME}/tools/z3-4.3.2-unix" -jml "${VERILY_HOME}/tools/openjml" "$@"
+
+

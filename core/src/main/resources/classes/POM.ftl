@@ -50,8 +50,9 @@
             <artifactId>jmlruntime</artifactId>
             <version>20140525</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/jmlruntime.jar</systemPath>
+            <systemPath>${r"${project.basedir}"}/lib/jmlruntime.jar</systemPath>
         </dependency>
+
 
     </dependencies>
 
@@ -65,7 +66,6 @@
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
                     <showDeprecation>false</showDeprecation>
                     <showWarnings>false</showWarnings>
                 </configuration>
