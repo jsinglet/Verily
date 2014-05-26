@@ -173,6 +173,7 @@ public class VerilyMain {
 
         } catch (NoSuchFileException e) {
             System.err.println(VerilyUtil.getMessage("MsgInvalidDirectoryFormat"));
+            e.printStackTrace();
             EXIT = 1;
         } catch (NumberFormatException e) {
             System.err.println(VerilyUtil.getMessage("MsgInvalidPort"));

@@ -292,6 +292,6 @@ public class VerilyUtil {
         }
 
         //copy it all back.
-        FileUtils.copyDirectoryToDirectory(new File(".verily/gen/target"), VerilyContainer.getContainer().getEnv().getHome().toFile());
+        FileUtils.copyDirectoryToDirectory(new File(".verily/gen/target/classes"), new File("target/"));
     }
 }

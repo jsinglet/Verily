@@ -1,5 +1,6 @@
 package verily.lang;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import verily.lang.exceptions.MethodNotMappedException;
@@ -74,7 +75,14 @@ public class TransformtoJMLRACListener extends JavaBaseListener {
 
         for(VerilyMethod method : methods.getTable().get(context).values()){
             if(method.getOnFailClause()!=null){
-                sb.append(String.format("public static final Content %s() {", method.getMethod()));
+
+                List<String> formalParams = new ArrayList<String>();
+
+                for(VerilyType t : method.getFormalParameters()){
+                    formalParams.add(t.toString());
+                }
+
+                sb.append(String.format("public static final Content %s(%s) {", method.getMethod(), StringUtils.join(formalParams, ", ")));
                 sb.append(System.getProperty("line.separator"));
                 sb.append(String.format("\treturn routers.%s.%s;", context, method.getOnFailClause()));
                 sb.append(System.getProperty("line.separator"));

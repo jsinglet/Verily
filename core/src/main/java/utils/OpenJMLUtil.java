@@ -138,7 +138,7 @@ public class OpenJMLUtil {
 
                     String line = substr.replace("    " , "");
 
-                    if(line.contains("import org.jmlspecs")){
+                    if(line.startsWith("import org.jmlspecs")){
                         importLine = line;
                     }else{
                         writer.write(line + System.getProperty("line.separator"));
