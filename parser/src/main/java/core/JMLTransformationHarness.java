@@ -134,6 +134,8 @@ public class JMLTransformationHarness {
 
     }
 
+        methodFiles.close();
+
 
     }
 
@@ -180,6 +182,8 @@ public class JMLTransformationHarness {
             }
 
         }
+
+        methodFiles.close();
 
 
 
