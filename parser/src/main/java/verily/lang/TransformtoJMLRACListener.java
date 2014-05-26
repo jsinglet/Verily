@@ -135,6 +135,14 @@ public class TransformtoJMLRACListener extends JavaBaseListener {
                     sb.append(line.substring(0, start));
                     sb.append("throw new RuntimeException(\"_jmlValidationFail\");");
 
+                }else if(line.contains("Utils.reportException") && line.contains("_JML__runtimeException")){
+                    int start = line.indexOf("Utils.reportException");
+
+                    sb.append(line.substring(0, start));
+                    sb.append("throw new RuntimeException(\"_jmlValidationFail\");");
+
+
+
                 }else {
                     sb.append(line);
                 }
@@ -242,7 +250,15 @@ public class TransformtoJMLRACListener extends JavaBaseListener {
             throw new JMLTransformationError(String.format("[jml-transform] %s:%d - Invalid onFail method format", rel, line));
         }
 
-        String method = tokens.get(2);
+        StringBuffer methodBuff = new StringBuffer();
+
+        String method = null;
+
+        for(int i=2 ; i<tokens.size(); i++){
+            methodBuff.append(tokens.get(i) + " ");
+        }
+        method = methodBuff.toString();
+
         int paren = method.indexOf('(');
         int semi  = method.indexOf(';');
 

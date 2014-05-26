@@ -132,24 +132,6 @@ public class JMLTransformationHarness {
 
             }
 
-
-        // write out the proxy classes
-
-        for(String context : methodTable.getTable().keySet()){
-
-            String newClazz = TransformtoJMLRACListener.toVerilyProxySupportClasses(context, methodTable, p, relative);
-
-            if(newClazz!=null){
-
-                Path newClazzp = base.resolve("src").resolve("main").resolve("java").resolve(methodsPath).resolve(context + "Proxy.java");
-
-                logger.info("[jml-to-verily] Writing Runtime Proxy {}", newClazzp.toString());
-                PrintWriter w2 = new PrintWriter(newClazzp.toFile(), "UTF-8");
-                w2.write(newClazz);
-                w2.close();
-            }
-
-        }
     }
 
 
@@ -178,6 +160,24 @@ public class JMLTransformationHarness {
             PrintWriter writer = new PrintWriter(f, "UTF-8");
             writer.write(transformed);
             writer.close();
+
+
+            /////////////////////////////////////////////////////////////////////////////
+            for(String context : methodTable.getTable().keySet()){
+
+                String newClazz = TransformtoJMLRACListener.toVerilyProxySupportClasses(context, methodTable, p, relative);
+
+                if(newClazz!=null){
+
+                    Path newClazzp = base.resolve("src").resolve("main").resolve("java").resolve(methodsPath).resolve(context + "Proxy.java");
+
+                    logger.info("[jml-to-verily] Writing Runtime Proxy {}", newClazzp.toString());
+                    PrintWriter w2 = new PrintWriter(newClazzp.toFile(), "UTF-8");
+                    w2.write(newClazz);
+                    w2.close();
+                }
+
+            }
 
         }
 

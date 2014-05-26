@@ -1,9 +1,6 @@
 package core.filters;
 
-import core.Verily;
-import core.VerilyChainableAction;
-import core.VerilyEnv;
-import core.VerilyFilter;
+import core.*;
 import exceptions.InvalidFormalArgumentsException;
 import org.apache.commons.lang.SerializationUtils;
 import org.simpleframework.http.Cookie;
@@ -19,6 +16,7 @@ import verily.lang.exceptions.MethodNotMappedException;
 
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -72,7 +70,13 @@ public class MRRFilter extends VerilyFilter {
 
             // Step 3 - Perform the Method side of the invocation
 
-            Class c = Class.forName(String.format("methods.%s", classContext), false, new VerilyClassLoader(this.getClass().getClassLoader()));
+            Class c;
+
+            if(VerilyContainer.getContainer().getEnv().isEnableContracts())
+                c = Class.forName(String.format("methods.%sProxy", classContext), false, new VerilyClassLoader(this.getClass().getClassLoader()));
+            else
+                c = Class.forName(String.format("methods.%s", classContext), false, new VerilyClassLoader(this.getClass().getClassLoader()));
+
             Object args[] = actualParameters.toArray(new Object[actualParameters.size()]);
             Class clazz[] = new Class[args.length];
 
@@ -87,7 +91,19 @@ public class MRRFilter extends VerilyFilter {
                 }
             }
 
-            Object methodReturnValue = c.getMethod(m.getMethod(), clazz).invoke(null, args);
+            Object methodReturnValue = null;
+            boolean fallback = false;
+
+            try {
+                methodReturnValue = c.getMethod(m.getMethod(), clazz).invoke(null, args);
+            }catch(InvocationTargetException | RuntimeException e){
+                if((e instanceof InvocationTargetException || e.getMessage().equals("_jmlValidationFail")) && VerilyContainer.getContainer().getEnv().isEnableContracts()){
+                    fallback = true;
+                }else{
+                    throw new Exception(e);
+                }
+
+            }
 
 
             long ts2 = System.currentTimeMillis();
@@ -102,7 +118,8 @@ public class MRRFilter extends VerilyFilter {
             // however, we implement this here as an no-op so that adding other session
             // providers is straightforward (read: clear) in the future
 
-            persistSessionInformation(m, args, ctx);
+            if(fallback==false)
+                persistSessionInformation(m, args, ctx);
 
             //
             // To ensure that no tainting happened during the method call, we recalculate the actual parameters -- making sure to copy any session variables.
@@ -119,7 +136,7 @@ public class MRRFilter extends VerilyFilter {
             // As per the design, if the return type of the method isn't void (ie, null) then we
             // should pass in whatever the return type from the method is.
             //
-            if (m.getType() != null) {
+            if (m.getType() != null && fallback==false) {
                 controllerActualParameters.add(methodReturnValue);
             }
 
@@ -130,11 +147,14 @@ public class MRRFilter extends VerilyFilter {
                 controllerClazz[i] = VerilyUtil.translatedType(r.getFormalParameters().get(i), controllerArgs[i].getClass());
             }
 
-            // Step 7 - Using the exact same parameters, invoke the controller method.
-            Class controller = Class.forName(String.format("routers.%s", classContext), false, new VerilyClassLoader(this.getClass().getClassLoader()));
+            // Step 7 - Using the exact same parameters, invoke the router method.
+            Class router;
+            if(VerilyContainer.getContainer().getEnv().isEnableContracts() && fallback)
+                router = Class.forName(String.format("methods.%sValidation", classContext), false, new VerilyClassLoader(this.getClass().getClassLoader()));
+            else
+                router = Class.forName(String.format("routers.%s", classContext), false, new VerilyClassLoader(this.getClass().getClassLoader()));
 
-
-            Content content = (Content) controller.getMethod(m.getMethod(), controllerClazz).invoke(null, controllerArgs);
+            Content content = (Content) router.getMethod(m.getMethod(), controllerClazz).invoke(null, controllerArgs);
 
 
             long ts3 = System.currentTimeMillis();
