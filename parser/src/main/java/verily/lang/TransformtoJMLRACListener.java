@@ -68,6 +68,9 @@ public class TransformtoJMLRACListener extends JavaBaseListener {
 
         StringBuffer sb = new StringBuffer();
 
+        sb.append("package methods;");
+        sb.append(System.getProperty("line.separator"));
+
         sb.append("import verily.lang.*;");
         sb.append(System.getProperty("line.separator"));
         sb.append(String.format("public class %sValidation {", context));
@@ -284,5 +287,60 @@ public class TransformtoJMLRACListener extends JavaBaseListener {
     }
 
 
+    public static String toVerilyProxySupportClasses(String context, VerilyTable methods, Path p, String relative) {
+        // for each possible failure of a method, output
+        //
+        //
+        // import import verily.lang.*;
+        //
+        // public class <MethodClassName>Proxy {
+        //
+        //     public static final Content methodName(<formal params>){
+        //           return <MethodClassName>.methodCall;
+        //     }
+        //
 
+        StringBuffer sb = new StringBuffer();
+
+        sb.append("package methods;");
+        sb.append(System.getProperty("line.separator"));
+
+        sb.append("import verily.lang.*;");
+        sb.append(System.getProperty("line.separator"));
+        sb.append(String.format("public class %sProxy {", context));
+        sb.append(System.getProperty("line.separator"));
+
+        for(VerilyMethod method : methods.getTable().get(context).values()){
+            List<String> formalParams = new ArrayList<String>();
+
+            for(VerilyType t : method.getFormalParameters()){
+                formalParams.add(t.toString());
+            }
+
+            List<String> actualParams = new ArrayList<String>();
+
+            for(VerilyType t : method.getFormalParameters()){
+                actualParams.add(t.getName());
+            }
+
+
+            String returnType = method.getType() == null ? "void" : method.getType().getText();
+
+            sb.append(String.format("public static final %s %s(%s) {", returnType, method.getMethod(), StringUtils.join(formalParams, ", ")));
+            sb.append(System.getProperty("line.separator"));
+            if(returnType.equals("void"))
+                sb.append(String.format("\t%s.%s(%s);", context, method.getMethod(), StringUtils.join(actualParams, ", ")));
+            else
+                sb.append(String.format("\treturn %s.%s(%s);", context, method.getMethod(), StringUtils.join(actualParams, ", ")));
+
+            sb.append(System.getProperty("line.separator"));
+            sb.append("}");
+
+        }
+
+        sb.append(System.getProperty("line.separator"));
+        sb.append("}");
+
+        return sb.toString();
+    }
 }
