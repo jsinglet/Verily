@@ -14,7 +14,7 @@
     -->
     <info>
         <appname>Verily</appname>
-        <appversion>build-JUN082013</appversion>
+        <appversion>build-MAY201426</appversion>
         <authors>
             <author name="John L. Singleton" email="jsinglet@gmail.com"/>
         </authors>
@@ -73,8 +73,8 @@
             <file src="../target/tools/openjml-head/" targetdir="$INSTALL_PATH/tools/"/>
 
             <file os="windows" src="../target/tools/os/win/z3-4.3.0-win" targetdir="$INSTALL_PATH/tools/"/>
-            <file os="unix" src="../target/tools/os/unix/z3-4.3.2-unix/" targetdir="$INSTALL_PATH/tools/"/>
-            <file os="mac" src="../target/tools/os/osx/z3-4.3.2-unix/" targetdir="$INSTALL_PATH/tools/"/>
+            <!--<file os="ubuntu_linux" src="../target/tools/os/unix/z3-4.3.2-unix/" targetdir="$INSTALL_PATH/tools/"/>-->
+            <file os="unix" src="../target/tools/os/osx/z3-4.3.2-unix/" targetdir="$INSTALL_PATH/tools/"/>
 
 
 

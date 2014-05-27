@@ -269,7 +269,7 @@ public class VerilyUtil {
         if(System.getProperty("os.name").startsWith("Windows"))
             p = new ProcessBuilder("mvn.bat", "-f", ".verily\\gen\\pom.xml", "compile", "-q").redirectErrorStream(true).start();
         else
-            p = new ProcessBuilder("mvn", "-f", ".verily\\gen\\pom.xml", "compile", "-q").redirectErrorStream(true).start();
+            p = new ProcessBuilder("mvn", "-f", ".verily/gen/pom.xml", "compile", "-q").redirectErrorStream(true).start();
 
         InputStream is = p.getInputStream();
 

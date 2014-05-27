@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 
 VERILY_HOME=$1
@@ -15,7 +15,7 @@ done
 
 
 cat >/usr/bin/verily-env <<EOF
-#!/bin/sh
+#!/bin/bash
 
 
 VERILY_HOME="$1"
@@ -37,6 +37,8 @@ fi
 EOF
 
 chmod +x /usr/bin/verily-env
+
+chmod -R +x $VERILY_HOME/tools/z3*
 
 rm /usr/bin/verily
 
