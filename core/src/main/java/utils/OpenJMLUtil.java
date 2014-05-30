@@ -87,6 +87,12 @@ public class OpenJMLUtil {
         List<String> args = new ArrayList<String>();
         List<String> jars = jarsInProject();
 
+        //
+        // modify the classpath to contain the target/classes/ directory (since that will have stuff we have excluded)
+        //
+
+        jars.add(VerilyContainer.getContainer().getEnv().getHome().resolve("target").resolve("classes").toString());
+
         args.add("java");
         args.add("-jar");
         args.add(pathToJMLJar());
