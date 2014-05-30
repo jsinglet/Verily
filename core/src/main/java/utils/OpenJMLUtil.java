@@ -58,7 +58,7 @@ public class OpenJMLUtil {
     }
 
     public static String pathToJMLESCJar(){
-        return VerilyContainer.getContainer().getEnv().getJmlHome() + "-head" + File.separator + "openjml.jar";
+        return VerilyContainer.getContainer().getEnv().getJmlHome() + "" + File.separator + "openjml.jar";
     }
 
 
