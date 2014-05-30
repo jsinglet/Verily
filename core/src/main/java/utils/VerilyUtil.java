@@ -221,7 +221,9 @@ public class VerilyUtil {
         try {
             if (type.getType().equals("Integer") || type.getType().equals("int")) {
                 return Integer.parseInt(s);
-            } else if (type.getType().equals("Boolean") || type.getType().equals("boolean")) {
+            } else if(type.getType().equals("Double") || type.getType().equals("double")){
+                return Double.parseDouble(s);
+            }else if (type.getType().equals("Boolean") || type.getType().equals("boolean")) {
 
                 if (s.equalsIgnoreCase("true") || s.equals("1"))
                     return new Boolean(true);
