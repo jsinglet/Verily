@@ -33,7 +33,13 @@ public class RuntimeContractsToValidationChecker extends VerilyChecker {
 
         // run checker.
         //
+        JMLTransformationHarness applicationHarness = new JMLTransformationHarness(env.getHome().resolve(".verily").resolve("gen"));
+
         try {
+            // create proxy classes
+
+            applicationHarness.createProxyClasses(env.getTranslationTable().getMethodTable(), env.getTranslationTable().getRouterTable());
+
             OpenJMLUtil.racCompileProject();
         } catch (InterruptedException e) {
             return OK;
@@ -44,8 +50,6 @@ public class RuntimeContractsToValidationChecker extends VerilyChecker {
 
         // TODO: transform any runtime contracts to something verily
         // can catch
-        JMLTransformationHarness applicationHarness = new JMLTransformationHarness(env.getHome().resolve(".verily").resolve("gen"));
-
         try {
             applicationHarness.toVerilyRTE(env.getTranslationTable().getMethodTable(), env.getTranslationTable().getRouterTable());
         } catch (IOException e) {

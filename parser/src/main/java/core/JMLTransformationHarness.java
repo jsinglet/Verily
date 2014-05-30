@@ -78,6 +78,40 @@ public class JMLTransformationHarness {
         this.base = base;
     }
 
+    public void createProxyClasses(VerilyTable methodTable, VerilyTable routerTable) throws IOException
+    {
+        DirectoryStream<Path> methodFiles = Files.newDirectoryStream(base.resolve("src").resolve("main").resolve("java").resolve(methodsPath), "*.java");
+        for (Path p : methodFiles) {
+
+            String origFile = p.toString();
+
+            String relative = new File(".verily/gen").toURI().relativize(p.toFile().toURI()).getPath();
+
+            //
+            //  Proxy classes.
+            //
+            /////////////////////////////////////////////////////////////////////////////
+            for(String context : methodTable.getTable().keySet()){
+
+                String newClazz = TransformtoJMLRACListener.toVerilyProxySupportClasses(context, methodTable, p, relative);
+
+                if(newClazz!=null){
+
+                    Path newClazzp = base.resolve("src").resolve("main").resolve("java").resolve(methodsPath).resolve(context + "Proxy.java");
+
+                    logger.info("[jml-to-verily] Writing Runtime Proxy {}", newClazzp.toString());
+                    PrintWriter w2 = new PrintWriter(newClazzp.toFile(), "UTF-8");
+                    w2.write(newClazz);
+                    w2.close();
+                }
+
+            }
+
+        }
+
+        methodFiles.close();
+    }
+
     public void toVerilyRTE(VerilyTable methodTable, VerilyTable routerTable) throws IOException {
 
         //Utils.assertionFailureL
@@ -132,26 +166,6 @@ public class JMLTransformationHarness {
 
             }
 
-
-            //
-            //  Proxy classes.
-            //
-            /////////////////////////////////////////////////////////////////////////////
-            for(String context : methodTable.getTable().keySet()){
-
-                String newClazz = TransformtoJMLRACListener.toVerilyProxySupportClasses(context, methodTable, p, relative);
-
-                if(newClazz!=null){
-
-                    Path newClazzp = base.resolve("src").resolve("main").resolve("java").resolve(methodsPath).resolve(context + "Proxy.java");
-
-                    logger.info("[jml-to-verily] Writing Runtime Proxy {}", newClazzp.toString());
-                    PrintWriter w2 = new PrintWriter(newClazzp.toFile(), "UTF-8");
-                    w2.write(newClazz);
-                    w2.close();
-                }
-
-            }
 
     }
 
