@@ -76,6 +76,6 @@ fi
 #
 # Background startup is handled in the startup script, since there are platform specific details
 #
-eval "java"  -cp "${VERILY_CP}:${CP}" VerilyMain -z3 "${VERILY_HOME}/tools/z3-4.3.2-unix" -jml "${VERILY_HOME}/tools/openjml" "$@"
+eval "java"  -cp "target/classes/:${VERILY_CP}:${CP}" VerilyMain -z3 "${VERILY_HOME}/tools/z3-4.3.2-unix" -jml "${VERILY_HOME}/tools/openjml" "$@"
 
 
