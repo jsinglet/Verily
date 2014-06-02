@@ -192,6 +192,7 @@ public class VerilyMain {
                     i++;
                 }
             }
+            EXIT = 1;
 
 
         } catch (InterruptedException e) {

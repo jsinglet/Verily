@@ -64,6 +64,24 @@ public class TransformtoJMLRACListener extends JavaBaseListener {
         //
 
 
+        InputStream is = new FileInputStream(p.toFile());
+
+        List<String> imports = new ArrayList<String>();
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+        String line = null;
+
+        while ( (line = br.readLine()) != null) {
+            if(line.trim().startsWith("import")){
+                imports.add(line);
+            }
+
+        }
+
+        is.close();
+
+
         boolean hasHandlers = false;
 
         StringBuffer sb = new StringBuffer();
@@ -73,6 +91,15 @@ public class TransformtoJMLRACListener extends JavaBaseListener {
 
         sb.append("import verily.lang.*;");
         sb.append(System.getProperty("line.separator"));
+
+        for(String im : imports){
+            sb.append(im);
+            sb.append(System.getProperty("line.separator"));
+        }
+
+        sb.append(System.getProperty("line.separator"));
+
+
         sb.append(String.format("public class %sValidation {", context));
         sb.append(System.getProperty("line.separator"));
 
@@ -303,7 +330,7 @@ public class TransformtoJMLRACListener extends JavaBaseListener {
     }
 
 
-    public static String toVerilyProxySupportClasses(String context, VerilyTable methods, Path p, String relative) {
+    public static String toVerilyProxySupportClasses(String context, VerilyTable methods, Path p, String relative) throws IOException {
         // for each possible failure of a method, output
         //
         //
@@ -316,6 +343,25 @@ public class TransformtoJMLRACListener extends JavaBaseListener {
         //     }
         //
 
+        List<String> imports = new ArrayList<String>();
+
+        InputStream is = new FileInputStream(p.toFile());
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+        String line = null;
+
+        while ( (line = br.readLine()) != null) {
+            if(line.trim().startsWith("import")){
+                imports.add(line);
+            }
+
+        }
+
+        is.close();
+
+
+
         StringBuffer sb = new StringBuffer();
 
         sb.append("package methods;");
@@ -323,6 +369,15 @@ public class TransformtoJMLRACListener extends JavaBaseListener {
 
         sb.append("import verily.lang.*;");
         sb.append(System.getProperty("line.separator"));
+
+        for(String im : imports){
+            sb.append(im);
+            sb.append(System.getProperty("line.separator"));
+        }
+
+        sb.append(System.getProperty("line.separator"));
+
+
         sb.append(String.format("public class %sProxy {", context));
         sb.append(System.getProperty("line.separator"));
 
