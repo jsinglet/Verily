@@ -99,6 +99,7 @@ public class MRRFilter extends VerilyFilter {
             }catch(InvocationTargetException | RuntimeException e){
                 if((e instanceof InvocationTargetException || e.getMessage().equals("_jmlValidationFail")) && VerilyContainer.getContainer().getEnv().isEnableContracts()){
                     fallback = true;
+                    e.printStackTrace();
                 }else{
                     throw new Exception(e);
                 }
@@ -154,7 +155,13 @@ public class MRRFilter extends VerilyFilter {
             else
                 router = Class.forName(String.format("routers.%s", classContext), false, new VerilyClassLoader(this.getClass().getClassLoader()));
 
-            Content content = (Content) router.getMethod(m.getMethod(), controllerClazz).invoke(null, controllerArgs);
+            Content content;
+
+            if(VerilyContainer.getContainer().getEnv().isEnableContracts() && fallback)
+                content = (Content) router.getMethod(m.getMethod(), clazz).invoke(null, args);
+            else
+                content = (Content) router.getMethod(m.getMethod(), controllerClazz).invoke(null, controllerArgs);
+
 
 
             long ts3 = System.currentTimeMillis();
