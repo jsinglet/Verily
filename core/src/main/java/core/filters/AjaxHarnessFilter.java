@@ -92,6 +92,8 @@ public class AjaxHarnessFilter extends VerilyFilter {
                         List<String> paramNames = new ArrayList<String>();
 
                         for (VerilyType t : formalParams) {
+                            if(t.getType().contains("ReadableValue") || t.getType().contains("WritableValue"))
+                                continue;
                             paramNames.add(t.getName());
                         }
 
