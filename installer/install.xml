@@ -67,6 +67,7 @@
         <pack name="Base" required="yes">
             <description>The base files</description>
             <!--<file src="README.txt" targetdir="$INSTALL_PATH"/>-->
+            <file src="ACKNOWLEDGEMENTS.txt" targetdir="$INSTALL_PATH"/>
             <file src="LICENSE.txt" targetdir="$INSTALL_PATH"/>
             <file src="../target/lib/" targetdir="$INSTALL_PATH"/>
             <file src="../target/tools/openjml/" targetdir="$INSTALL_PATH/tools/"/>
