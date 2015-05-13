@@ -2,7 +2,10 @@ package core.filters;
 
 import core.*;
 import exceptions.InvalidFormalArgumentsException;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.SerializationUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.simpleframework.http.Cookie;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
@@ -14,6 +17,7 @@ import utils.VerilyUtil;
 import verily.lang.*;
 import verily.lang.exceptions.MethodNotMappedException;
 
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
@@ -277,7 +281,31 @@ public class MRRFilter extends VerilyFilter {
 
         // Test 1: We should have as many parameters as the number of parameters of the method MINUS the number of
         if (m.getNonSessionBoundParameters().size() != paramKeys.size()) {
-            throw new InvalidFormalArgumentsException("Invalid number of formal parameters");
+
+            try {
+                String content = r.getContent();
+                // it's possible this is a JSON post?
+                if(r.getMethod().equalsIgnoreCase("POST") &&  (r.getContentType().getType().equalsIgnoreCase("application/json") || content.charAt(0)=='{')){
+                    // attempt to convert the JSON object to formal parameters.
+                    JSONObject obj = (JSONObject)JSONValue.parse(content);
+
+                    for(Object k : obj.keySet()){
+
+                        String kk = k.toString();
+
+                        String val = obj.get(k).toString();
+
+                        r.getQuery().put(kk,val);
+
+                    }
+                }
+            } catch (Exception e) {
+                throw new InvalidFormalArgumentsException("Invalid number of formal parameters");
+            }
+
+            if(m.getNonSessionBoundParameters().size() > paramKeys.size()){
+                throw new InvalidFormalArgumentsException("Invalid number of formal parameters");
+            }
         }
 
         // Test 2: Create an ordered list of parameters and see if we can fill it in.
