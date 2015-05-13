@@ -14,9 +14,9 @@
     -->
     <info>
         <appname>Verily</appname>
-        <appversion>build-MAY201426</appversion>
+        <appversion>v0.1.1</appversion>
         <authors>
-            <author name="John L. Singleton" email="jsinglet@gmail.com"/>
+            <author name="John L. Singleton" email="jls@cs.ucf.edu"/>
         </authors>
         <url>http://goverily.org/</url>
         <run-privileged/>
