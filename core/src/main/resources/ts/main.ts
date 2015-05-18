@@ -11,15 +11,6 @@
 
 
 ///<reference path='verily.ts'/>
-var a = new Verily.MyClass("test");
-
-var b = new Verily.Foo("I am a string!");
-
-
-
-
-
-
 
 //    define(["require", "exports", "log"], function(require, exports, log) {
 //    log.message("hello");

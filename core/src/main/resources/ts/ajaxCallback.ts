@@ -14,11 +14,11 @@ module Verily {
         }
 
         public failure(d:any){
-            this.failure(d);
+            this.onFailure(d);
         }
 
         public success(d:any){
-            this.success(d);
+            this.onSuccess(d);
         }
 
 

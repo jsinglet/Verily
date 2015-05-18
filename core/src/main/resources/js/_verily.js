@@ -41,11 +41,11 @@ var Verily;
             this.onFailure = onFailure;
         }
         AjaxCallback.prototype.failure = function (d) {
-            this.failure(d);
+            this.onFailure(d);
         };
 
         AjaxCallback.prototype.success = function (d) {
-            this.success(d);
+            this.onSuccess(d);
         };
         return AjaxCallback;
     })();
@@ -70,7 +70,6 @@ var Verily;
     var AjaxMode;
     (function (AjaxMode) {
         AjaxMode[AjaxMode["ASYNC"] = 0] = "ASYNC";
-
         AjaxMode[AjaxMode["SYNC"] = 1] = "SYNC";
     })(AjaxMode || (AjaxMode = {}));
 
@@ -84,10 +83,10 @@ var Verily;
             this.xhr = new XMLHttpRequest();
             if (callback != undefined) {
                 this.callback = callback;
-                this.mode = AjaxMode.ASYNC;
+                this.mode = 0 /* ASYNC */;
             } else {
                 this.callback = undefined;
-                this.mode = AjaxMode.SYNC;
+                this.mode = 1 /* SYNC */;
             }
         }
         Ajax.prototype.executeMethod = function (clazz, method, argNames, argValues) {
@@ -113,11 +112,12 @@ var Verily;
         };
 
         Ajax.prototype.executeMethodSpec = function (methodSpec, argNames, argValues) {
-            if (this.mode == AjaxMode.ASYNC) {
+            if (this.mode == 0 /* ASYNC */) {
                 var thisObject = this;
 
                 this.xhr.onreadystatechange = function () {
                     if (this.readyState == 4) {
+                        // success
                         if (this.status == 200) {
                             thisObject.getCallback().success(this);
                         } else {
@@ -138,4 +138,18 @@ var Verily;
     })();
     Verily.Ajax = Ajax;
 })(Verily || (Verily = {}));
-//@ sourceMappingURL=_verily.js.map
+/*!
+* main.ts (Verily)
+*
+* http://github.com/jsinglet/Verily
+*
+* Copyright 2013, John L. Singleton <jsinglet@gmail.com>
+* Licensed under the MIT license
+* http://www.opensource.org/licenses/mit-license.php
+*
+*/
+///<reference path='verily.ts'/>
+//    define(["require", "exports", "log"], function(require, exports, log) {
+//    log.message("hello");
+//}
+//# sourceMappingURL=_verily.js.map
