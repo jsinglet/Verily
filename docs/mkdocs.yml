@@ -3,6 +3,7 @@ docs_dir: "."
 site_dir: ../.site
 pages:
 - Home: index.md
+- Foo: foo.md
 - About: about.md
 
 theme: readthedocs
