@@ -3,18 +3,37 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Verily Framework's documentation!
+Verily Framework Documentation
 ============================================
 
 Contents:
 
+
+.. _getting_started:
+
 .. toctree::
    :maxdepth: 2
+   :caption: Getting Started
 
-   test
-   test2
-    
+   quickstart     
 
+.. _creating_applications:
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Creating Applications
+
+   creating_applications     
+
+   
+.. _verifying_programs:
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Verfiying Programs
+
+   quickstart     
+   
 
 Indices and tables
 ==================
