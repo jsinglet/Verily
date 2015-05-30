@@ -1,4 +1,6 @@
 site_name: Verily
+docs_dir: "."
+site_dir: ../.site
 pages:
 - Home: index.md
 - About: about.md
