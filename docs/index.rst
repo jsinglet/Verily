@@ -25,14 +25,32 @@ Contents:
 
    creating_applications     
 
-   
-.. _verifying_programs:
+.. _testing_applications:
 
 .. toctree::
    :maxdepth: 2
-   :caption: Verfiying Programs
+   :caption: Testing Applications
 
-   quickstart     
+   testing_applications
+
+
+.. _deploying_applications:
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Deploying Applications
+
+   deploying_applications     
+
+
+   
+.. _verifying_applications:
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Verfiying Applications
+
+   verifying_applications     
    
 
 Indices and tables

@@ -16,7 +16,7 @@ Verily combines application construction recipes with static analysis to help yo
 Installation 
 ========================
 
-The Verily installer comes with everything you need to start writing applications in Verily right away. To start, download the latest installer from the [main page](/). Verily requires that you have a Java version 1.7+ and a recent version of Maven 3. 
+The Verily installer comes with everything you need to start writing applications in Verily right away. To start, download the latest installer from the `releases page <https://github.com/jsinglet/Verily/releases>`_. Verily requires that you have a Java version 1.7+ and a recent version of Maven 3. 
 
 On Windows platforms, you can install Verily simply by running the downloaded JAR file. On other platforms (Linux and Mac) you will have to start the Verily installer via the command line as follows::
 
