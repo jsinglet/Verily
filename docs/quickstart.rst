@@ -51,6 +51,73 @@ Once Verily is installed, you can interact with it in a number of ways. The firs
 
 While an IDE is not strictly necessary to work with Verily, if you are an IntelliJ user, you can use our simple VerilyIdea Plugin for IntelliJ. You can also get the plugin from the [main page](/). 
 
+Headless Installation
+=====================
+
+The Verily installer by default requires a graphical environment. If you wish to install Verily without a graphical environment (perhaps on a server) you can use the procedure, below.
+
+Put the following in a file called ``install-verily.xml``
+
+.. code-block:: xml
+
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+  <AutomatedInstallation langpack="eng">
+    <com.izforge.izpack.panels.HelloPanel id="UNKNOWN (com.izforge.izpack.panels.HelloPanel)"/>
+    <com.izforge.izpack.panels.LicencePanel id="UNKNOWN (com.izforge.izpack.panels.LicencePanel)"/>
+    <com.izforge.izpack.panels.TargetPanel id="UNKNOWN (com.izforge.izpack.panels.TargetPanel)">
+      <installpath>/usr/local/Verily</installpath>
+    </com.izforge.izpack.panels.TargetPanel>
+    <com.izforge.izpack.panels.InstallPanel id="UNKNOWN (com.izforge.izpack.panels.InstallPanel)"/>
+    <com.izforge.izpack.panels.FinishPanel id="UNKNOWN (com.izforge.izpack.panels.FinishPanel)"/>
+  </AutomatedInstallation>		
+
+Download a release from the `releases page <https://github.com/jsinglet/Verily/releases>`_ and execute the following command as root::
+
+  » java -jar verily-installer-<version>.jar install-verily.xml
+
+This will start non-interactive installation of Verily.
+
+
+Using Verily in Vagrant
+=======================
+
+If you are using Verily within Vagrant the setup is quite straightforward, but will require the use of the headless technique specified, above. To make this easier, users wishing to use Verily within Vagrant can use the following Vagrantfile. To use it, put the listing below into a file called ``Vagrantfile`` and execute the ``vagrant up`` command.
+
+.. code-block:: ruby
+
+ # -*- mode: ruby -*-
+ # vi: set ft=ruby :
+ 
+ Vagrant.configure(2) do |config|
+   config.vm.box = "hashicorp/precise32"
+   config.vm.network :forwarded_port, host: 4000, guest: 4000
+   config.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get update
+      sudo apt-get -y install openjdk-7-jdk
+      sudo apt-get -y install maven
+ 
+      cat >/tmp/install-verily.xml <<EOL
+ <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+ <AutomatedInstallation langpack="eng">
+   <com.izforge.izpack.panels.HelloPanel id="UNKNOWN (com.izforge.izpack.panels.HelloPanel)"/>
+   <com.izforge.izpack.panels.LicencePanel id="UNKNOWN (com.izforge.izpack.panels.LicencePanel)"/>
+   <com.izforge.izpack.panels.TargetPanel id="UNKNOWN (com.izforge.izpack.panels.TargetPanel)">
+     <installpath>/usr/local/Verily</installpath>
+   </com.izforge.izpack.panels.TargetPanel>
+   <com.izforge.izpack.panels.InstallPanel id="UNKNOWN (com.izforge.izpack.panels.InstallPanel)"/>
+   <com.izforge.izpack.panels.FinishPanel id="UNKNOWN (com.izforge.izpack.panels.FinishPanel)"/>
+ </AutomatedInstallation>
+ EOL
+
+      sudo update-alternatives --set java /usr/lib/jvm/java-7-openjdk-i386/jre/bin/java
+      sudo wget https://github.com/jsinglet/Verily/releases/download/v0.1.2/verily-installer-0.1.2.jar
+      sudo java -jar verily-installer-0.1.2.jar /tmp/install-verily.xml
+ 
+   SHELL
+ end
+ 
+
+
 
 Hello World in Verily
 =====================
